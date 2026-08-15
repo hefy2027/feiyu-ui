@@ -1,4 +1,4 @@
-# 非与 UI (Feiyu UI) 组件库开发指南与全景文档
+# 非与 UI (Feiyu UI)开发指南与全景文档 (Luminous UI)
 
 > 基于 Vue 3 + TypeScript 5 + Vite 8 构建的现代、高性能、自托管毛玻璃微质感（Luminous Productivity）企业级组件库。  
 > 拥有 80+ 个纯自研组件，全面对齐 Element Plus 常用组件族，零外部 CDN 依赖，100% 离线可用，开箱即用支持亮色/暗色主题自适应。
@@ -9,11 +9,8 @@
 
 ### 1.1 安装与全局引用
 
-```bash
-npm install feiyu-ui
-```
+所有基础与高级组件均收口于 `feiyu-ui`（或 `src/components/ui/index.ts`），支持按需解构引入：
 
-所有基础与高级组件均支持按需解构引入：
 ```vue
 <script setup lang="ts">
 import { Button, Input, Modal, DataTable, VirtualList } from 'feiyu-ui'
@@ -26,7 +23,7 @@ import { Button, Input, Modal, DataTable, VirtualList } from 'feiyu-ui'
 
 ### 1.2 设计系统与 Token 规范
 
-组件样式严格遵从 `styles/tokens.scss` 与 `styles/base.scss`，统一采用 CSS 自定义属性与 `color-mix()` 实现高斯毛玻璃自适应。
+组件样式严格遵从 `src/styles/tokens.scss` 与 `src/styles/base.scss`，统一采用 CSS 自定义属性与 `color-mix()` 实现高斯毛玻璃自适应。
 
 - **表面色阶**：`--surface`、`--surface-container-low`、`--surface-container-high`、`--surface-container-highest`
 - **语义色彩**：`--primary`、`--success`、`--warning`、`--danger`、`--info`
@@ -37,8 +34,8 @@ import { Button, Input, Modal, DataTable, VirtualList } from 'feiyu-ui'
 
 ## 2. 组件分类全景索引
 
-```text
-src/
+```
+src/components/ui/
 ├── button/     (按钮体系)  Button, ButtonGroup, FloatButton, FloatButtonGroup, Link
 ├── layout/     (空间排版)  Space, Flex, Grid, GridItem(Gi), Row, Col, Divider, Split, Scrollbar, Layout 全套
 ├── form/       (数据录入)  Form, FormItem, Input, InputPassword, InputNumber, PinInput, Textarea,
@@ -433,7 +430,7 @@ iOS 风格滑动胶囊分段控制器，带有弹簧物理位移动画。
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { VirtualList, type VirtualListInstance } from '@/components/ui'
+import { VirtualList, type VirtualListInstance } from 'feiyu-ui'
 
 const listRef = ref<VirtualListInstance | null>(null)
 const bigDataList = Array.from({ length: 10000 }, (_, i) => ({ id: i + 1, text: `Item #${i + 1}` }))
