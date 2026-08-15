@@ -51,7 +51,7 @@ function toggleItem(name: string | number) {
   }
 }
 
-provide<CollapseContext>('ui-collapse', {
+provide<CollapseContext>('fy-collapse', {
   expandedNames: expandedList,
   arrowPlacement: computed(() => props.arrowPlacement),
   toggleItem
@@ -61,8 +61,8 @@ provide<CollapseContext>('ui-collapse', {
 <template>
   <div
     :class="[
-      'ui-collapse',
-      { 'ui-collapse--bordered': bordered }
+      'fy-collapse',
+      { 'fy-collapse--bordered': bordered }
     ]"
   >
     <slot />
@@ -70,19 +70,19 @@ provide<CollapseContext>('ui-collapse', {
 </template>
 
 <style scoped lang="scss">
-.ui-collapse {
+.fy-collapse {
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-radius: var(--r-lg);
-  background: color-mix(in srgb, var(--surface-container-lowest) 78%, transparent);
+  border-radius: var(--fy-r-lg);
+  background: color-mix(in srgb, var(--fy-surface-container-lowest) 78%, transparent);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--fy-shadow-sm);
   overflow: hidden;
 
   &--bordered {
-    border: 1px solid var(--glass-border);
+    border: 1px solid var(--fy-glass-border);
   }
 }
 </style>

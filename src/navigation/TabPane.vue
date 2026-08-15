@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
   closable: false
 })
 
-const tabsContext = inject<TabsContext | null>('ui-tabs', null)
+const tabsContext = inject<TabsContext | null>('fy-tabs', null)
 
 const isActive = computed(() => {
   return tabsContext?.activeName.value === props.name
@@ -47,15 +47,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-show="isActive" class="ui-tab-pane" role="tabpanel">
+  <div v-show="isActive" class="fy-tab-pane" role="tabpanel">
     <slot />
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-tab-pane {
+.fy-tab-pane {
   width: 100%;
-  animation: pane-fade 0.2s var(--ease-soft);
+  animation: pane-fade 0.2s var(--fy-ease-soft);
 }
 
 @keyframes pane-fade {

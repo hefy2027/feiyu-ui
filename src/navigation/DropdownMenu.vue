@@ -100,19 +100,19 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="dropdownRef" :class="['ui-dropdown', { 'ui-dropdown--open': isOpen }]">
-    <div class="ui-dropdown__trigger" @click.stop="toggle">
+  <div ref="dropdownRef" :class="['fy-dropdown', { 'fy-dropdown--open': isOpen }]">
+    <div class="fy-dropdown__trigger" @click.stop="toggle">
       <slot name="trigger" :is-open="isOpen">
         <slot :is-open="isOpen" />
       </slot>
     </div>
 
-    <transition name="ui-dropdown-fade">
+    <transition name="fy-dropdown-fade">
       <div
         v-if="isOpen"
         :class="[
-          'ui-dropdown__menu',
-          `ui-dropdown__menu--${placement}`
+          'fy-dropdown__menu',
+          `fy-dropdown__menu--${placement}`
         ]"
         :style="{ minWidth: width }"
         @click.stop
@@ -120,11 +120,11 @@ defineExpose({
         <slot :close="close">
           <template v-if="items">
             <template v-for="(item, idx) in items" :key="item.key ?? idx">
-              <div v-if="item.divider" class="ui-dropdown-divider" />
+              <div v-if="item.divider" class="fy-dropdown-divider" />
               <div
                 v-else
                 :class="[
-                  'ui-dropdown-item',
+                  'fy-dropdown-item',
                   {
                     'is-disabled': item.disabled,
                     'is-danger': item.danger
@@ -132,10 +132,10 @@ defineExpose({
                 ]"
                 @click="handleItemClick(item)"
               >
-                <span v-if="item.icon" class="material-symbols-outlined ui-dropdown-item__icon">
+                <span v-if="item.icon" class="material-symbols-outlined fy-dropdown-item__icon">
                   {{ item.icon }}
                 </span>
-                <span class="ui-dropdown-item__label">{{ item.label }}</span>
+                <span class="fy-dropdown-item__label">{{ item.label }}</span>
               </div>
             </template>
           </template>
@@ -146,12 +146,12 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.ui-dropdown {
+.fy-dropdown {
   position: relative;
   display: inline-flex;
 
   &--open,
-  &:has(.ui-dropdown__menu) {
+  &:has(.fy-dropdown__menu) {
     z-index: 50;
   }
 
@@ -164,12 +164,12 @@ defineExpose({
     position: absolute;
     z-index: 150;
     padding: 6px;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-lowest) 92%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 92%, transparent);
     backdrop-filter: blur(24px) saturate(1.6);
     -webkit-backdrop-filter: blur(24px) saturate(1.6);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
     display: flex;
     flex-direction: column;
 
@@ -195,34 +195,34 @@ defineExpose({
   }
 }
 
-.ui-dropdown-divider {
+.fy-dropdown-divider {
   height: 1px;
   margin: 4px 0;
-  background: color-mix(in srgb, var(--outline-variant) 25%, transparent);
+  background: color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
 }
 
-.ui-dropdown-item {
+.fy-dropdown-item {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px 10px;
-  border-radius: var(--r-sm);
-  font-size: var(--font-size-sm);
+  border-radius: var(--fy-r-sm);
+  font-size: var(--fy-font-size-sm);
   font-weight: 600;
-  color: var(--on-surface);
+  color: var(--fy-on-surface);
   cursor: pointer;
   user-select: none;
   transition: background 0.15s ease, color 0.15s ease;
 
   &:hover:not(.is-disabled) {
-    background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
   }
 
   &.is-danger {
-    color: var(--error);
+    color: var(--fy-error);
 
     &:hover:not(.is-disabled) {
-      background: color-mix(in srgb, var(--error) 12%, transparent);
+      background: color-mix(in srgb, var(--fy-error) 12%, transparent);
     }
   }
 
@@ -242,13 +242,13 @@ defineExpose({
 }
 
 /* Transitions */
-.ui-dropdown-fade-enter-active,
-.ui-dropdown-fade-leave-active {
-  transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-out);
+.fy-dropdown-fade-enter-active,
+.fy-dropdown-fade-leave-active {
+  transition: opacity 0.18s var(--fy-ease-soft), transform 0.18s var(--fy-ease-out);
 }
 
-.ui-dropdown-fade-enter-from,
-.ui-dropdown-fade-leave-to {
+.fy-dropdown-fade-enter-from,
+.fy-dropdown-fade-leave-to {
   opacity: 0;
   transform: translateY(-4px) scale(0.97);
 }

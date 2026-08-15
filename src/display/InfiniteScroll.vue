@@ -45,17 +45,17 @@ onUnmounted(() => {
 <template>
   <div
     ref="scrollContainerRef"
-    class="ui-infinite-scroll"
+    class="fy-infinite-scroll"
     :style="{ height: typeof height === 'number' ? `${height}px` : height }"
   >
     <slot />
 
-    <div class="ui-infinite-scroll__footer">
-      <div v-if="loading" class="ui-infinite-scroll__loading">
+    <div class="fy-infinite-scroll__footer">
+      <div v-if="loading" class="fy-infinite-scroll__loading">
         <Spin size="sm" />
         <span>加载更多内容中...</span>
       </div>
-      <div v-else-if="!hasMore" class="ui-infinite-scroll__no-more">
+      <div v-else-if="!hasMore" class="fy-infinite-scroll__no-more">
         <slot name="no-more">—— 已经到底啦 ——</slot>
       </div>
     </div>
@@ -63,22 +63,22 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-infinite-scroll {
+.fy-infinite-scroll {
   width: 100%;
   overflow-y: auto;
   position: relative;
-  border-radius: var(--r-lg);
-  background: color-mix(in srgb, var(--surface-container-high) 30%, transparent);
+  border-radius: var(--fy-r-lg);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 30%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
   padding: 12px;
 
   &::-webkit-scrollbar {
     width: 6px;
   }
   &::-webkit-scrollbar-thumb {
-    background: color-mix(in srgb, var(--outline-variant) 50%, transparent);
+    background: color-mix(in srgb, var(--fy-outline-variant) 50%, transparent);
     border-radius: 4px;
   }
 
@@ -87,21 +87,21 @@ onUnmounted(() => {
     align-items: center;
     justify-content: center;
     padding: 14px 0 6px;
-    font-size: var(--font-size-xs);
-    color: var(--outline);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-outline);
   }
 
   &__loading {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: var(--primary);
+    color: var(--fy-primary);
     font-weight: 600;
   }
 
   &__no-more {
     font-weight: 500;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 }
 </style>

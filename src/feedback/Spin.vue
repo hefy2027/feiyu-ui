@@ -13,21 +13,21 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div :class="['ui-spin-container', { 'is-spinning': show && $slots.default }]">
+  <div :class="['fy-spin-container', { 'is-spinning': show && $slots.default }]">
     <slot />
 
-    <transition name="ui-spin-fade">
+    <transition name="fy-spin-fade">
       <div
         v-if="show"
         :class="[
-          'ui-spin-mask',
-          `ui-spin-mask--${size}`,
+          'fy-spin-mask',
+          `fy-spin-mask--${size}`,
           { 'is-nested': !!$slots.default }
         ]"
       >
-        <div class="ui-spin-body">
-          <div class="ui-spin-spinner">
-            <svg viewBox="0 0 50 50" class="ui-spin-svg">
+        <div class="fy-spin-body">
+          <div class="fy-spin-spinner">
+            <svg viewBox="0 0 50 50" class="fy-spin-svg">
               <circle
                 cx="25"
                 cy="25"
@@ -36,11 +36,11 @@ withDefaults(defineProps<Props>(), {
                 stroke="currentColor"
                 stroke-width="4.5"
                 stroke-linecap="round"
-                class="ui-spin-circle"
+                class="fy-spin-circle"
               />
             </svg>
           </div>
-          <span v-if="description || $slots.description" class="ui-spin-description">
+          <span v-if="description || $slots.description" class="fy-spin-description">
             <slot name="description">{{ description }}</slot>
           </span>
         </div>
@@ -50,12 +50,12 @@ withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped lang="scss">
-.ui-spin-container {
+.fy-spin-container {
   position: relative;
   display: block;
   width: 100%;
 
-  &.is-spinning > :not(.ui-spin-mask) {
+  &.is-spinning > :not(.fy-spin-mask) {
     opacity: 0.45;
     pointer-events: none;
     user-select: none;
@@ -64,11 +64,11 @@ withDefaults(defineProps<Props>(), {
   }
 }
 
-.ui-spin-mask {
+.fy-spin-mask {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
+  color: var(--fy-primary);
   padding: 12px;
   user-select: none;
 
@@ -76,14 +76,14 @@ withDefaults(defineProps<Props>(), {
     position: absolute;
     inset: 0;
     z-index: 50;
-    background: color-mix(in srgb, var(--surface-container-lowest) 70%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 70%, transparent);
     backdrop-filter: blur(4px);
     padding: 0;
     border-radius: inherit;
   }
 }
 
-.ui-spin-body {
+.fy-spin-body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,49 +91,49 @@ withDefaults(defineProps<Props>(), {
   gap: 8px;
 }
 
-.ui-spin-spinner {
+.fy-spin-spinner {
   display: inline-flex;
-  animation: ui-spin-rotate 1.2s linear infinite;
+  animation: fy-spin-rotate 1.2s linear infinite;
 }
 
-.ui-spin-svg {
+.fy-spin-svg {
   display: block;
 }
 
-.ui-spin-circle {
+.fy-spin-circle {
   stroke-dasharray: 90, 150;
   stroke-dashoffset: 0;
-  animation: ui-spin-dash 1.4s ease-in-out infinite;
+  animation: fy-spin-dash 1.4s ease-in-out infinite;
 }
 
-.ui-spin-description {
-  font-size: var(--font-size-xs);
+.fy-spin-description {
+  font-size: var(--fy-font-size-xs);
   font-weight: 700;
-  color: var(--on-surface-variant);
+  color: var(--fy-on-surface-variant);
   letter-spacing: 0.02em;
 }
 
 /* Sizes */
-.ui-spin-mask--sm .ui-spin-svg {
+.fy-spin-mask--sm .fy-spin-svg {
   width: 20px;
   height: 20px;
 }
-.ui-spin-mask--md .ui-spin-svg {
+.fy-spin-mask--md .fy-spin-svg {
   width: 32px;
   height: 32px;
 }
-.ui-spin-mask--lg .ui-spin-svg {
+.fy-spin-mask--lg .fy-spin-svg {
   width: 48px;
   height: 48px;
 }
 
-@keyframes ui-spin-rotate {
+@keyframes fy-spin-rotate {
   100% {
     transform: rotate(360deg);
   }
 }
 
-@keyframes ui-spin-dash {
+@keyframes fy-spin-dash {
   0% {
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
@@ -148,12 +148,12 @@ withDefaults(defineProps<Props>(), {
   }
 }
 
-.ui-spin-fade-enter-active,
-.ui-spin-fade-leave-active {
+.fy-spin-fade-enter-active,
+.fy-spin-fade-leave-active {
   transition: opacity 0.2s ease;
 }
-.ui-spin-fade-enter-from,
-.ui-spin-fade-leave-to {
+.fy-spin-fade-enter-from,
+.fy-spin-fade-leave-to {
   opacity: 0;
 }
 </style>

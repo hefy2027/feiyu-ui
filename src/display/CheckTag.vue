@@ -33,9 +33,9 @@ function handleClick() {
 <template>
   <span
     :class="[
-      'ui-check-tag',
-      `ui-check-tag--${type}`,
-      `ui-check-tag--${size}`,
+      'fy-check-tag',
+      `fy-check-tag--${type}`,
+      `fy-check-tag--${size}`,
       {
         'is-checked': checked,
         'is-disabled': disabled,
@@ -52,27 +52,27 @@ function handleClick() {
 </template>
 
 <style scoped lang="scss">
-.ui-check-tag {
+.fy-check-tag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 4px 12px;
-  font-size: var(--font-size-xs);
+  font-size: var(--fy-font-size-xs);
   font-weight: 600;
   line-height: 1.4;
-  border-radius: var(--r-md);
+  border-radius: var(--fy-r-md);
   cursor: pointer;
   user-select: none;
-  color: var(--on-surface-variant);
-  background: color-mix(in srgb, var(--surface-container-high) 50%, transparent);
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+  color: var(--fy-on-surface-variant);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 50%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: all 0.2s var(--ease-soft);
+  transition: all 0.2s var(--fy-ease-soft);
   gap: 4px;
 
   &.is-round {
-    border-radius: var(--r-full);
+    border-radius: var(--fy-r-full);
   }
 
   &--sm {
@@ -82,18 +82,18 @@ function handleClick() {
 
   &--md {
     padding: 4px 12px;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
   }
 
   &--lg {
     padding: 6px 16px;
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
   }
 
   &:hover:not(.is-disabled) {
-    background: color-mix(in srgb, var(--surface-container-high) 75%, transparent);
-    box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-hi);
-    color: var(--on-surface);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 75%, transparent);
+    box-shadow: var(--fy-shadow-sm), inset 0 1px 0 var(--fy-glass-hi);
+    color: var(--fy-on-surface);
     transform: translateY(-1px);
   }
 
@@ -105,33 +105,33 @@ function handleClick() {
 
   /* Checked Type Variants */
   &.is-checked {
-    color: var(--on-primary);
+    color: var(--fy-on-primary);
     border-color: transparent;
   }
 
-  &--primary.is-checked {
-    background: var(--primary);
-    box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--primary) 60%, transparent);
+  &--fy-primary.is-checked {
+    background: var(--fy-primary);
+    box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--fy-primary) 60%, transparent);
   }
 
-  &--success.is-checked {
-    background: var(--theme-green);
-    box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--theme-green) 60%, transparent);
+  &--fy-success.is-checked {
+    background: var(--fy-theme-green);
+    box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--fy-theme-green) 60%, transparent);
   }
 
-  &--warning.is-checked {
-    background: var(--theme-yellow);
-    box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--theme-yellow) 60%, transparent);
+  &--fy-warning.is-checked {
+    background: var(--fy-theme-yellow);
+    box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--fy-theme-yellow) 60%, transparent);
   }
 
-  &--danger.is-checked {
-    background: var(--error);
-    box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--error) 60%, transparent);
+  &--fy-danger.is-checked {
+    background: var(--fy-error);
+    box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--fy-error) 60%, transparent);
   }
 
-  &--info.is-checked {
-    background: var(--outline);
-    box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--outline) 60%, transparent);
+  &--fy-info.is-checked {
+    background: var(--fy-outline);
+    box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--fy-outline) 60%, transparent);
   }
 }
 </style>

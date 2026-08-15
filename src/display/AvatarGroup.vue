@@ -29,7 +29,7 @@ const extraCount = computed(() => {
 </script>
 
 <template>
-  <div :class="['ui-avatar-group', `ui-avatar-group--${size}`]">
+  <div :class="['fy-avatar-group', `fy-avatar-group--${size}`]">
     <slot>
       <Avatar
         v-for="u in visibleUsers"
@@ -38,11 +38,11 @@ const extraCount = computed(() => {
         :initials="u.initials"
         :src="u.avatar"
         :size="size"
-        class="ui-avatar-group__item"
+        class="fy-avatar-group__item"
       />
       <div
         v-if="extraCount > 0"
-        :class="['ui-avatar-group__more', `ui-avatar-group__more--${size}`]"
+        :class="['fy-avatar-group__more', `fy-avatar-group__more--${size}`]"
         :title="`还有 ${extraCount} 位成员`"
       >
         +{{ extraCount }}
@@ -52,14 +52,14 @@ const extraCount = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-avatar-group {
+.fy-avatar-group {
   display: inline-flex;
   align-items: center;
 
-  :deep(> .ui-avatar) {
+  :deep(> .fy-avatar) {
     margin-left: -8px;
-    box-shadow: 0 0 0 2px var(--surface);
-    transition: transform 0.2s var(--ease-soft), z-index 0.2s;
+    box-shadow: 0 0 0 2px var(--fy-surface);
+    transition: transform 0.2s var(--fy-ease-soft), z-index 0.2s;
 
     &:first-child {
       margin-left: 0;
@@ -67,7 +67,7 @@ const extraCount = computed(() => {
   }
 
   &--expand-on-hover:hover {
-    :deep(> .ui-avatar:hover) {
+    :deep(> .fy-avatar:hover) {
       transform: translateY(-4px) scale(1.08);
       z-index: 10;
     }
@@ -76,7 +76,7 @@ const extraCount = computed(() => {
   &--vertical {
     flex-direction: column;
 
-    :deep(> .ui-avatar),
+    :deep(> .fy-avatar),
     &__item,
     &__more {
       margin-left: 0;
@@ -90,7 +90,7 @@ const extraCount = computed(() => {
 
   &__item {
     margin-left: -8px;
-    box-shadow: 0 0 0 2px var(--surface);
+    box-shadow: 0 0 0 2px var(--fy-surface);
 
     &:first-child {
       margin-left: 0;
@@ -99,12 +99,12 @@ const extraCount = computed(() => {
 
   &__more {
     margin-left: -8px;
-    box-shadow: 0 0 0 2px var(--surface);
-    border-radius: var(--r-full);
+    box-shadow: 0 0 0 2px var(--fy-surface);
+    border-radius: var(--fy-r-full);
     display: grid;
     place-items: center;
-    background: var(--surface-container-high);
-    color: var(--on-surface-variant);
+    background: var(--fy-surface-container-high);
+    color: var(--fy-on-surface-variant);
     font-weight: 800;
     user-select: none;
     flex: none;

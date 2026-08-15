@@ -76,12 +76,12 @@ function handleMouseLeave() {
 <template>
   <div
     ref="groupRef"
-    class="ui-float-btn-group"
+    class="fy-float-btn-group"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
     <Transition name="group-slide">
-      <div v-show="isOpen" class="ui-float-btn-group__menu">
+      <div v-show="isOpen" class="fy-float-btn-group__menu">
         <slot />
       </div>
     </Transition>
@@ -95,7 +95,7 @@ function handleMouseLeave() {
       >
         <slot name="icon" :open="isOpen">
           <span
-            class="material-symbols-outlined ui-float-btn-group__main-icon"
+            class="material-symbols-outlined fy-float-btn-group__main-icon"
             :class="{ 'is-open': isOpen }"
           >
             {{ isOpen ? activeIcon : icon }}
@@ -107,7 +107,7 @@ function handleMouseLeave() {
 </template>
 
 <style scoped lang="scss">
-.ui-float-btn-group {
+.fy-float-btn-group {
   display: inline-flex;
   flex-direction: column-reverse;
   align-items: center;

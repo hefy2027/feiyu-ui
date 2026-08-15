@@ -38,7 +38,7 @@ let autoPlayTimer: number | null = null
 
 function updateSlideCount() {
   if (carouselRef.value) {
-    const track = carouselRef.value.querySelector('.ui-carousel__track')
+    const track = carouselRef.value.querySelector('.fy-carousel__track')
     if (track) {
       slideCount.value = track.children.length
     }
@@ -118,18 +118,18 @@ defineExpose({
   <div
     ref="carouselRef"
     :class="[
-      'ui-carousel',
-      `ui-carousel--dots-${dotPlacement}`,
-      `ui-carousel--dot-${dotType}`,
-      `ui-carousel--dir-${direction}`,
-      `ui-carousel--arrow-${showArrow}`
+      'fy-carousel',
+      `fy-carousel--dots-${dotPlacement}`,
+      `fy-carousel--dot-${dotType}`,
+      `fy-carousel--dir-${direction}`,
+      `fy-carousel--arrow-${showArrow}`
     ]"
     @mouseenter="stopAutoPlay"
     @mouseleave="startAutoPlay"
   >
     <!-- Slides Track -->
     <div
-      class="ui-carousel__track"
+      class="fy-carousel__track"
       :style="{
         transform: direction === 'vertical'
           ? `translateY(-${currentIndex * 100}%)`
@@ -143,7 +143,7 @@ defineExpose({
     <button
       v-if="showArrow !== 'never'"
       type="button"
-      class="ui-carousel__arrow ui-carousel__arrow--prev"
+      class="fy-carousel__arrow fy-carousel__arrow--prev"
       aria-label="上一页"
       @click="prev"
     >
@@ -153,7 +153,7 @@ defineExpose({
     <button
       v-if="showArrow !== 'never'"
       type="button"
-      class="ui-carousel__arrow ui-carousel__arrow--next"
+      class="fy-carousel__arrow fy-carousel__arrow--next"
       aria-label="下一页"
       @click="next"
     >
@@ -161,12 +161,12 @@ defineExpose({
     </button>
 
     <!-- Dots Indicators -->
-    <div v-if="showDots && slideCount > 1" class="ui-carousel__dots">
+    <div v-if="showDots && slideCount > 1" class="fy-carousel__dots">
       <button
         v-for="i in slideCount"
         :key="i"
         type="button"
-        :class="['ui-carousel__dot', { 'is-active': currentIndex === i - 1 }]"
+        :class="['fy-carousel__dot', { 'is-active': currentIndex === i - 1 }]"
         :aria-label="`第 ${i} 页`"
         @click="goTo(i - 1)"
       />
@@ -175,20 +175,20 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.ui-carousel {
+.fy-carousel {
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: var(--r-xl);
+  border-radius: var(--fy-r-xl);
   user-select: none;
   box-sizing: border-box;
 
   &__track {
     display: flex;
     width: 100%;
-    transition: transform 0.4s var(--ease-out);
+    transition: transform 0.4s var(--fy-ease-out);
 
-    .ui-carousel--dir-vertical & {
+    .fy-carousel--dir-vertical & {
       flex-direction: column;
     }
 
@@ -208,20 +208,20 @@ defineExpose({
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    border: 1px solid var(--glass-border);
-    background: color-mix(in srgb, var(--surface-container-lowest) 80%, transparent);
+    border: 1px solid var(--fy-glass-border);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 80%, transparent);
     backdrop-filter: blur(14px);
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s var(--ease-soft);
-    box-shadow: var(--shadow-sm);
+    transition: all 0.2s var(--fy-ease-soft);
+    box-shadow: var(--fy-shadow-sm);
 
     &:hover {
-      background: var(--surface-container-lowest);
-      color: var(--primary);
+      background: var(--fy-surface-container-lowest);
+      color: var(--fy-primary);
       transform: translateY(-50%) scale(1.1);
     }
 
@@ -260,16 +260,16 @@ defineExpose({
   &__dot {
     width: 8px;
     height: 8px;
-    border-radius: var(--r-full);
+    border-radius: var(--fy-r-full);
     border: none;
-    background: color-mix(in srgb, var(--outline) 40%, transparent);
+    background: color-mix(in srgb, var(--fy-outline) 40%, transparent);
     cursor: pointer;
     padding: 0;
-    transition: all 0.25s var(--ease-soft);
+    transition: all 0.25s var(--fy-ease-soft);
 
     &.is-active {
       width: 22px;
-      background: var(--primary);
+      background: var(--fy-primary);
     }
   }
 

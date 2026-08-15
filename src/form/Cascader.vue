@@ -41,7 +41,7 @@ const emit = defineEmits<{
 
 const isOpen = ref(false)
 const cascaderRef = ref<HTMLElement | null>(null)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 // Active selected path in current menu navigation
 const activePath = ref<CascaderOption[]>([])
@@ -154,52 +154,52 @@ onUnmounted(() => {
   <div
     ref="cascaderRef"
     :class="[
-      'ui-cascader',
-      `ui-cascader--${size}`,
+      'fy-cascader',
+      `fy-cascader--${size}`,
       {
-        'ui-cascader--open': isOpen,
-        'ui-cascader--disabled': disabled,
-        'ui-cascader--block': block
+        'fy-cascader--open': isOpen,
+        'fy-cascader--disabled': disabled,
+        'fy-cascader--block': block
       }
     ]"
   >
-    <div class="ui-cascader__input-box" @click="toggleDropdown">
-      <span v-if="displayLabels" class="ui-cascader__text">
+    <div class="fy-cascader__input-box" @click="toggleDropdown">
+      <span v-if="displayLabels" class="fy-cascader__text">
         {{ displayLabels }}
       </span>
-      <span v-else class="ui-cascader__placeholder">
+      <span v-else class="fy-cascader__placeholder">
         {{ placeholder }}
       </span>
 
       <button
         v-if="clearable && displayLabels && !disabled"
         type="button"
-        class="ui-cascader__clear"
+        class="fy-cascader__clear"
         aria-label="清空"
         @click.stop="handleClear"
       >
         <span class="material-symbols-outlined">cancel</span>
       </button>
-      <span v-else class="material-symbols-outlined ui-cascader__arrow">
+      <span v-else class="material-symbols-outlined fy-cascader__arrow">
         expand_more
       </span>
     </div>
 
     <!-- Cascading Multi-Column Popover -->
-    <transition name="ui-cascader-fade">
-      <div v-if="isOpen" class="ui-cascader__dropdown" @click.stop>
-        <div class="ui-cascader__columns">
+    <transition name="fy-cascader-fade">
+      <div v-if="isOpen" class="fy-cascader__dropdown" @click.stop>
+        <div class="fy-cascader__columns">
           <div
             v-for="(col, colIdx) in menuColumns"
             :key="colIdx"
-            class="ui-cascader__col"
+            class="fy-cascader__col"
           >
             <button
               v-for="opt in col"
               :key="String(opt.value)"
               type="button"
               :class="[
-                'ui-cascader__item',
+                'fy-cascader__item',
                 {
                   'is-active': activePath[colIdx]?.value === opt.value,
                   'is-disabled': opt.disabled
@@ -208,13 +208,13 @@ onUnmounted(() => {
               :disabled="opt.disabled"
               @click="handleSelectOption(opt, colIdx)"
             >
-              <span v-if="opt.icon" class="material-symbols-outlined ui-cascader__item-icon">
+              <span v-if="opt.icon" class="material-symbols-outlined fy-cascader__item-icon">
                 {{ opt.icon }}
               </span>
-              <span class="ui-cascader__item-label">{{ opt.label }}</span>
+              <span class="fy-cascader__item-label">{{ opt.label }}</span>
               <span
                 v-if="opt.children && opt.children.length > 0"
-                class="material-symbols-outlined ui-cascader__item-arrow"
+                class="material-symbols-outlined fy-cascader__item-arrow"
               >
                 chevron_right
               </span>
@@ -227,7 +227,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-cascader {
+.fy-cascader {
   position: relative;
   display: inline-flex;
   font-family: inherit;
@@ -247,29 +247,29 @@ onUnmounted(() => {
     align-items: center;
     width: 100%;
     cursor: pointer;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-high) 42%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 42%, transparent);
     backdrop-filter: blur(14px) saturate(1.4);
     -webkit-backdrop-filter: blur(14px) saturate(1.4);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
     transition:
-      border-color 0.2s var(--ease-soft),
-      box-shadow 0.2s var(--ease-soft),
-      background 0.2s var(--ease-soft);
+      border-color 0.2s var(--fy-ease-soft),
+      box-shadow 0.2s var(--fy-ease-soft),
+      background 0.2s var(--fy-ease-soft);
   }
 
   &--open &__input-box {
-    border-color: color-mix(in srgb, var(--primary) 55%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
+    border-color: color-mix(in srgb, var(--fy-primary) 55%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--fy-primary) 14%, transparent);
   }
 
   &--disabled {
     opacity: 0.55;
     cursor: not-allowed;
 
-    .ui-cascader__input-box {
+    .fy-cascader__input-box {
       cursor: not-allowed;
-      background: color-mix(in srgb, var(--surface-container-low) 50%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-low) 50%, transparent);
     }
   }
 
@@ -277,27 +277,27 @@ onUnmounted(() => {
   &--sm &__input-box {
     height: 32px;
     padding: 0 10px;
-    font-size: var(--font-size-xs);
-    border-radius: var(--r-sm);
+    font-size: var(--fy-font-size-xs);
+    border-radius: var(--fy-r-sm);
   }
 
   &--md &__input-box {
     height: 40px;
     padding: 0 14px;
-    font-size: var(--font-size-base);
-    border-radius: var(--r-md);
+    font-size: var(--fy-font-size-base);
+    border-radius: var(--fy-r-md);
   }
 
   &--lg &__input-box {
     height: 46px;
     padding: 0 16px;
-    font-size: var(--font-size-md);
-    border-radius: var(--r-lg);
+    font-size: var(--fy-font-size-md);
+    border-radius: var(--fy-r-lg);
   }
 
   &__text {
     flex: 1;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
@@ -306,14 +306,14 @@ onUnmounted(() => {
 
   &__placeholder {
     flex: 1;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 
   &__arrow {
     font-size: 20px;
-    color: var(--outline);
+    color: var(--fy-outline);
     margin-left: 6px;
-    transition: transform 0.2s var(--ease-soft);
+    transition: transform 0.2s var(--fy-ease-soft);
   }
 
   &--open &__arrow {
@@ -323,7 +323,7 @@ onUnmounted(() => {
   &__clear {
     border: none;
     background: none;
-    color: var(--outline);
+    color: var(--fy-outline);
     cursor: pointer;
     padding: 0;
     margin-left: 6px;
@@ -332,7 +332,7 @@ onUnmounted(() => {
     justify-content: center;
 
     &:hover {
-      color: var(--on-surface);
+      color: var(--fy-on-surface);
     }
 
     .material-symbols-outlined {
@@ -346,12 +346,12 @@ onUnmounted(() => {
     top: calc(100% + 8px);
     left: 0;
     z-index: 150;
-    border-radius: var(--r-lg);
-    background: color-mix(in srgb, var(--surface-container-lowest) 92%, transparent);
+    border-radius: var(--fy-r-lg);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 92%, transparent);
     backdrop-filter: blur(28px) saturate(1.7);
     -webkit-backdrop-filter: blur(28px) saturate(1.7);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
     overflow: hidden;
   }
 
@@ -367,7 +367,7 @@ onUnmounted(() => {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    border-right: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    border-right: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
 
     &:last-child {
       border-right: none;
@@ -379,23 +379,23 @@ onUnmounted(() => {
     align-items: center;
     gap: 8px;
     padding: 8px 10px;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
     border: none;
     background: transparent;
-    color: var(--on-surface);
-    font-size: var(--font-size-sm);
+    color: var(--fy-on-surface);
+    font-size: var(--fy-font-size-sm);
     font-weight: 500;
     cursor: pointer;
     text-align: left;
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover:not(.is-disabled) {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
     }
 
     &.is-active {
-      color: var(--primary);
-      background: color-mix(in srgb, var(--primary) 12%, transparent);
+      color: var(--fy-primary);
+      background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
       font-weight: 700;
     }
 
@@ -419,16 +419,16 @@ onUnmounted(() => {
 
   &__item-arrow {
     font-size: 18px;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 }
 
-.ui-cascader-fade-enter-active,
-.ui-cascader-fade-leave-active {
-  transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-out);
+.fy-cascader-fade-enter-active,
+.fy-cascader-fade-leave-active {
+  transition: opacity 0.18s var(--fy-ease-soft), transform 0.18s var(--fy-ease-out);
 }
-.ui-cascader-fade-enter-from,
-.ui-cascader-fade-leave-to {
+.fy-cascader-fade-enter-from,
+.fy-cascader-fade-leave-to {
   opacity: 0;
   transform: translateY(-6px) scale(0.97);
 }

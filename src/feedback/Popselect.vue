@@ -87,15 +87,15 @@ function handleSelect(opt: PopselectOption) {
     :trigger="trigger"
     :placement="placement"
     :disabled="disabled"
-    class="ui-popselect-popover"
+    class="fy-popselect-popover"
   >
     <template #default>
       <slot />
     </template>
 
     <template #content>
-      <div :class="['ui-popselect-menu', `ui-popselect-menu--${size}`]">
-        <div v-if="filterable" class="ui-popselect-menu__filter">
+      <div :class="['fy-popselect-menu', `fy-popselect-menu--${size}`]">
+        <div v-if="filterable" class="fy-popselect-menu__filter">
           <Input
             v-model="searchQuery"
             placeholder="搜索选项..."
@@ -106,12 +106,12 @@ function handleSelect(opt: PopselectOption) {
           />
         </div>
 
-        <div class="ui-popselect-menu__list">
+        <div class="fy-popselect-menu__list">
           <div
             v-for="opt in filteredOptions"
             :key="opt.value"
             :class="[
-              'ui-popselect-menu__item',
+              'fy-popselect-menu__item',
               {
                 'is-active': isSelected(opt.value),
                 'is-disabled': opt.disabled
@@ -120,16 +120,16 @@ function handleSelect(opt: PopselectOption) {
             @click="handleSelect(opt)"
           >
             <slot name="option" :option="opt" :selected="isSelected(opt.value)">
-            <span class="ui-popselect-menu__label">{{ opt.label }}</span>
+            <span class="fy-popselect-menu__label">{{ opt.label }}</span>
             <span
               v-if="isSelected(opt.value)"
-              class="material-symbols-outlined ui-popselect-menu__check"
+              class="material-symbols-outlined fy-popselect-menu__check"
             >
               check
             </span>
             </slot>
           </div>
-          <div v-if="filteredOptions.length === 0" class="ui-popselect-menu__empty">
+          <div v-if="filteredOptions.length === 0" class="fy-popselect-menu__empty">
             <slot name="empty">
             无匹配选项
             </slot>
@@ -141,7 +141,7 @@ function handleSelect(opt: PopselectOption) {
 </template>
 
 <style scoped lang="scss">
-.ui-popselect-menu {
+.fy-popselect-menu {
   min-width: 150px;
   max-width: 260px;
   font-family: inherit;
@@ -162,7 +162,7 @@ function handleSelect(opt: PopselectOption) {
       width: 4px;
     }
     &::-webkit-scrollbar-thumb {
-      background: color-mix(in srgb, var(--outline-variant) 45%, transparent);
+      background: color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
       border-radius: 4px;
     }
   }
@@ -172,22 +172,22 @@ function handleSelect(opt: PopselectOption) {
     align-items: center;
     justify-content: space-between;
     padding: 6px 10px;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
     cursor: pointer;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 500;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover:not(.is-disabled) {
-      background: color-mix(in srgb, var(--primary) 12%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
+      color: var(--fy-primary);
     }
 
     &.is-active {
-      color: var(--primary);
+      color: var(--fy-primary);
       font-weight: 700;
-      background: color-mix(in srgb, var(--primary) 14%, transparent);
+      background: color-mix(in srgb, var(--fy-primary) 14%, transparent);
     }
 
     &.is-disabled {
@@ -198,28 +198,28 @@ function handleSelect(opt: PopselectOption) {
 
   &__check {
     font-size: 16px;
-    color: var(--primary);
+    color: var(--fy-primary);
     margin-left: 6px;
   }
 
   &__empty {
     padding: 12px 8px;
     text-align: center;
-    font-size: var(--font-size-xs);
-    color: var(--outline);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-outline);
   }
 
   &--sm {
-    .ui-popselect-menu__item {
+    .fy-popselect-menu__item {
       padding: 4px 8px;
       font-size: 11px;
     }
   }
 
   &--lg {
-    .ui-popselect-menu__item {
+    .fy-popselect-menu__item {
       padding: 8px 12px;
-      font-size: var(--font-size-sm);
+      font-size: var(--fy-font-size-sm);
     }
   }
 }

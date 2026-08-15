@@ -26,13 +26,13 @@ const props = withDefaults(defineProps<Props>(), {
   hollow: false
 })
 
-const timelineContext = inject<TimelineContext | null>('ui-timeline', null)
+const timelineContext = inject<TimelineContext | null>('fy-timeline', null)
 const isHorizontal = computed(() => timelineContext?.horizontal.value ?? false)
 
 const dotStyle = computed<StyleValue>(() => {
   if (props.color) {
     return {
-      backgroundColor: props.hollow ? 'var(--surface-container-lowest)' : props.color,
+      backgroundColor: props.hollow ? 'var(--fy-surface-container-lowest)' : props.color,
       borderColor: props.color
     }
   }
@@ -43,9 +43,9 @@ const dotStyle = computed<StyleValue>(() => {
 <template>
   <div
     :class="[
-      'ui-timeline-item',
-      `ui-timeline-item--${type}`,
-      `ui-timeline-item--line-${lineType}`,
+      'fy-timeline-item',
+      `fy-timeline-item--${type}`,
+      `fy-timeline-item--line-${lineType}`,
       {
         'is-horizontal': isHorizontal,
         'is-hollow': hollow
@@ -53,30 +53,30 @@ const dotStyle = computed<StyleValue>(() => {
     ]"
   >
     <!-- Timeline Axis Dot & Line -->
-    <div class="ui-timeline-item__axis">
-      <div class="ui-timeline-item__dot" :style="dotStyle">
+    <div class="fy-timeline-item__axis">
+      <div class="fy-timeline-item__dot" :style="dotStyle">
         <slot name="icon">
-          <span v-if="icon" class="material-symbols-outlined ui-timeline-item__icon">{{ icon }}</span>
+          <span v-if="icon" class="material-symbols-outlined fy-timeline-item__icon">{{ icon }}</span>
         </slot>
       </div>
-      <div class="ui-timeline-item__line" />
+      <div class="fy-timeline-item__line" />
     </div>
 
     <!-- Content Box -->
-    <div class="ui-timeline-item__body">
-      <div v-if="time || $slots.time" class="ui-timeline-item__time">
+    <div class="fy-timeline-item__body">
+      <div v-if="time || $slots.time" class="fy-timeline-item__time">
         <slot name="time">{{ time }}</slot>
       </div>
 
-      <div v-if="title || $slots.title" class="ui-timeline-item__title">
+      <div v-if="title || $slots.title" class="fy-timeline-item__title">
         <slot name="title">{{ title }}</slot>
       </div>
 
-      <div v-if="content || $slots.default" class="ui-timeline-item__content">
+      <div v-if="content || $slots.default" class="fy-timeline-item__content">
         <slot>{{ content }}</slot>
       </div>
 
-      <div v-if="$slots.extra" class="ui-timeline-item__extra">
+      <div v-if="$slots.extra" class="fy-timeline-item__extra">
         <slot name="extra" />
       </div>
     </div>
@@ -84,7 +84,7 @@ const dotStyle = computed<StyleValue>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-timeline-item {
+.fy-timeline-item {
   position: relative;
   display: flex;
   padding-bottom: 24px;
@@ -92,7 +92,7 @@ const dotStyle = computed<StyleValue>(() => {
   &:last-child {
     padding-bottom: 0;
 
-    .ui-timeline-item__line {
+    .fy-timeline-item__line {
       display: none;
     }
   }
@@ -110,9 +110,9 @@ const dotStyle = computed<StyleValue>(() => {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    border: 2px solid var(--outline);
-    background: var(--surface-container-lowest);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--surface-container-lowest) 80%, transparent);
+    border: 2px solid var(--fy-outline);
+    background: var(--fy-surface-container-lowest);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--fy-surface-container-lowest) 80%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,17 +125,17 @@ const dotStyle = computed<StyleValue>(() => {
     top: 14px;
     bottom: -10px;
     width: 2px;
-    background: color-mix(in srgb, var(--outline-variant) 45%, transparent);
+    background: color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
   }
 
   &--line-dashed &__line {
     background: transparent;
-    border-left: 2px dashed color-mix(in srgb, var(--outline-variant) 50%, transparent);
+    border-left: 2px dashed color-mix(in srgb, var(--fy-outline-variant) 50%, transparent);
   }
 
   &--line-dotted &__line {
     background: transparent;
-    border-left: 2px dotted color-mix(in srgb, var(--outline-variant) 50%, transparent);
+    border-left: 2px dotted color-mix(in srgb, var(--fy-outline-variant) 50%, transparent);
   }
 
   &__icon {
@@ -143,7 +143,7 @@ const dotStyle = computed<StyleValue>(() => {
   }
 
   &.is-hollow &__dot {
-    background: var(--surface-container-lowest) !important;
+    background: var(--fy-surface-container-lowest) !important;
     border-width: 2px;
   }
 
@@ -156,21 +156,21 @@ const dotStyle = computed<StyleValue>(() => {
   }
 
   &__time {
-    font-size: var(--font-size-xs);
-    color: var(--outline);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-outline);
     font-weight: 500;
   }
 
   &__title {
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
     font-weight: 700;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     line-height: 1.3;
   }
 
   &__content {
-    font-size: var(--font-size-sm);
-    color: var(--on-surface-variant);
+    font-size: var(--fy-font-size-sm);
+    color: var(--fy-on-surface-variant);
     line-height: 1.5;
   }
 
@@ -179,39 +179,39 @@ const dotStyle = computed<StyleValue>(() => {
   }
 
   /* Types */
-  &--primary {
-    .ui-timeline-item__dot {
-      border-color: var(--primary);
-      background: var(--primary);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 20%, transparent);
+  &--fy-primary {
+    .fy-timeline-item__dot {
+      border-color: var(--fy-primary);
+      background: var(--fy-primary);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--fy-primary) 20%, transparent);
     }
   }
 
-  &--info {
-    .ui-timeline-item__dot {
-      border-color: var(--theme-blue, #3b82f6);
-      background: var(--theme-blue, #3b82f6);
+  &--fy-info {
+    .fy-timeline-item__dot {
+      border-color: var(--fy-theme-blue, #3b82f6);
+      background: var(--fy-theme-blue, #3b82f6);
     }
   }
 
-  &--success {
-    .ui-timeline-item__dot {
-      border-color: var(--theme-green, #10b981);
-      background: var(--theme-green, #10b981);
+  &--fy-success {
+    .fy-timeline-item__dot {
+      border-color: var(--fy-theme-green, #10b981);
+      background: var(--fy-theme-green, #10b981);
     }
   }
 
-  &--warning {
-    .ui-timeline-item__dot {
-      border-color: var(--theme-yellow, #f59e0b);
-      background: var(--theme-yellow, #f59e0b);
+  &--fy-warning {
+    .fy-timeline-item__dot {
+      border-color: var(--fy-theme-yellow, #f59e0b);
+      background: var(--fy-theme-yellow, #f59e0b);
     }
   }
 
-  &--error {
-    .ui-timeline-item__dot {
-      border-color: var(--error);
-      background: var(--error);
+  &--fy-error {
+    .fy-timeline-item__dot {
+      border-color: var(--fy-error);
+      background: var(--fy-error);
     }
   }
 
@@ -222,13 +222,13 @@ const dotStyle = computed<StyleValue>(() => {
     padding-right: 28px;
     flex: 1;
 
-    .ui-timeline-item__axis {
+    .fy-timeline-item__axis {
       flex-direction: row;
       margin-right: 0;
       margin-bottom: 12px;
     }
 
-    .ui-timeline-item__line {
+    .fy-timeline-item__line {
       top: 5px;
       left: 14px;
       right: -14px;
@@ -237,9 +237,9 @@ const dotStyle = computed<StyleValue>(() => {
       height: 2px;
     }
 
-    &.ui-timeline-item--line-dashed .ui-timeline-item__line {
+    &.fy-timeline-item--line-dashed .fy-timeline-item__line {
       border-left: none;
-      border-top: 2px dashed color-mix(in srgb, var(--outline-variant) 50%, transparent);
+      border-top: 2px dashed color-mix(in srgb, var(--fy-outline-variant) 50%, transparent);
     }
   }
 }

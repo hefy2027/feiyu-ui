@@ -46,7 +46,7 @@ const thumbStyle = ref({
 
 function updateThumb() {
   if (!containerRef.value) return
-  const activeElement = containerRef.value.querySelector<HTMLElement>('.ui-segmented__item.is-active')
+  const activeElement = containerRef.value.querySelector<HTMLElement>('.fy-segmented__item.is-active')
   if (activeElement) {
     thumbStyle.value = {
       width: `${activeElement.offsetWidth}px`,
@@ -81,21 +81,21 @@ onMounted(() => {
   <div
     ref="containerRef"
     :class="[
-      'ui-segmented',
-      `ui-segmented--${size}`,
+      'fy-segmented',
+      `fy-segmented--${size}`,
       {
-        'ui-segmented--block': block,
+        'fy-segmented--block': block,
         'is-disabled': disabled
       }
     ]"
   >
-    <div class="ui-segmented__thumb" :style="thumbStyle" />
+    <div class="fy-segmented__thumb" :style="thumbStyle" />
     <button
       v-for="(opt, idx) in normalizedOptions"
       :key="opt.value"
       type="button"
       :class="[
-        'ui-segmented__item',
+        'fy-segmented__item',
         {
           'is-active': opt.value === modelValue,
           'is-disabled': opt.disabled || disabled
@@ -105,27 +105,27 @@ onMounted(() => {
       @click="handleSelect(opt)"
     >
       <slot name="icon" :option="opt" :index="idx">
-        <span v-if="opt.icon" class="material-symbols-outlined ui-segmented__icon">
+        <span v-if="opt.icon" class="material-symbols-outlined fy-segmented__icon">
           {{ opt.icon }}
         </span>
       </slot>
       <slot name="label" :option="opt" :index="idx">
-        <span class="ui-segmented__label">{{ opt.label }}</span>
+        <span class="fy-segmented__label">{{ opt.label }}</span>
       </slot>
     </button>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-segmented {
+.fy-segmented {
   position: relative;
   display: inline-flex;
   align-items: center;
-  background: color-mix(in srgb, var(--surface-container-high) 45%, transparent);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 45%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
-  border-radius: var(--r-full);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
+  border-radius: var(--fy-r-full);
   padding: 3px;
   user-select: none;
 
@@ -133,7 +133,7 @@ onMounted(() => {
     display: flex;
     width: 100%;
 
-    .ui-segmented__item {
+    .fy-segmented__item {
       flex: 1;
     }
   }
@@ -148,15 +148,15 @@ onMounted(() => {
     top: 3px;
     bottom: 3px;
     left: 0;
-    background: var(--surface);
-    border-radius: var(--r-full);
-    box-shadow: var(--shadow-sm), 0 0 12px color-mix(in srgb, var(--primary) 12%, transparent);
+    background: var(--fy-surface);
+    border-radius: var(--fy-r-full);
+    box-shadow: var(--fy-shadow-sm), 0 0 12px color-mix(in srgb, var(--fy-primary) 12%, transparent);
     transition:
       transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
       width 0.25s ease,
       opacity 0.2s ease;
     pointer-events: none;
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
   }
 
   &__item {
@@ -170,18 +170,18 @@ onMounted(() => {
     background: transparent;
     font-family: inherit;
     font-weight: 600;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     cursor: pointer;
-    border-radius: var(--r-full);
+    border-radius: var(--fy-r-full);
     transition: color 0.2s ease;
     white-space: nowrap;
 
     &:hover:not(.is-disabled) {
-      color: var(--on-surface);
+      color: var(--fy-on-surface);
     }
 
     &.is-active {
-      color: var(--primary);
+      color: var(--fy-primary);
     }
 
     &.is-disabled {
@@ -197,40 +197,40 @@ onMounted(() => {
   /* Sizes */
   &--sm {
     padding: 2px;
-    .ui-segmented__thumb {
+    .fy-segmented__thumb {
       top: 2px;
       bottom: 2px;
     }
-    .ui-segmented__item {
+    .fy-segmented__item {
       height: 26px;
       padding: 0 10px;
-      font-size: var(--font-size-xs);
+      font-size: var(--fy-font-size-xs);
     }
-    .ui-segmented__icon {
+    .fy-segmented__icon {
       font-size: 14px;
     }
   }
 
   &--md {
-    .ui-segmented__item {
+    .fy-segmented__item {
       height: 32px;
       padding: 0 14px;
-      font-size: var(--font-size-sm);
+      font-size: var(--fy-font-size-sm);
     }
   }
 
   &--lg {
     padding: 4px;
-    .ui-segmented__thumb {
+    .fy-segmented__thumb {
       top: 4px;
       bottom: 4px;
     }
-    .ui-segmented__item {
+    .fy-segmented__item {
       height: 38px;
       padding: 0 18px;
-      font-size: var(--font-size-base);
+      font-size: var(--fy-font-size-base);
     }
-    .ui-segmented__icon {
+    .fy-segmented__icon {
       font-size: 18px;
     }
   }

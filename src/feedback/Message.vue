@@ -81,15 +81,15 @@ defineExpose({
 </script>
 
 <template>
-  <Transition name="ui-message-slide">
+  <Transition name="fy-message-slide">
     <div
       v-if="visible"
       :class="[
-        'ui-message',
-        `ui-message--${type}`,
+        'fy-message',
+        `fy-message--${type}`,
         {
-          'ui-message--plain': plain,
-          'ui-message--closable': closable
+          'fy-message--plain': plain,
+          'fy-message--closable': closable
         }
       ]"
       :style="{ zIndex }"
@@ -99,17 +99,17 @@ defineExpose({
       @mouseleave="startTimer"
     >
       <!-- Icon / Loading Spin -->
-      <div v-if="showIcon" class="ui-message__icon-wrap">
+      <div v-if="showIcon" class="fy-message__icon-wrap">
         <slot name="icon">
           <Spin v-if="type === 'loading'" size="sm" />
-          <span v-else class="material-symbols-outlined ui-message__icon">
+          <span v-else class="material-symbols-outlined fy-message__icon">
             {{ icon || iconMap[type] }}
           </span>
         </slot>
       </div>
 
       <!-- Text Content -->
-      <div class="ui-message__content">
+      <div class="fy-message__content">
         <slot>{{ content }}</slot>
       </div>
 
@@ -117,7 +117,7 @@ defineExpose({
       <button
         v-if="closable"
         type="button"
-        class="ui-message__close-btn"
+        class="fy-message__close-btn"
         aria-label="关闭消息"
         @click.stop="close"
       >
@@ -128,25 +128,25 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.ui-message {
+.fy-message {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 10px 18px;
-  border-radius: var(--r-full);
-  background: color-mix(in srgb, var(--surface-container-high) 88%, transparent);
+  border-radius: var(--fy-r-full);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 88%, transparent);
   backdrop-filter: blur(24px) saturate(1.4);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-lift), inset 0 1px 0 var(--glass-hi);
-  font-size: var(--font-size-sm);
+  border: 1px solid var(--fy-glass-border);
+  box-shadow: var(--fy-shadow-lift), inset 0 1px 0 var(--fy-glass-hi);
+  font-size: var(--fy-font-size-sm);
   font-weight: 600;
-  color: var(--on-surface);
+  color: var(--fy-on-surface);
   line-height: 1.4;
   pointer-events: auto;
   user-select: none;
-  transition: transform 0.25s var(--ease-soft), opacity 0.25s var(--ease-soft);
+  transition: transform 0.25s var(--fy-ease-soft), opacity 0.25s var(--fy-ease-soft);
 
   &__icon-wrap {
     display: inline-flex;
@@ -161,20 +161,20 @@ defineExpose({
   }
 
   /* Types */
-  &--info {
-    .ui-message__icon { color: var(--theme-blue, #3b82f6); }
+  &--fy-info {
+    .fy-message__icon { color: var(--fy-theme-blue, #3b82f6); }
   }
-  &--success {
-    .ui-message__icon { color: var(--theme-green, #10b981); }
+  &--fy-success {
+    .fy-message__icon { color: var(--fy-theme-green, #10b981); }
   }
-  &--warning {
-    .ui-message__icon { color: var(--theme-yellow, #f59e0b); }
+  &--fy-warning {
+    .fy-message__icon { color: var(--fy-theme-yellow, #f59e0b); }
   }
-  &--error {
-    .ui-message__icon { color: var(--error, #ba1a1a); }
+  &--fy-error {
+    .fy-message__icon { color: var(--fy-error, #ba1a1a); }
   }
   &--loading {
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
   }
 
   &__content {
@@ -192,16 +192,16 @@ defineExpose({
     height: 18px;
     border: none;
     background: transparent;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     cursor: pointer;
     padding: 0;
-    border-radius: var(--r-full);
+    border-radius: var(--fy-r-full);
     margin-left: 2px;
     transition: color 0.15s ease, background 0.15s ease;
 
     &:hover {
-      color: var(--on-surface);
-      background: color-mix(in srgb, var(--surface-container-highest) 60%, transparent);
+      color: var(--fy-on-surface);
+      background: color-mix(in srgb, var(--fy-surface-container-highest) 60%, transparent);
     }
 
     .material-symbols-outlined {
@@ -211,17 +211,17 @@ defineExpose({
 }
 
 /* Transition */
-.ui-message-slide-enter-active,
-.ui-message-slide-leave-active {
+.fy-message-slide-enter-active,
+.fy-message-slide-leave-active {
   transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.ui-message-slide-enter-from {
+.fy-message-slide-enter-from {
   opacity: 0;
   transform: translateY(-16px) scale(0.92);
 }
 
-.ui-message-slide-leave-to {
+.fy-message-slide-leave-to {
   opacity: 0;
   transform: translateY(-12px) scale(0.95);
 }

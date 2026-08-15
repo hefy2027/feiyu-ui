@@ -18,7 +18,7 @@ let messageSeed = 0
 function getOrCreateContainer(): HTMLElement {
   if (!containerElement && typeof document !== 'undefined') {
     containerElement = document.createElement('div')
-    containerElement.className = 'ui-message-container'
+    containerElement.className = 'fy-message-container'
     containerElement.style.position = 'fixed'
     containerElement.style.top = '24px'
     containerElement.style.left = '50%'
@@ -43,7 +43,7 @@ function createMessage(options: MessageOptions): MessageInstance {
   const itemContainer = document.createElement('div')
   parentContainer.appendChild(itemContainer)
 
-  const id = `ui-message-${++messageSeed}`
+  const id = `fy-message-${++messageSeed}`
 
   function handleClose() {
     const index = messageInstances.findIndex((inst) => inst.id === id)

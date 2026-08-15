@@ -72,13 +72,13 @@ const flexStyle = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <div class="ui-flex" :style="flexStyle">
+  <div class="fy-flex" :style="flexStyle">
     <slot />
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-flex {
+.fy-flex {
   width: 100%;
   box-sizing: border-box;
 }

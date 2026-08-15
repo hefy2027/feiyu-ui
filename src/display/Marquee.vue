@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   pauseOnHover: true,
   gap: 24,
   gradient: true,
-  gradientColor: 'var(--surface-container-lowest, #ffffff)',
+  gradientColor: 'var(--fy-surface-container-lowest, #ffffff)',
   gradientWidth: 40,
   repeat: 4
 })
@@ -48,8 +48,8 @@ const containerStyle = computed<CSSProperties>(() => {
 <template>
   <div
     :class="[
-      'ui-marquee',
-      `ui-marquee--${direction}`,
+      'fy-marquee',
+      `fy-marquee--${direction}`,
       {
         'is-vertical': isVertical,
         'pause-on-hover': pauseOnHover,
@@ -58,14 +58,14 @@ const containerStyle = computed<CSSProperties>(() => {
     ]"
     :style="containerStyle"
   >
-    <div v-if="gradient && !isVertical" class="ui-marquee__gradient ui-marquee__gradient--start" />
-    <div v-if="gradient && !isVertical" class="ui-marquee__gradient ui-marquee__gradient--end" />
+    <div v-if="gradient && !isVertical" class="fy-marquee__gradient fy-marquee__gradient--start" />
+    <div v-if="gradient && !isVertical" class="fy-marquee__gradient fy-marquee__gradient--end" />
 
-    <div class="ui-marquee__track">
+    <div class="fy-marquee__track">
       <div
         v-for="idx in repeat"
         :key="idx"
-        class="ui-marquee__group"
+        class="fy-marquee__group"
         :aria-hidden="idx > 1"
       >
         <slot />
@@ -75,7 +75,7 @@ const containerStyle = computed<CSSProperties>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-marquee {
+.fy-marquee {
   position: relative;
   display: flex;
   width: 100%;
@@ -104,21 +104,21 @@ const containerStyle = computed<CSSProperties>(() => {
   }
 
   &--left &__track {
-    animation: ui-marquee-left var(--marquee-duration) linear infinite;
+    animation: fy-marquee-left var(--marquee-duration) linear infinite;
   }
 
   &--right &__track {
-    animation: ui-marquee-right var(--marquee-duration) linear infinite;
+    animation: fy-marquee-right var(--marquee-duration) linear infinite;
   }
 
   &--up &__track {
     flex-direction: column;
-    animation: ui-marquee-up var(--marquee-duration) linear infinite;
+    animation: fy-marquee-up var(--marquee-duration) linear infinite;
   }
 
   &--down &__track {
     flex-direction: column;
-    animation: ui-marquee-down var(--marquee-duration) linear infinite;
+    animation: fy-marquee-down var(--marquee-duration) linear infinite;
   }
 
   &.pause-on-hover:hover &__track {
@@ -145,7 +145,7 @@ const containerStyle = computed<CSSProperties>(() => {
   }
 }
 
-@keyframes ui-marquee-left {
+@keyframes fy-marquee-left {
   from {
     transform: translateX(0);
   }
@@ -154,7 +154,7 @@ const containerStyle = computed<CSSProperties>(() => {
   }
 }
 
-@keyframes ui-marquee-right {
+@keyframes fy-marquee-right {
   from {
     transform: translateX(calc(-50% - var(--marquee-gap) / 2));
   }
@@ -163,7 +163,7 @@ const containerStyle = computed<CSSProperties>(() => {
   }
 }
 
-@keyframes ui-marquee-up {
+@keyframes fy-marquee-up {
   from {
     transform: translateY(0);
   }
@@ -172,7 +172,7 @@ const containerStyle = computed<CSSProperties>(() => {
   }
 }
 
-@keyframes ui-marquee-down {
+@keyframes fy-marquee-down {
   from {
     transform: translateY(calc(-50% - var(--marquee-gap) / 2));
   }

@@ -78,20 +78,20 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="rootRef" class="ui-affix" :style="{ height: isFixed && height ? `${height}px` : undefined }">
-    <div :class="['ui-affix__content', { 'is-affixed': isFixed }]" :style="fixedStyle">
+  <div ref="rootRef" class="fy-affix" :style="{ height: isFixed && height ? `${height}px` : undefined }">
+    <div :class="['fy-affix__content', { 'is-affixed': isFixed }]" :style="fixedStyle">
       <slot />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-affix {
+.fy-affix {
   position: relative;
 
   &__content.is-affixed {
-    transition: box-shadow 0.2s var(--ease-soft);
-    box-shadow: var(--shadow-pop);
+    transition: box-shadow 0.2s var(--fy-ease-soft);
+    box-shadow: var(--fy-shadow-pop);
   }
 }
 </style>

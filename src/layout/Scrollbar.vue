@@ -226,17 +226,17 @@ defineExpose({
 </script>
 
 <template>
-  <div :class="['ui-scrollbar', { 'is-always': always, 'is-native': native }]" :style="containerStyle">
+  <div :class="['fy-scrollbar', { 'is-always': always, 'is-native': native }]" :style="containerStyle">
     <div
       ref="wrapRef"
-      :class="['ui-scrollbar__wrap', wrapClass]"
+      :class="['fy-scrollbar__wrap', wrapClass]"
       :style="wrapStyle"
       @scroll="handleScroll"
     >
       <component
         :is="tag"
         ref="viewRef"
-        :class="['ui-scrollbar__view', viewClass]"
+        :class="['fy-scrollbar__view', viewClass]"
         :style="viewStyle"
       >
         <slot />
@@ -246,11 +246,11 @@ defineExpose({
     <!-- Vertical Bar -->
     <div
       v-if="!native && thumbHeight > 0"
-      class="ui-scrollbar__bar is-vertical"
+      class="fy-scrollbar__bar is-vertical"
       @click="handleTrackClick($event, 'vertical')"
     >
       <div
-        class="ui-scrollbar__thumb"
+        class="fy-scrollbar__thumb"
         :style="{
           height: `${thumbHeight}px`,
           transform: `translateY(${moveY}px)`
@@ -262,11 +262,11 @@ defineExpose({
     <!-- Horizontal Bar -->
     <div
       v-if="!native && thumbWidth > 0"
-      class="ui-scrollbar__bar is-horizontal"
+      class="fy-scrollbar__bar is-horizontal"
       @click="handleTrackClick($event, 'horizontal')"
     >
       <div
-        class="ui-scrollbar__thumb"
+        class="fy-scrollbar__thumb"
         :style="{
           width: `${thumbWidth}px`,
           transform: `translateX(${moveX}px)`
@@ -278,7 +278,7 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.ui-scrollbar {
+.fy-scrollbar {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -311,9 +311,9 @@ defineExpose({
     right: 2px;
     bottom: 2px;
     z-index: 10;
-    border-radius: var(--r-full);
+    border-radius: var(--fy-r-full);
     opacity: 0;
-    transition: opacity 0.25s var(--ease-soft);
+    transition: opacity 0.25s var(--fy-ease-soft);
     pointer-events: auto;
     cursor: pointer;
 
@@ -341,14 +341,14 @@ defineExpose({
     height: 0;
     cursor: pointer;
     border-radius: inherit;
-    background-color: color-mix(in srgb, var(--outline) 45%, transparent);
+    background-color: color-mix(in srgb, var(--fy-outline) 45%, transparent);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    transition: background-color 0.2s var(--ease-soft);
+    transition: background-color 0.2s var(--fy-ease-soft);
     pointer-events: auto;
 
     &:hover {
-      background-color: color-mix(in srgb, var(--primary) 75%, transparent);
+      background-color: color-mix(in srgb, var(--fy-primary) 75%, transparent);
     }
   }
 

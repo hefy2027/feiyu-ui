@@ -54,30 +54,30 @@ async function handleCopy() {
 </script>
 
 <template>
-  <code v-if="inline" class="ui-code-inline">
+  <code v-if="inline" class="fy-code-inline">
     <slot>{{ code }}</slot>
   </code>
 
   <div
     v-else
     :class="[
-      'ui-code-block',
-      { 'ui-code-block--wrap': wordWrap }
+      'fy-code-block',
+      { 'fy-code-block--wrap': wordWrap }
     ]"
   >
-    <div class="ui-code-block__header">
-      <div class="ui-code-block__lang">
-        <span class="ui-code-block__dot ui-code-block__dot--red" />
-        <span class="ui-code-block__dot ui-code-block__dot--yellow" />
-        <span class="ui-code-block__dot ui-code-block__dot--green" />
-        <span class="ui-code-block__lang-text">{{ language }}</span>
+    <div class="fy-code-block__header">
+      <div class="fy-code-block__lang">
+        <span class="fy-code-block__dot fy-code-block__dot--red" />
+        <span class="fy-code-block__dot fy-code-block__dot--yellow" />
+        <span class="fy-code-block__dot fy-code-block__dot--green" />
+        <span class="fy-code-block__lang-text">{{ language }}</span>
       </div>
 
-      <div v-if="copyable" class="ui-code-block__actions">
+      <div v-if="copyable" class="fy-code-block__actions">
         <Tooltip :content="copied ? '已复制！' : '复制代码'" placement="top">
           <button
             type="button"
-            class="ui-code-block__copy-btn"
+            class="fy-code-block__copy-btn"
             aria-label="复制代码"
             @click="handleCopy"
           >
@@ -89,38 +89,38 @@ async function handleCopy() {
       </div>
     </div>
 
-    <div class="ui-code-block__body">
-      <div v-if="showLineNumbers" class="ui-code-block__lines" aria-hidden="true">
-        <span v-for="(_, idx) in lines" :key="idx" class="ui-code-block__line-num">
+    <div class="fy-code-block__body">
+      <div v-if="showLineNumbers" class="fy-code-block__lines" aria-hidden="true">
+        <span v-for="(_, idx) in lines" :key="idx" class="fy-code-block__line-num">
           {{ idx + 1 }}
         </span>
       </div>
-      <pre class="ui-code-block__pre"><code class="ui-code-block__code"><slot>{{ codeContent }}</slot></code></pre>
+      <pre class="fy-code-block__pre"><code class="fy-code-block__code"><slot>{{ codeContent }}</slot></code></pre>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-code-inline {
+.fy-code-inline {
   font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
   font-size: 0.88em;
   font-weight: 600;
-  color: var(--primary);
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--fy-primary);
+  background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
   padding: 2px 6px;
   border-radius: 6px;
-  border: 1px solid color-mix(in srgb, var(--primary) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fy-primary) 22%, transparent);
 }
 
-.ui-code-block {
+.fy-code-block {
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: var(--r-lg);
-  background: color-mix(in srgb, var(--surface-container-highest) 75%, transparent);
+  border-radius: var(--fy-r-lg);
+  background: color-mix(in srgb, var(--fy-surface-container-highest) 75%, transparent);
   backdrop-filter: blur(16px) saturate(1.4);
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
   overflow: hidden;
   margin: 8px 0;
   font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
@@ -130,8 +130,8 @@ async function handleCopy() {
     align-items: center;
     justify-content: space-between;
     padding: 8px 14px;
-    background: color-mix(in srgb, var(--surface-container-high) 50%, transparent);
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 50%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
   }
 
   &__lang {
@@ -154,14 +154,14 @@ async function handleCopy() {
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--outline);
+    color: var(--fy-outline);
     letter-spacing: 0.05em;
   }
 
   &__copy-btn {
     border: none;
     background: transparent;
-    color: var(--outline);
+    color: var(--fy-outline);
     cursor: pointer;
     padding: 4px;
     border-radius: 6px;
@@ -171,8 +171,8 @@ async function handleCopy() {
     transition: all 0.15s ease;
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-highest) 80%, transparent);
-      color: var(--on-surface);
+      background: color-mix(in srgb, var(--fy-surface-container-highest) 80%, transparent);
+      color: var(--fy-on-surface);
     }
 
     .material-symbols-outlined {
@@ -191,14 +191,14 @@ async function handleCopy() {
     flex-direction: column;
     padding-right: 14px;
     margin-right: 14px;
-    border-right: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    border-right: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
     user-select: none;
   }
 
   &__line-num {
     font-size: 12px;
     line-height: 1.6;
-    color: color-mix(in srgb, var(--outline) 50%, transparent);
+    color: color-mix(in srgb, var(--fy-outline) 50%, transparent);
     text-align: right;
   }
 
@@ -208,7 +208,7 @@ async function handleCopy() {
     font-family: inherit;
     font-size: 13px;
     line-height: 1.6;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
   }
 
   &__code {

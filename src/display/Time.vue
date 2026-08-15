@@ -107,13 +107,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <time :datetime="new Date(parseTimestamp(time)).toISOString()" class="ui-time">
+  <time :datetime="new Date(parseTimestamp(time)).toISOString()" class="fy-time">
     <slot :formatted="displayTime">{{ displayTime }}</slot>
   </time>
 </template>
 
 <style scoped lang="scss">
-.ui-time {
+.fy-time {
   font-family: inherit;
   color: inherit;
 }

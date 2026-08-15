@@ -44,7 +44,7 @@ const isDropdownOpen = ref(false)
 const currentQuery = ref('')
 const activePrefix = ref('@')
 const activeIndex = ref(0)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const prefixes = computed(() => {
   return Array.isArray(props.prefix) ? props.prefix : [props.prefix]
@@ -146,9 +146,9 @@ function handleFocus(event: FocusEvent) {
 
 <template>
   <div :class="[
-    'ui-mentions',
-    `ui-mentions--${size}`,
-    { 'is-disabled': disabled, 'ui-mentions--open': isDropdownOpen && filteredOptions.length > 0 }
+    'fy-mentions',
+    `fy-mentions--${size}`,
+    { 'is-disabled': disabled, 'fy-mentions--open': isDropdownOpen && filteredOptions.length > 0 }
   ]">
     <textarea
       ref="textareaRef"
@@ -157,20 +157,20 @@ function handleFocus(event: FocusEvent) {
       :disabled="disabled"
       :readonly="readonly"
       :rows="rows"
-      class="ui-mentions__textarea"
+      class="fy-mentions__textarea"
       @input="handleInput"
       @keydown="handleKeyDown"
       @focus="handleFocus"
       @blur="handleBlur"
     />
 
-    <transition name="ui-mentions-fade">
-      <div v-if="isDropdownOpen && filteredOptions.length > 0" class="ui-mentions__dropdown">
+    <transition name="fy-mentions-fade">
+      <div v-if="isDropdownOpen && filteredOptions.length > 0" class="fy-mentions__dropdown">
         <div
           v-for="(opt, idx) in filteredOptions"
           :key="opt.value"
           :class="[
-            'ui-mentions__item',
+            'fy-mentions__item',
             {
               'is-active': idx === activeIndex,
               'is-disabled': opt.disabled
@@ -178,9 +178,9 @@ function handleFocus(event: FocusEvent) {
           ]"
           @click="selectOption(opt)"
         >
-          <img v-if="opt.avatar" :src="opt.avatar" class="ui-mentions__avatar" />
-          <span class="ui-mentions__label">{{ opt.label }}</span>
-          <span class="ui-mentions__value">{{ activePrefix }}{{ opt.value }}</span>
+          <img v-if="opt.avatar" :src="opt.avatar" class="fy-mentions__avatar" />
+          <span class="fy-mentions__label">{{ opt.label }}</span>
+          <span class="fy-mentions__value">{{ activePrefix }}{{ opt.value }}</span>
         </div>
       </div>
     </transition>
@@ -188,7 +188,7 @@ function handleFocus(event: FocusEvent) {
 </template>
 
 <style scoped lang="scss">
-.ui-mentions {
+.fy-mentions {
   position: relative;
   display: flex;
   width: 100%;
@@ -200,29 +200,29 @@ function handleFocus(event: FocusEvent) {
   &__textarea {
     width: 100%;
     font: inherit;
-    color: var(--on-surface);
-    font-size: var(--font-size-sm);
+    color: var(--fy-on-surface);
+    font-size: var(--fy-font-size-sm);
     line-height: 1.5;
     padding: 10px 14px;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-high) 42%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 42%, transparent);
     backdrop-filter: blur(14px) saturate(1.4);
     -webkit-backdrop-filter: blur(14px) saturate(1.4);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
     resize: vertical;
     box-sizing: border-box;
     transition:
-      border-color 0.2s var(--ease-soft),
-      box-shadow 0.2s var(--ease-soft);
+      border-color 0.2s var(--fy-ease-soft),
+      box-shadow 0.2s var(--fy-ease-soft);
 
     &:focus {
       outline: none;
-      border-color: color-mix(in srgb, var(--primary) 55%, transparent);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
+      border-color: color-mix(in srgb, var(--fy-primary) 55%, transparent);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--fy-primary) 14%, transparent);
     }
 
     &::placeholder {
-      color: var(--outline);
+      color: var(--fy-outline);
     }
   }
 
@@ -235,12 +235,12 @@ function handleFocus(event: FocusEvent) {
     max-height: 200px;
     overflow-y: auto;
     padding: 6px;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-lowest) 92%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 92%, transparent);
     backdrop-filter: blur(28px) saturate(1.7);
     -webkit-backdrop-filter: blur(28px) saturate(1.7);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -251,15 +251,15 @@ function handleFocus(event: FocusEvent) {
     align-items: center;
     gap: 8px;
     padding: 6px 10px;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
     cursor: pointer;
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover:not(.is-disabled),
     &.is-active {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
+      color: var(--fy-primary);
     }
 
     &.is-disabled {
@@ -281,17 +281,17 @@ function handleFocus(event: FocusEvent) {
 
   &__value {
     font-size: 11px;
-    color: var(--outline);
+    color: var(--fy-outline);
     margin-left: auto;
   }
 }
 
-.ui-mentions-fade-enter-active,
-.ui-mentions-fade-leave-active {
-  transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-out);
+.fy-mentions-fade-enter-active,
+.fy-mentions-fade-leave-active {
+  transition: opacity 0.18s var(--fy-ease-soft), transform 0.18s var(--fy-ease-out);
 }
-.ui-mentions-fade-enter-from,
-.ui-mentions-fade-leave-to {
+.fy-mentions-fade-enter-from,
+.fy-mentions-fade-leave-to {
   opacity: 0;
   transform: translateY(4px) scale(0.97);
 }

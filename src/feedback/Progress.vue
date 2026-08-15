@@ -61,13 +61,13 @@ const strokeColor = computed(() => {
   if (props.color) return props.color
   switch (props.status) {
     case 'success':
-      return 'var(--theme-green, #10b981)'
+      return 'var(--fy-theme-green, #10b981)'
     case 'warning':
-      return 'var(--theme-yellow, #f59e0b)'
+      return 'var(--fy-theme-yellow, #f59e0b)'
     case 'error':
-      return 'var(--error, #ba1a1a)'
+      return 'var(--fy-error, #ba1a1a)'
     default:
-      return 'var(--primary)'
+      return 'var(--fy-primary)'
   }
 })
 </script>
@@ -75,23 +75,23 @@ const strokeColor = computed(() => {
 <template>
   <div
     :class="[
-      'ui-progress',
-      `ui-progress--${type}`,
-      `ui-progress--${status}`
+      'fy-progress',
+      `fy-progress--${type}`,
+      `fy-progress--${status}`
     ]"
   >
     <!-- Line Progress -->
     <template v-if="type === 'line'">
-      <div class="ui-progress__rail" :style="{ height: `${strokeWidth}px` }">
+      <div class="fy-progress__rail" :style="{ height: `${strokeWidth}px` }">
         <div
-          class="ui-progress__fill"
+          class="fy-progress__fill"
           :style="{
             width: `${clampedPercentage}%`,
             backgroundColor: strokeColor
           }"
         />
       </div>
-      <span v-if="isShowIndicator" class="ui-progress__indicator">
+      <span v-if="isShowIndicator" class="fy-progress__indicator">
         <slot>{{ format(clampedPercentage) }}</slot>
       </span>
     </template>
@@ -99,20 +99,20 @@ const strokeColor = computed(() => {
     <!-- Circle & Dashboard Progress -->
     <template v-else>
       <div
-        class="ui-progress__circle-wrap"
+        class="fy-progress__circle-wrap"
         :style="{ width: `${size}px`, height: `${size}px` }"
       >
-        <svg viewBox="0 0 100 100" class="ui-progress__svg">
+        <svg viewBox="0 0 100 100" class="fy-progress__svg">
           <!-- Track Background -->
           <circle
             cx="50"
             cy="50"
             :r="radius"
             fill="none"
-            stroke="color-mix(in srgb, var(--surface-container-high) 80%, transparent)"
+            stroke="color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent)"
             :stroke-width="strokeWidth"
             :stroke-dasharray="type === 'dashboard' ? strokeDasharray : undefined"
-            :class="['ui-progress__circle-track', { 'is-dashboard': type === 'dashboard' }]"
+            :class="['fy-progress__circle-track', { 'is-dashboard': type === 'dashboard' }]"
           />
 
           <!-- Active Value Fill -->
@@ -126,12 +126,12 @@ const strokeColor = computed(() => {
             stroke-linecap="round"
             :stroke-dasharray="strokeDasharray"
             :stroke-dashoffset="strokeDashoffset"
-            :class="['ui-progress__circle-bar', { 'is-dashboard': type === 'dashboard' }]"
+            :class="['fy-progress__circle-bar', { 'is-dashboard': type === 'dashboard' }]"
           />
         </svg>
 
         <!-- Center Indicator Content -->
-        <div v-if="isShowIndicator" class="ui-progress__circle-content">
+        <div v-if="isShowIndicator" class="fy-progress__circle-content">
           <slot>{{ format(clampedPercentage) }}</slot>
         </div>
       </div>
@@ -140,7 +140,7 @@ const strokeColor = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-progress {
+.fy-progress {
   display: inline-flex;
   align-items: center;
   user-select: none;
@@ -154,23 +154,23 @@ const strokeColor = computed(() => {
 
   &__rail {
     flex: 1;
-    background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
-    border-radius: var(--r-full);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
+    border-radius: var(--fy-r-full);
     overflow: hidden;
     position: relative;
   }
 
   &__fill {
     height: 100%;
-    border-radius: var(--r-full);
-    transition: width 0.35s var(--ease-soft);
+    border-radius: var(--fy-r-full);
+    transition: width 0.35s var(--fy-ease-soft);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   &__indicator {
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 800;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     min-width: 38px;
     text-align: right;
   }
@@ -195,15 +195,15 @@ const strokeColor = computed(() => {
   }
 
   &__circle-bar {
-    transition: stroke-dashoffset 0.4s var(--ease-soft);
+    transition: stroke-dashoffset 0.4s var(--fy-ease-soft);
   }
 
   &__circle-content {
     position: absolute;
     font-size: 16px;
     font-weight: 800;
-    font-family: var(--font-display);
-    color: var(--on-surface);
+    font-family: var(--fy-font-display);
+    color: var(--fy-on-surface);
     display: flex;
     align-items: center;
     justify-content: center;

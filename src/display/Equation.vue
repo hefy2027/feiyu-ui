@@ -15,8 +15,8 @@ withDefaults(defineProps<Props>(), {
 <template>
   <span
     :class="[
-      'ui-equation',
-      { 'ui-equation--block': block }
+      'fy-equation',
+      { 'fy-equation--block': block }
     ]"
     :style="fontSize ? { fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize } : undefined"
   >
@@ -25,11 +25,11 @@ withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped lang="scss">
-.ui-equation {
+.fy-equation {
   font-family: 'KaTeX_Math', 'Cambria Math', 'Latin Modern Math', 'Times New Roman', serif;
   font-style: italic;
   font-variant-numeric: normal;
-  color: var(--on-surface);
+  color: var(--fy-on-surface);
   letter-spacing: 0.04em;
   display: inline-flex;
   align-items: center;
@@ -42,9 +42,9 @@ withDefaults(defineProps<Props>(), {
     justify-content: center;
     padding: 14px 20px;
     margin: 8px 0;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-high) 45%, transparent);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 45%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
     font-size: 1.15em;
   }
 }

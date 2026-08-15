@@ -29,57 +29,57 @@ function handleBack() {
 </script>
 
 <template>
-  <div class="ui-page-header">
+  <div class="fy-page-header">
     <!-- Breadcrumb Area -->
-    <div v-if="$slots.breadcrumb" class="ui-page-header__breadcrumb">
+    <div v-if="$slots.breadcrumb" class="fy-page-header__breadcrumb">
       <slot name="breadcrumb" />
     </div>
 
     <!-- Main Header Bar -->
-    <div class="ui-page-header__wrapper">
+    <div class="fy-page-header__wrapper">
       <!-- Left Back Action -->
-      <div class="ui-page-header__left" @click="handleBack">
-        <div class="ui-page-header__back-btn" role="button" tabindex="0">
+      <div class="fy-page-header__left" @click="handleBack">
+        <div class="fy-page-header__back-btn" role="button" tabindex="0">
           <slot name="icon">
-            <span v-if="icon" class="material-symbols-outlined ui-page-header__icon">{{ icon }}</span>
+            <span v-if="icon" class="material-symbols-outlined fy-page-header__icon">{{ icon }}</span>
           </slot>
         </div>
-        <div v-if="title || $slots.title" class="ui-page-header__title">
+        <div v-if="title || $slots.title" class="fy-page-header__title">
           <slot name="title">{{ title }}</slot>
         </div>
-        <div class="ui-page-header__divider" />
+        <div class="fy-page-header__divider" />
       </div>
 
       <!-- Content & Tags -->
-      <div class="ui-page-header__main">
-        <div class="ui-page-header__content">
+      <div class="fy-page-header__main">
+        <div class="fy-page-header__content">
           <slot name="content">{{ content }}</slot>
         </div>
-        <div v-if="effectiveSubTitle || $slots.subTitle || $slots.subtitle" class="ui-page-header__subtitle">
+        <div v-if="effectiveSubTitle || $slots.subTitle || $slots.subtitle" class="fy-page-header__subtitle">
           <slot name="subTitle">
             <slot name="subtitle">{{ effectiveSubTitle }}</slot>
           </slot>
         </div>
-        <div v-if="$slots.tags" class="ui-page-header__tags">
+        <div v-if="$slots.tags" class="fy-page-header__tags">
           <slot name="tags" />
         </div>
       </div>
 
       <!-- Extra Actions on Right -->
-      <div v-if="$slots.extra" class="ui-page-header__extra">
+      <div v-if="$slots.extra" class="fy-page-header__extra">
         <slot name="extra" />
       </div>
     </div>
 
     <!-- Sub Content / Body Slot -->
-    <div v-if="$slots.default" class="ui-page-header__body">
+    <div v-if="$slots.default" class="fy-page-header__body">
       <slot />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-page-header {
+.fy-page-header {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -108,23 +108,23 @@ function handleBack() {
   &__back-btn {
     width: 36px;
     height: 36px;
-    border-radius: var(--r-md);
+    border-radius: var(--fy-r-md);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--on-surface-variant);
-    background: color-mix(in srgb, var(--surface-container-high) 40%, transparent);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+    color: var(--fy-on-surface-variant);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 40%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
     backdrop-filter: blur(12px) saturate(1.4);
     -webkit-backdrop-filter: blur(12px) saturate(1.4);
-    box-shadow: inset 0 1px 0 var(--glass-hi);
+    box-shadow: inset 0 1px 0 var(--fy-glass-hi);
     cursor: pointer;
-    transition: all 0.2s var(--ease-soft);
+    transition: all 0.2s var(--fy-ease-soft);
 
     &:hover {
-      color: var(--primary);
-      background: color-mix(in srgb, var(--surface-container-high) 75%, transparent);
-      box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-hi);
+      color: var(--fy-primary);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 75%, transparent);
+      box-shadow: var(--fy-shadow-sm), inset 0 1px 0 var(--fy-glass-hi);
       transform: translateX(-2px);
     }
   }
@@ -141,7 +141,7 @@ function handleBack() {
   &__divider {
     width: 1px;
     height: 16px;
-    background: color-mix(in srgb, var(--outline-variant) 50%, transparent);
+    background: color-mix(in srgb, var(--fy-outline-variant) 50%, transparent);
   }
 
   &__main {
@@ -153,15 +153,15 @@ function handleBack() {
   }
 
   &__content {
-    font-size: var(--font-size-lg);
+    font-size: var(--fy-font-size-lg);
     font-weight: 700;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     letter-spacing: -0.01em;
   }
 
   &__subtitle {
-    font-size: var(--font-size-sm);
-    color: var(--on-surface-variant);
+    font-size: var(--fy-font-size-sm);
+    color: var(--fy-on-surface-variant);
     font-weight: 500;
   }
 

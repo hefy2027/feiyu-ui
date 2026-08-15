@@ -57,13 +57,13 @@ function toggleExpand() {
 </script>
 
 <template>
-  <div class="ui-ellipsis-container">
+  <div class="fy-ellipsis-container">
     <component
       :is="tooltip && !expandable && text ? Tooltip : 'div'"
       :content="text"
-      class="ui-ellipsis-wrap"
+      class="fy-ellipsis-wrap"
     >
-      <div class="ui-ellipsis" :style="clampStyle">
+      <div class="fy-ellipsis" :style="clampStyle">
         <slot>{{ text }}</slot>
       </div>
     </component>
@@ -71,7 +71,7 @@ function toggleExpand() {
     <button
       v-if="expandable"
       type="button"
-      class="ui-ellipsis__expand-btn"
+      class="fy-ellipsis__expand-btn"
       @click="toggleExpand"
     >
       {{ isExpanded ? collapseText : expandText }}
@@ -80,7 +80,7 @@ function toggleExpand() {
 </template>
 
 <style scoped lang="scss">
-.ui-ellipsis-container {
+.fy-ellipsis-container {
   display: inline-flex;
   align-items: baseline;
   gap: 6px;
@@ -88,13 +88,13 @@ function toggleExpand() {
   width: 100%;
 }
 
-.ui-ellipsis-wrap {
+.fy-ellipsis-wrap {
   min-width: 0;
   flex: 1;
   display: block;
 }
 
-.ui-ellipsis {
+.fy-ellipsis {
   word-break: break-all;
   color: inherit;
   font-family: inherit;
@@ -102,10 +102,10 @@ function toggleExpand() {
   line-height: inherit;
 }
 
-.ui-ellipsis__expand-btn {
+.fy-ellipsis__expand-btn {
   border: none;
   background: transparent;
-  color: var(--primary);
+  color: var(--fy-primary);
   cursor: pointer;
   font-size: 12px;
   font-weight: 700;

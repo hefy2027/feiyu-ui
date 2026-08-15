@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
   icon: undefined
 })
 
-const selectContext = inject<SelectContext | null>('ui-select-context', null)
+const selectContext = inject<SelectContext | null>('fy-select-context', null)
 
 const displayLabel = computed(() => {
   if (props.label !== undefined && props.label !== '') {
@@ -65,7 +65,7 @@ onUnmounted(() => {
   <div
     v-show="isVisible"
     :class="[
-      'ui-option',
+      'fy-option',
       {
         'is-selected': isSelected,
         'is-disabled': disabled
@@ -73,39 +73,39 @@ onUnmounted(() => {
     ]"
     @click="handleClick"
   >
-    <span v-if="icon" class="material-symbols-outlined ui-option__icon">
+    <span v-if="icon" class="material-symbols-outlined fy-option__icon">
       {{ icon }}
     </span>
-    <span class="ui-option__label">
+    <span class="fy-option__label">
       <slot>{{ displayLabel }}</slot>
     </span>
-    <span v-if="isSelected" class="material-symbols-outlined ui-option__check">
+    <span v-if="isSelected" class="material-symbols-outlined fy-option__check">
       check
     </span>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-option {
+.fy-option {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  border-radius: var(--r-sm);
-  font-size: var(--font-size-sm);
-  color: var(--on-surface);
+  border-radius: var(--fy-r-sm);
+  font-size: var(--fy-font-size-sm);
+  color: var(--fy-on-surface);
   cursor: pointer;
   user-select: none;
-  transition: background 0.15s var(--ease-soft), color 0.15s var(--ease-soft);
+  transition: background 0.15s var(--fy-ease-soft), color 0.15s var(--fy-ease-soft);
 
   &:hover:not(.is-disabled) {
-    background: color-mix(in srgb, var(--primary) 10%, transparent);
-    color: var(--primary);
+    background: color-mix(in srgb, var(--fy-primary) 10%, transparent);
+    color: var(--fy-primary);
   }
 
   &.is-selected {
-    background: color-mix(in srgb, var(--primary) 14%, transparent);
-    color: var(--primary);
+    background: color-mix(in srgb, var(--fy-primary) 14%, transparent);
+    color: var(--fy-primary);
     font-weight: 600;
   }
 
@@ -129,7 +129,7 @@ onUnmounted(() => {
 
   &__check {
     font-size: 18px;
-    color: var(--primary);
+    color: var(--fy-primary);
     flex-shrink: 0;
     margin-left: 4px;
   }

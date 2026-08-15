@@ -169,24 +169,24 @@ function toggleRightItem(item: TransferOption) {
 </script>
 
 <template>
-  <div :class="['ui-transfer', `ui-transfer--${size}`, { 'ui-transfer--disabled': disabled }]">
+  <div :class="['fy-transfer', `fy-transfer--${size}`, { 'fy-transfer--disabled': disabled }]">
     <!-- Left Source Panel -->
-    <div class="ui-transfer__panel">
-      <div class="ui-transfer__header">
+    <div class="fy-transfer__panel">
+      <div class="fy-transfer__header">
         <slot name="left-header">
-          <div class="ui-transfer__header-left" @click="handleToggleLeftAll">
+          <div class="fy-transfer__header-left" @click="handleToggleLeftAll">
             <Checkbox
               :model-value="isLeftAllChecked"
               :indeterminate="isLeftIndeterminate"
               :disabled="disabled || filteredLeftList.length === 0"
             />
-            <span class="ui-transfer__title">{{ effectiveTitles[0] }}</span>
+            <span class="fy-transfer__title">{{ effectiveTitles[0] }}</span>
           </div>
         </slot>
-        <span class="ui-transfer__count">{{ leftChecked.length }} / {{ filteredLeftList.length }}</span>
+        <span class="fy-transfer__count">{{ leftChecked.length }} / {{ filteredLeftList.length }}</span>
       </div>
 
-      <div v-if="filterable" class="ui-transfer__filter">
+      <div v-if="filterable" class="fy-transfer__filter">
         <Input
           v-model="leftSearch"
           size="sm"
@@ -197,13 +197,13 @@ function toggleRightItem(item: TransferOption) {
         />
       </div>
 
-      <div class="ui-transfer__list">
+      <div class="fy-transfer__list">
         <template v-if="filteredLeftList.length > 0">
           <div
             v-for="item in filteredLeftList"
             :key="String(item.value)"
             :class="[
-              'ui-transfer__item',
+              'fy-transfer__item',
               {
                 'is-checked': leftChecked.includes(item.value),
                 'is-disabled': item.disabled || disabled
@@ -214,10 +214,10 @@ function toggleRightItem(item: TransferOption) {
             <slot name="left-item" :item="item" :checked="leftChecked.includes(item.value)" :disabled="item.disabled || disabled">
               <slot name="item" :item="item" :checked="leftChecked.includes(item.value)" :disabled="item.disabled || disabled" direction="left">
                 <Checkbox :model-value="leftChecked.includes(item.value)" :disabled="item.disabled || disabled" />
-                <span v-if="item.icon" class="material-symbols-outlined ui-transfer__item-icon">{{ item.icon }}</span>
-                <div class="ui-transfer__item-label-wrap">
-                  <span class="ui-transfer__item-label">{{ item.label }}</span>
-                  <span v-if="item.description" class="ui-transfer__item-desc">{{ item.description }}</span>
+                <span v-if="item.icon" class="material-symbols-outlined fy-transfer__item-icon">{{ item.icon }}</span>
+                <div class="fy-transfer__item-label-wrap">
+                  <span class="fy-transfer__item-label">{{ item.label }}</span>
+                  <span v-if="item.description" class="fy-transfer__item-desc">{{ item.description }}</span>
                 </div>
               </slot>
             </slot>
@@ -230,7 +230,7 @@ function toggleRightItem(item: TransferOption) {
     </div>
 
     <!-- Middle Action Buttons -->
-    <div class="ui-transfer__actions">
+    <div class="fy-transfer__actions">
       <Button
         variant="primary"
         size="sm"
@@ -250,22 +250,22 @@ function toggleRightItem(item: TransferOption) {
     </div>
 
     <!-- Right Target Panel -->
-    <div class="ui-transfer__panel">
-      <div class="ui-transfer__header">
+    <div class="fy-transfer__panel">
+      <div class="fy-transfer__header">
         <slot name="right-header">
-          <div class="ui-transfer__header-left" @click="handleToggleRightAll">
+          <div class="fy-transfer__header-left" @click="handleToggleRightAll">
             <Checkbox
               :model-value="isRightAllChecked"
               :indeterminate="isRightIndeterminate"
               :disabled="disabled || filteredRightList.length === 0"
             />
-            <span class="ui-transfer__title">{{ effectiveTitles[1] }}</span>
+            <span class="fy-transfer__title">{{ effectiveTitles[1] }}</span>
           </div>
         </slot>
-        <span class="ui-transfer__count">{{ rightChecked.length }} / {{ filteredRightList.length }}</span>
+        <span class="fy-transfer__count">{{ rightChecked.length }} / {{ filteredRightList.length }}</span>
       </div>
 
-      <div v-if="filterable" class="ui-transfer__filter">
+      <div v-if="filterable" class="fy-transfer__filter">
         <Input
           v-model="rightSearch"
           size="sm"
@@ -276,13 +276,13 @@ function toggleRightItem(item: TransferOption) {
         />
       </div>
 
-      <div class="ui-transfer__list">
+      <div class="fy-transfer__list">
         <template v-if="filteredRightList.length > 0">
           <div
             v-for="item in filteredRightList"
             :key="String(item.value)"
             :class="[
-              'ui-transfer__item',
+              'fy-transfer__item',
               {
                 'is-checked': rightChecked.includes(item.value),
                 'is-disabled': item.disabled || disabled
@@ -293,10 +293,10 @@ function toggleRightItem(item: TransferOption) {
             <slot name="right-item" :item="item" :checked="rightChecked.includes(item.value)" :disabled="item.disabled || disabled">
               <slot name="item" :item="item" :checked="rightChecked.includes(item.value)" :disabled="item.disabled || disabled" direction="right">
                 <Checkbox :model-value="rightChecked.includes(item.value)" :disabled="item.disabled || disabled" />
-                <span v-if="item.icon" class="material-symbols-outlined ui-transfer__item-icon">{{ item.icon }}</span>
-                <div class="ui-transfer__item-label-wrap">
-                  <span class="ui-transfer__item-label">{{ item.label }}</span>
-                  <span v-if="item.description" class="ui-transfer__item-desc">{{ item.description }}</span>
+                <span v-if="item.icon" class="material-symbols-outlined fy-transfer__item-icon">{{ item.icon }}</span>
+                <div class="fy-transfer__item-label-wrap">
+                  <span class="fy-transfer__item-label">{{ item.label }}</span>
+                  <span v-if="item.description" class="fy-transfer__item-desc">{{ item.description }}</span>
                 </div>
               </slot>
             </slot>
@@ -311,7 +311,7 @@ function toggleRightItem(item: TransferOption) {
 </template>
 
 <style scoped lang="scss">
-.ui-transfer {
+.fy-transfer {
   display: inline-flex;
   align-items: center;
   gap: 16px;
@@ -328,12 +328,12 @@ function toggleRightItem(item: TransferOption) {
     height: 300px;
     display: flex;
     flex-direction: column;
-    border-radius: var(--r-lg);
-    background: color-mix(in srgb, var(--surface-container-lowest) 82%, transparent);
+    border-radius: var(--fy-r-lg);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 82%, transparent);
     backdrop-filter: blur(20px) saturate(1.5);
     -webkit-backdrop-filter: blur(20px) saturate(1.5);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-hi);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-sm), inset 0 1px 0 var(--fy-glass-hi);
     overflow: hidden;
   }
 
@@ -342,8 +342,8 @@ function toggleRightItem(item: TransferOption) {
     align-items: center;
     justify-content: space-between;
     padding: 10px 14px;
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
-    background: color-mix(in srgb, var(--surface-container-high) 35%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 35%, transparent);
   }
 
   &__header-left {
@@ -354,20 +354,20 @@ function toggleRightItem(item: TransferOption) {
   }
 
   &__title {
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
     font-weight: 700;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
   }
 
   &__count {
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 600;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 
   &__filter {
     padding: 8px 10px;
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 20%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 20%, transparent);
   }
 
   &__list {
@@ -384,16 +384,16 @@ function toggleRightItem(item: TransferOption) {
     align-items: center;
     gap: 8px;
     padding: 6px 10px;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
     cursor: pointer;
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover:not(.is-disabled) {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
     }
 
     &.is-checked {
-      color: var(--primary);
+      color: var(--fy-primary);
       font-weight: 700;
     }
 
@@ -416,7 +416,7 @@ function toggleRightItem(item: TransferOption) {
   }
 
   &__item-label {
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -424,7 +424,7 @@ function toggleRightItem(item: TransferOption) {
 
   &__item-desc {
     font-size: 11px;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 
   &__actions {

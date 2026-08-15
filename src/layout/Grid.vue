@@ -90,7 +90,7 @@ const parsedYGap = computed<number>(() => {
 
 const isOverflow = ref(false)
 
-provide<GridContext>('ui-grid', {
+provide<GridContext>('fy-grid', {
   cols: parsedCols,
   xGap: parsedXGap,
   yGap: parsedYGap,
@@ -108,13 +108,13 @@ const gridStyle = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <div class="ui-grid" :style="gridStyle">
+  <div class="fy-grid" :style="gridStyle">
     <slot />
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-grid {
+.fy-grid {
   box-sizing: border-box;
   width: 100%;
 }

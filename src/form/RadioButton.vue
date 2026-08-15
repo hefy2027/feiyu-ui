@@ -32,8 +32,8 @@ const emit = defineEmits<{
   change: [value: string | number | boolean]
 }>()
 
-const groupContext = inject<RadioGroupContext | null>('ui-radio-group', null)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const groupContext = inject<RadioGroupContext | null>('fy-radio-group', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const isChecked = computed(() => {
   if (groupContext) {
@@ -69,8 +69,8 @@ function handleChange() {
 <template>
   <label
     :class="[
-      'ui-radio-button',
-      `ui-radio-button--${currentSize}`,
+      'fy-radio-button',
+      `fy-radio-button--${currentSize}`,
       {
         'is-checked': isChecked,
         'is-disabled': isDisabled
@@ -83,18 +83,18 @@ function handleChange() {
       :value="value"
       :checked="isChecked"
       :disabled="isDisabled"
-      class="ui-radio-button__input"
+      class="fy-radio-button__input"
       @change="handleChange"
     />
 
-    <span class="ui-radio-button__inner">
+    <span class="fy-radio-button__inner">
       <slot>{{ label || value }}</slot>
     </span>
   </label>
 </template>
 
 <style scoped lang="scss">
-.ui-radio-button {
+.fy-radio-button {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -102,17 +102,17 @@ function handleChange() {
   cursor: pointer;
   user-select: none;
   outline: none;
-  font-size: var(--font-size-sm);
+  font-size: var(--fy-font-size-sm);
   font-weight: 600;
   line-height: 1;
   padding: 8px 16px;
-  border-radius: var(--r-md);
-  background: color-mix(in srgb, var(--surface-container-high) 45%, transparent);
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
-  color: var(--on-surface-variant);
+  border-radius: var(--fy-r-md);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
+  color: var(--fy-on-surface-variant);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: all 0.2s var(--ease-soft);
+  transition: all 0.2s var(--fy-ease-soft);
 
   &__input {
     position: absolute;
@@ -130,17 +130,17 @@ function handleChange() {
   }
 
   &:hover:not(.is-disabled) {
-    background: color-mix(in srgb, var(--surface-container-high) 75%, transparent);
-    box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-hi);
-    color: var(--on-surface);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 75%, transparent);
+    box-shadow: var(--fy-shadow-sm), inset 0 1px 0 var(--fy-glass-hi);
+    color: var(--fy-on-surface);
     transform: translateY(-1px);
   }
 
   &.is-checked {
-    background: var(--primary);
-    color: var(--on-primary);
+    background: var(--fy-primary);
+    color: var(--fy-on-primary);
     border-color: transparent;
-    box-shadow: 0 4px 14px -3px color-mix(in srgb, var(--primary) 70%, transparent);
+    box-shadow: 0 4px 14px -3px color-mix(in srgb, var(--fy-primary) 70%, transparent);
   }
 
   &.is-disabled {
@@ -151,12 +151,12 @@ function handleChange() {
 
   &--sm {
     padding: 5px 10px;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
   }
 
   &--lg {
     padding: 10px 20px;
-    font-size: var(--font-size-md);
+    font-size: var(--fy-font-size-md);
   }
 }
 </style>

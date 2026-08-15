@@ -34,8 +34,8 @@ const emit = defineEmits<{
   change: [checked: boolean, event: Event]
 }>()
 
-const groupContext = inject<CheckboxGroupContext | null>('ui-checkbox-group', null)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const groupContext = inject<CheckboxGroupContext | null>('fy-checkbox-group', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const isChecked = computed(() => {
   if (groupContext && groupContext.modelValue.value) {
@@ -96,8 +96,8 @@ function handleChange(event: Event) {
 <template>
   <label
     :class="[
-      'ui-checkbox',
-      `ui-checkbox--${currentSize}`,
+      'fy-checkbox',
+      `fy-checkbox--${currentSize}`,
       {
         'is-checked': isChecked,
         'is-indeterminate': indeterminate,
@@ -109,36 +109,36 @@ function handleChange(event: Event) {
       type="checkbox"
       :checked="isChecked"
       :disabled="isDisabled"
-      class="ui-checkbox__input"
+      class="fy-checkbox__input"
       @change="handleChange"
     />
 
-    <span class="ui-checkbox__box">
-      <span v-if="indeterminate" class="material-symbols-outlined ui-checkbox__icon">
+    <span class="fy-checkbox__box">
+      <span v-if="indeterminate" class="material-symbols-outlined fy-checkbox__icon">
         remove
       </span>
-      <span v-else-if="isChecked" class="material-symbols-outlined ui-checkbox__icon">
+      <span v-else-if="isChecked" class="material-symbols-outlined fy-checkbox__icon">
         check
       </span>
     </span>
 
-    <span v-if="label || $slots.default" class="ui-checkbox__label">
+    <span v-if="label || $slots.default" class="fy-checkbox__label">
       <slot>{{ label }}</slot>
     </span>
   </label>
 </template>
 
 <style scoped lang="scss">
-.ui-checkbox {
+.fy-checkbox {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
   user-select: none;
-  font-size: var(--font-size-base);
-  color: var(--on-surface);
+  font-size: var(--fy-font-size-base);
+  color: var(--fy-on-surface);
   font-weight: 500;
-  transition: all 0.18s var(--ease-soft);
+  transition: all 0.18s var(--fy-ease-soft);
 
   &.is-disabled {
     opacity: 0.5;
@@ -158,30 +158,30 @@ function handleChange(event: Event) {
     width: 18px;
     height: 18px;
     border-radius: 5px;
-    border: 1.5px solid color-mix(in srgb, var(--outline) 60%, transparent);
-    background: color-mix(in srgb, var(--surface-container-high) 40%, transparent);
+    border: 1.5px solid color-mix(in srgb, var(--fy-outline) 60%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 40%, transparent);
     display: grid;
     place-items: center;
-    transition: all 0.2s var(--ease-soft);
+    transition: all 0.2s var(--fy-ease-soft);
   }
 
   &__icon {
     font-size: 14px;
     font-weight: 800;
-    color: var(--on-primary);
+    color: var(--fy-on-primary);
     line-height: 1;
     user-select: none;
   }
 
-  &.is-checked .ui-checkbox__box,
-  &.is-indeterminate .ui-checkbox__box {
-    border-color: var(--primary);
-    background: var(--primary);
-    box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--primary) 60%, transparent);
+  &.is-checked .fy-checkbox__box,
+  &.is-indeterminate .fy-checkbox__box {
+    border-color: var(--fy-primary);
+    background: var(--fy-primary);
+    box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--fy-primary) 60%, transparent);
   }
 
-  &:hover:not(.is-disabled) .ui-checkbox__box {
-    border-color: var(--primary);
+  &:hover:not(.is-disabled) .fy-checkbox__box {
+    border-color: var(--fy-primary);
   }
 }
 </style>

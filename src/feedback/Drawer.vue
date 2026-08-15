@@ -92,14 +92,14 @@ onUnmounted(() => {
   <teleport to="body">
     <div
       v-if="modelValue"
-      class="ui-drawer-overlay"
+      class="fy-drawer-overlay"
       :style="{ zIndex }"
       @click="handleOverlayClick"
     >
       <div
         :class="[
-          'ui-drawer',
-          `ui-drawer--${placement}`
+          'fy-drawer',
+          `fy-drawer--${placement}`
         ]"
         :style="{
           zIndex: zIndex + 1,
@@ -108,16 +108,16 @@ onUnmounted(() => {
         role="dialog"
         aria-modal="true"
       >
-        <div class="ui-drawer__header">
+        <div class="fy-drawer__header">
           <slot name="header">
-            <h3 v-if="title" class="ui-drawer__title">{{ title }}</h3>
+            <h3 v-if="title" class="fy-drawer__title">{{ title }}</h3>
             <div v-else />
           </slot>
 
           <button
             v-if="isClosable"
             type="button"
-            class="ui-drawer__close-btn"
+            class="fy-drawer__close-btn"
             aria-label="关闭"
             @click="handleClose"
           >
@@ -125,11 +125,11 @@ onUnmounted(() => {
           </button>
         </div>
 
-        <div class="ui-drawer__body">
+        <div class="fy-drawer__body">
           <slot />
         </div>
 
-        <div v-if="$slots.footer" class="ui-drawer__footer">
+        <div v-if="$slots.footer" class="fy-drawer__footer">
           <slot name="footer" />
         </div>
       </div>
@@ -138,23 +138,23 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-drawer-overlay {
+.fy-drawer-overlay {
   position: fixed;
   inset: 0;
   z-index: 75;
   background: rgba(15, 17, 20, 0.42);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  animation: overlay-fade 0.25s var(--ease-soft);
+  animation: overlay-fade 0.25s var(--fy-ease-soft);
 }
 
-.ui-drawer {
+.fy-drawer {
   position: fixed;
-  background: color-mix(in srgb, var(--surface-container-lowest) 88%, transparent);
+  background: color-mix(in srgb, var(--fy-surface-container-lowest) 88%, transparent);
   backdrop-filter: blur(28px) saturate(1.6);
   -webkit-backdrop-filter: blur(28px) saturate(1.6);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+  border: 1px solid var(--fy-glass-border);
+  box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
   display: flex;
   flex-direction: column;
   z-index: 76;
@@ -165,7 +165,7 @@ onUnmounted(() => {
     bottom: 0;
     right: 0;
     max-width: 100vw;
-    animation: slide-in-right 0.3s var(--ease-out);
+    animation: slide-in-right 0.3s var(--fy-ease-out);
   }
 
   &--left {
@@ -173,7 +173,7 @@ onUnmounted(() => {
     bottom: 0;
     left: 0;
     max-width: 100vw;
-    animation: slide-in-left 0.3s var(--ease-out);
+    animation: slide-in-left 0.3s var(--fy-ease-out);
   }
 
   &--top {
@@ -181,7 +181,7 @@ onUnmounted(() => {
     left: 0;
     right: 0;
     max-height: 100vh;
-    animation: slide-in-top 0.3s var(--ease-out);
+    animation: slide-in-top 0.3s var(--fy-ease-out);
   }
 
   &--bottom {
@@ -189,7 +189,7 @@ onUnmounted(() => {
     left: 0;
     right: 0;
     max-height: 100vh;
-    animation: slide-in-bottom 0.3s var(--ease-out);
+    animation: slide-in-bottom 0.3s var(--fy-ease-out);
   }
 
   &__header {
@@ -197,14 +197,14 @@ onUnmounted(() => {
     align-items: center;
     justify-content: space-between;
     padding: 20px 24px;
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
   }
 
   &__title {
-    font-family: var(--font-display);
+    font-family: var(--fy-font-display);
     font-size: 19px;
     font-weight: 800;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     letter-spacing: -0.02em;
   }
 
@@ -214,15 +214,15 @@ onUnmounted(() => {
     border-radius: 50%;
     display: grid;
     place-items: center;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     border: none;
     background: transparent;
     cursor: pointer;
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
-      color: var(--on-surface);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
+      color: var(--fy-on-surface);
     }
 
     .material-symbols-outlined {
@@ -243,8 +243,8 @@ onUnmounted(() => {
     align-items: center;
     gap: 12px;
     padding: 16px 24px;
-    border-top: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
-    background: color-mix(in srgb, var(--surface-container-low) 50%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-low) 50%, transparent);
   }
 }
 

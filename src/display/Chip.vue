@@ -43,8 +43,8 @@ function handleClose(event: MouseEvent) {
   <button
     :type="clickable ? 'button' : undefined"
     :class="[
-      'ui-chip',
-      `ui-chip--${size}`,
+      'fy-chip',
+      `fy-chip--${size}`,
       {
         'is-active': active,
         'is-static': !clickable,
@@ -55,23 +55,23 @@ function handleClose(event: MouseEvent) {
     @click="handleClick"
   >
     <slot v-if="$slots.icon || icon" name="icon">
-      <span class="material-symbols-outlined ui-chip__icon">{{ icon }}</span>
+      <span class="material-symbols-outlined fy-chip__icon">{{ icon }}</span>
     </slot>
     <span
       v-else-if="dotColor"
-      class="ui-chip__dot"
+      class="fy-chip__dot"
       :style="{ backgroundColor: dotColor }"
     />
-    <span class="ui-chip__label">
+    <span class="fy-chip__label">
       <slot />
     </span>
-    <span v-if="count !== undefined || $slots.count" class="ui-chip__count">
+    <span v-if="count !== undefined || $slots.count" class="fy-chip__count">
       <slot name="count">{{ count }}</slot>
     </span>
     <button
       v-if="closable"
       type="button"
-      class="ui-chip__close"
+      class="fy-chip__close"
       aria-label="关闭"
       @click.stop="handleClose"
     >
@@ -81,31 +81,31 @@ function handleClose(event: MouseEvent) {
 </template>
 
 <style scoped lang="scss">
-.ui-chip {
+.fy-chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 7px 14px;
-  border-radius: var(--r-full);
+  border-radius: var(--fy-r-full);
   font-weight: 700;
-  font-size: var(--font-size-sm);
-  color: var(--on-surface-variant);
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
-  background: color-mix(in srgb, var(--surface-container-high) 40%, transparent);
+  font-size: var(--fy-font-size-sm);
+  color: var(--fy-on-surface-variant);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 40%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   cursor: pointer;
   user-select: none;
   transition:
-    color 0.2s var(--ease-soft),
-    background 0.2s var(--ease-soft),
-    border-color 0.2s var(--ease-soft),
-    transform 0.12s var(--ease-soft),
-    box-shadow 0.2s var(--ease-soft);
+    color 0.2s var(--fy-ease-soft),
+    background 0.2s var(--fy-ease-soft),
+    border-color 0.2s var(--fy-ease-soft),
+    transform 0.12s var(--fy-ease-soft),
+    box-shadow 0.2s var(--fy-ease-soft);
 
   &--sm {
     padding: 4px 10px;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     gap: 4px;
   }
 
@@ -115,27 +115,27 @@ function handleClose(event: MouseEvent) {
 
   &--lg {
     padding: 9px 18px;
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
   }
 
   &:hover:not(.is-static) {
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     transform: translateY(-1px);
   }
 
   &.is-active {
-    color: var(--on-primary);
-    background: var(--primary);
+    color: var(--fy-on-primary);
+    background: var(--fy-primary);
     border-color: transparent;
-    box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--primary) 70%, transparent);
+    box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--fy-primary) 70%, transparent);
 
-    .ui-chip__count {
-      background: color-mix(in srgb, var(--on-primary) 22%, transparent);
-      color: var(--on-primary);
+    .fy-chip__count {
+      background: color-mix(in srgb, var(--fy-on-primary) 22%, transparent);
+      color: var(--fy-on-primary);
     }
 
-    .ui-chip__dot {
-      background-color: var(--on-primary) !important;
+    .fy-chip__dot {
+      background-color: var(--fy-on-primary) !important;
     }
   }
 
@@ -186,9 +186,9 @@ function handleClose(event: MouseEvent) {
     font-size: 11px;
     font-weight: 800;
     padding: 1px 6px;
-    border-radius: var(--r-full);
-    background: color-mix(in srgb, var(--surface-container-highest) 80%, transparent);
-    color: var(--on-surface-variant);
+    border-radius: var(--fy-r-full);
+    background: color-mix(in srgb, var(--fy-surface-container-highest) 80%, transparent);
+    color: var(--fy-on-surface-variant);
   }
 }
 </style>

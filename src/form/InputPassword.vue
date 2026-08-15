@@ -46,7 +46,7 @@ function togglePasswordVisibility() {
 </script>
 
 <template>
-  <div class="ui-input-password-wrap" :class="{ 'ui-input-password-wrap--block': block }">
+  <div class="fy-input-password-wrap" :class="{ 'fy-input-password-wrap--block': block }">
     <Input
       :model-value="modelValue"
       :type="isPasswordVisible ? 'text' : 'password'"
@@ -69,8 +69,8 @@ function togglePasswordVisibility() {
       <template v-if="showPassword" #suffix>
         <button
           type="button"
-          class="ui-input-password__toggle"
-          :class="`ui-input-password__toggle--${size}`"
+          class="fy-input-password__toggle"
+          :class="`fy-input-password__toggle--${size}`"
           :disabled="disabled"
           aria-label="切换密码可见性"
           @click.stop="togglePasswordVisibility"
@@ -85,7 +85,7 @@ function togglePasswordVisibility() {
 </template>
 
 <style scoped lang="scss">
-.ui-input-password-wrap {
+.fy-input-password-wrap {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -96,10 +96,10 @@ function togglePasswordVisibility() {
   }
 }
 
-.ui-input-password__toggle {
+.fy-input-password__toggle {
   border: none;
   background: none;
-  color: var(--outline);
+  color: var(--fy-outline);
   cursor: pointer;
   padding: 0;
   margin-left: 4px;
@@ -109,7 +109,7 @@ function togglePasswordVisibility() {
   transition: color 0.15s ease;
 
   &:hover:not(:disabled) {
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
   }
 
   &:disabled {

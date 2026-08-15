@@ -141,18 +141,18 @@ onUnmounted(() => {
 <template>
   <div
     v-if="total > 0"
-    :class="['ui-pagination', { 'is-disabled': disabled, 'is-simple': simple }]"
+    :class="['fy-pagination', { 'is-disabled': disabled, 'is-simple': simple }]"
   >
-    <div v-if="showTotal" class="ui-pagination__info">
+    <div v-if="showTotal" class="fy-pagination__info">
       <slot name="total" :total="total" :from="shownFrom" :to="shownTo">
         显示 {{ shownFrom }}–{{ shownTo }}，共 {{ total }} 条
       </slot>
     </div>
 
-    <div class="ui-pagination__controls">
+    <div class="fy-pagination__controls">
       <button
         type="button"
-        class="ui-pagination__btn"
+        class="fy-pagination__btn"
         :disabled="disabled || effectivePage <= 1"
         aria-label="上一页"
         @click="goto(effectivePage - 1)"
@@ -165,20 +165,20 @@ onUnmounted(() => {
           <button
             v-if="item === 'prev-more' || item === 'next-more'"
             type="button"
-            class="ui-pagination__more-btn"
+            class="fy-pagination__more-btn"
             :disabled="disabled"
             :aria-label="item === 'prev-more' ? '向前 5 页' : '向后 5 页'"
             @click="goto(item === 'prev-more' ? effectivePage - 5 : effectivePage + 5)"
           >
-            <span class="ui-pagination__more-dots">•••</span>
-            <span class="material-symbols-outlined ui-pagination__more-arrow">
+            <span class="fy-pagination__more-dots">•••</span>
+            <span class="material-symbols-outlined fy-pagination__more-arrow">
               {{ item === 'prev-more' ? 'keyboard_double_arrow_left' : 'keyboard_double_arrow_right' }}
             </span>
           </button>
           <button
             v-else
             type="button"
-            :class="['ui-pagination__page', { 'is-active': item === effectivePage }]"
+            :class="['fy-pagination__page', { 'is-active': item === effectivePage }]"
             :disabled="disabled"
             :aria-label="`第 ${item} 页`"
             @click="goto(item)"
@@ -188,14 +188,14 @@ onUnmounted(() => {
         </template>
       </template>
       <template v-else>
-        <span class="ui-pagination__simple-text">
+        <span class="fy-pagination__simple-text">
           {{ effectivePage }} / {{ totalPages }}
         </span>
       </template>
 
       <button
         type="button"
-        class="ui-pagination__btn"
+        class="fy-pagination__btn"
         :disabled="disabled || effectivePage >= totalPages"
         aria-label="下一页"
         @click="goto(effectivePage + 1)"
@@ -207,30 +207,30 @@ onUnmounted(() => {
       <div
         v-if="showSizePicker && pageSizes && pageSizes.length"
         ref="sizePickerRef"
-        class="ui-pagination__size-picker"
+        class="fy-pagination__size-picker"
       >
-        <span class="ui-pagination__size-prefix">每页</span>
+        <span class="fy-pagination__size-prefix">每页</span>
         <button
           type="button"
-          class="ui-pagination__size-trigger"
+          class="fy-pagination__size-trigger"
           :class="{ 'is-open': isSizePickerOpen, 'is-disabled': disabled }"
           :disabled="disabled"
           @click.stop="toggleSizePicker"
         >
-          <span class="ui-pagination__size-val">{{ currentSizeLabel }}</span>
-          <span class="material-symbols-outlined ui-pagination__size-arrow">expand_more</span>
+          <span class="fy-pagination__size-val">{{ currentSizeLabel }}</span>
+          <span class="material-symbols-outlined fy-pagination__size-arrow">expand_more</span>
         </button>
 
-        <transition name="ui-pagination-dropdown-fade">
-          <div v-if="isSizePickerOpen" class="ui-pagination__size-menu" @click.stop>
+        <transition name="fy-pagination-dropdown-fade">
+          <div v-if="isSizePickerOpen" class="fy-pagination__size-menu" @click.stop>
             <div
               v-for="s in pageSizes"
               :key="String(s)"
-              :class="['ui-pagination__size-option', { 'is-selected': isSizeSelected(s) }]"
+              :class="['fy-pagination__size-option', { 'is-selected': isSizeSelected(s) }]"
               @click="handleSizeSelect(s)"
             >
               <span>{{ s === 'all' ? '全部' : `${s} 条/页` }}</span>
-              <span v-if="isSizeSelected(s)" class="material-symbols-outlined ui-pagination__size-check">
+              <span v-if="isSizeSelected(s)" class="material-symbols-outlined fy-pagination__size-check">
                 check
               </span>
             </div>
@@ -242,17 +242,17 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-pagination {
+.fy-pagination {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
   padding: 12px 18px;
-  font-size: var(--font-size-sm);
+  font-size: var(--fy-font-size-sm);
 
   &__info {
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     font-weight: 500;
   }
 
@@ -267,20 +267,20 @@ onUnmounted(() => {
   &__page {
     min-width: 32px;
     height: 32px;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border: none;
     background: transparent;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     font-weight: 700;
     cursor: pointer;
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover:not(:disabled) {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
-      color: var(--on-surface);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
+      color: var(--fy-on-surface);
     }
 
     &:disabled {
@@ -294,43 +294,43 @@ onUnmounted(() => {
   }
 
   &__page.is-active {
-    background: var(--primary);
-    color: var(--on-primary);
-    box-shadow: 0 4px 12px -4px color-mix(in srgb, var(--primary) 70%, transparent);
+    background: var(--fy-primary);
+    color: var(--fy-on-primary);
+    box-shadow: 0 4px 12px -4px color-mix(in srgb, var(--fy-primary) 70%, transparent);
   }
 
   &__more-btn {
     min-width: 32px;
     height: 32px;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border: none;
     background: transparent;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     cursor: pointer;
     position: relative;
     transition: background 0.15s ease, color 0.15s ease;
 
-    .ui-pagination__more-dots {
+    .fy-pagination__more-dots {
       letter-spacing: 1px;
       font-size: 11px;
       font-weight: bold;
     }
 
-    .ui-pagination__more-arrow {
+    .fy-pagination__more-arrow {
       display: none;
       font-size: 18px;
-      color: var(--primary);
+      color: var(--fy-primary);
     }
 
     &:hover:not(:disabled) {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
-      .ui-pagination__more-dots {
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
+      .fy-pagination__more-dots {
         display: none;
       }
-      .ui-pagination__more-arrow {
+      .fy-pagination__more-arrow {
         display: block;
       }
     }
@@ -347,13 +347,13 @@ onUnmounted(() => {
     display: flex;
     align-items: center;
     gap: 6px;
-    color: var(--outline);
+    color: var(--fy-outline);
     font-weight: 600;
   }
 
   &__size-prefix {
-    font-size: var(--font-size-xs);
-    color: var(--outline);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-outline);
     user-select: none;
   }
 
@@ -363,29 +363,29 @@ onUnmounted(() => {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    border-radius: var(--r-sm);
-    background: color-mix(in srgb, var(--surface-container-high) 45%, transparent);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+    border-radius: var(--fy-r-sm);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 45%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    color: var(--on-surface);
-    font-size: var(--font-size-xs);
+    color: var(--fy-on-surface);
+    font-size: var(--fy-font-size-xs);
     font-weight: 600;
     cursor: pointer;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 
     &:hover:not(:disabled) {
-      border-color: color-mix(in srgb, var(--primary) 50%, transparent);
-      background: color-mix(in srgb, var(--surface-container-high) 65%, transparent);
+      border-color: color-mix(in srgb, var(--fy-primary) 50%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 65%, transparent);
     }
 
     &.is-open {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 15%, transparent);
+      border-color: var(--fy-primary);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--fy-primary) 15%, transparent);
 
-      .ui-pagination__size-arrow {
+      .fy-pagination__size-arrow {
         transform: rotate(180deg);
-        color: var(--primary);
+        color: var(--fy-primary);
       }
     }
 
@@ -397,7 +397,7 @@ onUnmounted(() => {
 
   &__size-arrow {
     font-size: 16px;
-    color: var(--outline);
+    color: var(--fy-outline);
     transition: transform 0.2s ease, color 0.2s ease;
   }
 
@@ -408,12 +408,12 @@ onUnmounted(() => {
     min-width: 104px;
     z-index: 100;
     padding: 5px;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-lowest) 94%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 94%, transparent);
     backdrop-filter: blur(28px) saturate(1.7);
     -webkit-backdrop-filter: blur(28px) saturate(1.7);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -424,38 +424,38 @@ onUnmounted(() => {
     align-items: center;
     justify-content: space-between;
     padding: 6px 10px;
-    border-radius: var(--r-sm);
-    font-size: var(--font-size-xs);
+    border-radius: var(--fy-r-sm);
+    font-size: var(--fy-font-size-xs);
     font-weight: 500;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     cursor: pointer;
     user-select: none;
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
     }
 
     &.is-selected {
-      background: color-mix(in srgb, var(--primary) 12%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
+      color: var(--fy-primary);
       font-weight: 700;
     }
   }
 
   &__size-check {
     font-size: 15px;
-    color: var(--primary);
+    color: var(--fy-primary);
   }
 }
 
-.ui-pagination-dropdown-fade-enter-active,
-.ui-pagination-dropdown-fade-leave-active {
+.fy-pagination-dropdown-fade-enter-active,
+.fy-pagination-dropdown-fade-leave-active {
   transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.ui-pagination-dropdown-fade-enter-from,
-.ui-pagination-dropdown-fade-leave-to {
+.fy-pagination-dropdown-fade-enter-from,
+.fy-pagination-dropdown-fade-leave-to {
   opacity: 0;
   transform: translateY(4px) scale(0.96);
 }

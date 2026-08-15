@@ -41,7 +41,7 @@ const emit = defineEmits<{
 }>()
 
 const isFocused = ref(false)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const displayValue = computed(() => {
   if (props.modelValue === null || props.modelValue === undefined || isNaN(props.modelValue)) {
@@ -138,10 +138,10 @@ function handleKeydown(event: KeyboardEvent) {
 <template>
   <div
     :class="[
-      'ui-input-number',
-      `ui-input-number--${size}`,
-      `ui-input-number--${controlsPosition}`,
-      { 'ui-input-number--block': block },
+      'fy-input-number',
+      `fy-input-number--${size}`,
+      `fy-input-number--${controlsPosition}`,
+      { 'fy-input-number--block': block },
       {
         'is-focused': isFocused,
         'is-disabled': disabled
@@ -151,7 +151,7 @@ function handleKeydown(event: KeyboardEvent) {
     <button
       v-if="controlsPosition === 'both-sides'"
       type="button"
-      class="ui-input-number__btn ui-input-number__btn--decrease"
+      class="fy-input-number__btn fy-input-number__btn--decrease"
       :disabled="isMinDisabled"
       tabindex="-1"
       @click="stepDown"
@@ -169,7 +169,7 @@ function handleKeydown(event: KeyboardEvent) {
       :aria-valuenow="modelValue ?? undefined"
       :aria-valuemin="min"
       :aria-valuemax="max"
-      class="ui-input-number__inner"
+      class="fy-input-number__inner"
       @input="handleInput"
       @focus="handleFocus"
       @blur="handleBlur"
@@ -179,7 +179,7 @@ function handleKeydown(event: KeyboardEvent) {
     <button
       v-if="controlsPosition === 'both-sides'"
       type="button"
-      class="ui-input-number__btn ui-input-number__btn--increase"
+      class="fy-input-number__btn fy-input-number__btn--increase"
       :disabled="isMaxDisabled"
       tabindex="-1"
       @click="stepUp"
@@ -187,10 +187,10 @@ function handleKeydown(event: KeyboardEvent) {
       <span class="material-symbols-outlined">add</span>
     </button>
 
-    <div v-else class="ui-input-number__controls-stacked">
+    <div v-else class="fy-input-number__controls-stacked">
       <button
         type="button"
-        class="ui-input-number__btn-stacked"
+        class="fy-input-number__btn-stacked"
         :disabled="isMaxDisabled"
         tabindex="-1"
         @click="stepUp"
@@ -199,7 +199,7 @@ function handleKeydown(event: KeyboardEvent) {
       </button>
       <button
         type="button"
-        class="ui-input-number__btn-stacked"
+        class="fy-input-number__btn-stacked"
         :disabled="isMinDisabled"
         tabindex="-1"
         @click="stepDown"
@@ -211,33 +211,33 @@ function handleKeydown(event: KeyboardEvent) {
 </template>
 
 <style scoped lang="scss">
-.ui-input-number {
+.fy-input-number {
   display: inline-flex;
   align-items: center;
   position: relative;
-  border-radius: var(--r-md);
-  background: color-mix(in srgb, var(--surface-container-high) 42%, transparent);
+  border-radius: var(--fy-r-md);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 42%, transparent);
   backdrop-filter: blur(14px) saturate(1.4);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
   transition:
-    border-color 0.2s var(--ease-soft),
-    box-shadow 0.2s var(--ease-soft),
-    background 0.2s var(--ease-soft);
+    border-color 0.2s var(--fy-ease-soft),
+    box-shadow 0.2s var(--fy-ease-soft),
+    background 0.2s var(--fy-ease-soft);
   user-select: none;
   overflow: hidden;
 
   &.is-focused {
-    border-color: color-mix(in srgb, var(--primary) 55%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
+    border-color: color-mix(in srgb, var(--fy-primary) 55%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--fy-primary) 14%, transparent);
   }
 
   &.is-disabled {
     opacity: 0.55;
     cursor: not-allowed;
-    background: color-mix(in srgb, var(--surface-container-low) 50%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-low) 50%, transparent);
 
-    .ui-input-number__inner {
+    .fy-input-number__inner {
       cursor: not-allowed;
     }
   }
@@ -248,7 +248,7 @@ function handleKeydown(event: KeyboardEvent) {
     height: 100%;
     border: none;
     background: transparent;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     font: inherit;
     font-weight: 600;
     text-align: center;
@@ -259,7 +259,7 @@ function handleKeydown(event: KeyboardEvent) {
     }
 
     &::placeholder {
-      color: var(--outline);
+      color: var(--fy-outline);
     }
   }
 
@@ -272,22 +272,22 @@ function handleKeydown(event: KeyboardEvent) {
   &--sm {
     height: 32px;
     width: 110px;
-    font-size: var(--font-size-xs);
-    border-radius: var(--r-sm);
+    font-size: var(--fy-font-size-xs);
+    border-radius: var(--fy-r-sm);
   }
 
   &--md {
     height: 40px;
     width: 130px;
-    font-size: var(--font-size-base);
-    border-radius: var(--r-md);
+    font-size: var(--fy-font-size-base);
+    border-radius: var(--fy-r-md);
   }
 
   &--lg {
     height: 46px;
     width: 150px;
-    font-size: var(--font-size-md);
-    border-radius: var(--r-lg);
+    font-size: var(--fy-font-size-md);
+    border-radius: var(--fy-r-lg);
   }
 
   /* Both sides controls */
@@ -298,13 +298,13 @@ function handleKeydown(event: KeyboardEvent) {
     width: 34px;
     border: none;
     background: transparent;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     cursor: pointer;
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover:not(:disabled) {
-      background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
+      color: var(--fy-primary);
     }
 
     &:disabled {
@@ -323,7 +323,7 @@ function handleKeydown(event: KeyboardEvent) {
     flex-direction: column;
     height: 100%;
     width: 26px;
-    border-left: 1px solid color-mix(in srgb, var(--outline-variant) 35%, transparent);
+    border-left: 1px solid color-mix(in srgb, var(--fy-outline-variant) 35%, transparent);
   }
 
   &__btn-stacked {
@@ -332,18 +332,18 @@ function handleKeydown(event: KeyboardEvent) {
     place-items: center;
     border: none;
     background: transparent;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     cursor: pointer;
     padding: 0;
     transition: background 0.15s ease, color 0.15s ease;
 
     &:first-child {
-      border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
     }
 
     &:hover:not(:disabled) {
-      background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
+      color: var(--fy-primary);
     }
 
     &:disabled {

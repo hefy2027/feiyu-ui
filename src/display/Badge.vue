@@ -57,15 +57,15 @@ const badgeStyle = computed<StyleValue>(() => {
 </script>
 
 <template>
-  <div class="ui-badge">
+  <div class="fy-badge">
     <slot />
 
-    <transition name="ui-badge-zoom">
+    <transition name="fy-badge-zoom">
       <sup
         v-if="!isHidden"
         :class="[
-          'ui-badge__content',
-          `ui-badge__content--${type}`,
+          'fy-badge__content',
+          `fy-badge__content--${type}`,
           {
             'is-dot': dot,
             'is-processing': processing,
@@ -83,7 +83,7 @@ const badgeStyle = computed<StyleValue>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-badge {
+.fy-badge {
   position: relative;
   display: inline-flex;
   vertical-align: middle;
@@ -96,13 +96,13 @@ const badgeStyle = computed<StyleValue>(() => {
     height: 18px;
     min-width: 18px;
     padding: 0 5px;
-    border-radius: var(--r-full);
+    border-radius: var(--fy-r-full);
     font-size: 11px;
     font-weight: 800;
     line-height: 1;
     white-space: nowrap;
     z-index: 10;
-    box-shadow: 0 0 0 2px var(--surface-container-lowest);
+    box-shadow: 0 0 0 2px var(--fy-surface-container-lowest);
     user-select: none;
 
     &.is-fixed {
@@ -121,33 +121,33 @@ const badgeStyle = computed<StyleValue>(() => {
     }
 
     /* Types */
-    &--error {
-      background: var(--error);
-      color: var(--on-error);
+    &--fy-error {
+      background: var(--fy-error);
+      color: var(--fy-on-error);
     }
 
-    &--primary {
-      background: var(--primary);
-      color: var(--on-primary);
+    &--fy-primary {
+      background: var(--fy-primary);
+      color: var(--fy-on-primary);
     }
 
-    &--success {
-      background: var(--theme-green, #10b981);
+    &--fy-success {
+      background: var(--fy-theme-green, #10b981);
       color: #ffffff;
     }
 
-    &--warning {
-      background: var(--theme-yellow, #f59e0b);
+    &--fy-warning {
+      background: var(--fy-theme-yellow, #f59e0b);
       color: #ffffff;
     }
 
-    &--info {
-      background: var(--theme-blue, #3b82f6);
+    &--fy-info {
+      background: var(--fy-theme-blue, #3b82f6);
       color: #ffffff;
     }
 
     &--default {
-      background: var(--outline);
+      background: var(--fy-outline);
       color: #ffffff;
     }
 
@@ -158,12 +158,12 @@ const badgeStyle = computed<StyleValue>(() => {
       inset: -1px;
       border-radius: inherit;
       border: 1px solid currentColor;
-      animation: ui-badge-ripple 1.4s ease-in-out infinite;
+      animation: fy-badge-ripple 1.4s ease-in-out infinite;
     }
   }
 }
 
-@keyframes ui-badge-ripple {
+@keyframes fy-badge-ripple {
   0% {
     transform: scale(0.9);
     opacity: 0.8;
@@ -174,13 +174,13 @@ const badgeStyle = computed<StyleValue>(() => {
   }
 }
 
-.ui-badge-zoom-enter-active,
-.ui-badge-zoom-leave-active {
-  transition: transform 0.2s var(--ease-soft), opacity 0.2s var(--ease-soft);
+.fy-badge-zoom-enter-active,
+.fy-badge-zoom-leave-active {
+  transition: transform 0.2s var(--fy-ease-soft), opacity 0.2s var(--fy-ease-soft);
 }
 
-.ui-badge-zoom-enter-from,
-.ui-badge-zoom-leave-to {
+.fy-badge-zoom-enter-from,
+.fy-badge-zoom-leave-to {
   transform: translate(50%, -50%) scale(0.5);
   opacity: 0;
 }

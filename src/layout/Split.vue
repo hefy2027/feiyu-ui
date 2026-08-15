@@ -116,13 +116,13 @@ onUnmounted(() => {
   <div
     ref="containerRef"
     :class="[
-      'ui-split',
-      `ui-split--${direction}`,
+      'fy-split',
+      `fy-split--${direction}`,
       { 'is-dragging': isDragging, 'is-disabled': disabled }
     ]"
   >
     <!-- 1st Pane -->
-    <div class="ui-split__pane ui-split__pane--1" :style="{ flex: `${currentSize} 1 0%` }">
+    <div class="fy-split__pane fy-split__pane--1" :style="{ flex: `${currentSize} 1 0%` }">
       <slot name="1">
         <slot :name="direction === 'horizontal' ? 'left' : 'top'">
           <slot />
@@ -132,15 +132,15 @@ onUnmounted(() => {
 
     <!-- Resize Bar -->
     <div
-      class="ui-split__bar"
+      class="fy-split__bar"
       @mousedown="handleMouseDown"
       @touchstart="handleTouchStart"
     >
-      <slot name="trigger"><slot name="handle"><div class="ui-split__bar-handle" /></slot></slot>
+      <slot name="trigger"><slot name="handle"><div class="fy-split__bar-handle" /></slot></slot>
     </div>
 
     <!-- 2nd Pane -->
-    <div class="ui-split__pane ui-split__pane--2" :style="{ flex: `${1 - currentSize} 1 0%` }">
+    <div class="fy-split__pane fy-split__pane--2" :style="{ flex: `${1 - currentSize} 1 0%` }">
       <slot name="2">
         <slot :name="direction === 'horizontal' ? 'right' : 'bottom'" />
       </slot>
@@ -149,7 +149,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-split {
+.fy-split {
   position: relative;
   display: flex;
   width: 100%;
@@ -160,7 +160,7 @@ onUnmounted(() => {
   &--horizontal {
     flex-direction: row;
 
-    .ui-split__bar {
+    .fy-split__bar {
       width: 8px;
       cursor: col-resize;
       margin: 0 -2px;
@@ -170,7 +170,7 @@ onUnmounted(() => {
   &--vertical {
     flex-direction: column;
 
-    .ui-split__bar {
+    .fy-split__bar {
       height: 8px;
       cursor: row-resize;
       margin: -2px 0;
@@ -194,25 +194,25 @@ onUnmounted(() => {
 
     &:hover,
     &.is-dragging {
-      background: color-mix(in srgb, var(--primary) 15%, transparent);
+      background: color-mix(in srgb, var(--fy-primary) 15%, transparent);
     }
   }
 
   &__bar-handle {
     width: 2px;
     height: 100%;
-    background: color-mix(in srgb, var(--outline-variant) 50%, transparent);
-    border-radius: var(--r-full);
+    background: color-mix(in srgb, var(--fy-outline-variant) 50%, transparent);
+    border-radius: var(--fy-r-full);
     transition: background 0.15s ease;
 
-    .ui-split--vertical & {
+    .fy-split--vertical & {
       width: 100%;
       height: 2px;
     }
   }
 
   &__bar:hover &__bar-handle {
-    background: var(--primary);
+    background: var(--fy-primary);
   }
 }
 </style>

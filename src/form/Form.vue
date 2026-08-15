@@ -88,7 +88,7 @@ function clearValidate() {
   fields.forEach((f) => f.clearValidate())
 }
 
-provide('ui-form', {
+provide('fy-form', {
   model: toRef(props, 'model'),
   rules: toRef(props, 'rules'),
   layout: toRef(props, 'layout'),
@@ -111,8 +111,8 @@ defineExpose({
 <template>
   <form
     :class="[
-      'ui-form',
-      `ui-form--${layout}`,
+      'fy-form',
+      `fy-form--${layout}`,
       { 'is-disabled': disabled }
     ]"
     @submit.prevent="emit('submit', $event)"
@@ -122,7 +122,7 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.ui-form {
+.fy-form {
   display: flex;
   flex-direction: column;
   gap: 16px;

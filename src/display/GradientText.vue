@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const gradientPresets: Record<GradientType, string> = {
-  primary: 'linear-gradient(135deg, var(--primary-container) 0%, var(--primary) 100%)',
+  primary: 'linear-gradient(135deg, var(--fy-primary-container) 0%, var(--fy-primary) 100%)',
   info: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)',
   success: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
   warning: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
@@ -39,13 +39,13 @@ const textStyle = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <span class="ui-gradient-text" :style="textStyle">
+  <span class="fy-gradient-text" :style="textStyle">
     <slot />
   </span>
 </template>
 
 <style scoped lang="scss">
-.ui-gradient-text {
+.fy-gradient-text {
   display: inline-block;
   -webkit-background-clip: text;
   background-clip: text;

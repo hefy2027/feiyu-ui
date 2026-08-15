@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
   <main
     :class="[
-      'ui-layout-content',
+      'fy-layout-content',
       { 'is-native-scrollbar': nativeScrollbar }
     ]"
     :style="contentStyle"
@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped lang="scss">
-.ui-layout-content {
+.fy-layout-content {
   flex: 1;
   display: flex;
   flex-direction: column;

@@ -50,30 +50,30 @@ function handleClose(event: MouseEvent) {
 </script>
 
 <template>
-  <transition name="ui-alert-fade">
+  <transition name="fy-alert-fade">
     <div
       v-if="isVisible"
       :class="[
-        'ui-alert',
-        `ui-alert--${type}`,
-        { 'ui-alert--bordered': bordered }
+        'fy-alert',
+        `fy-alert--${type}`,
+        { 'fy-alert--bordered': bordered }
       ]"
       role="alert"
     >
       <slot name="icon">
       <span
         v-if="showIcon"
-        class="material-symbols-outlined ui-alert__icon"
+        class="material-symbols-outlined fy-alert__icon"
       >
         {{ defaultIcon }}
       </span>
       </slot>
 
-      <div class="ui-alert__content">
-        <div v-if="title || $slots.header" class="ui-alert__title">
+      <div class="fy-alert__content">
+        <div v-if="title || $slots.header" class="fy-alert__title">
           <slot name="header">{{ title }}</slot>
         </div>
-        <div v-if="$slots.default" class="ui-alert__description">
+        <div v-if="$slots.default" class="fy-alert__description">
           <slot />
         </div>
       </div>
@@ -81,14 +81,14 @@ function handleClose(event: MouseEvent) {
       <button
         v-if="closable"
         type="button"
-        class="ui-alert__close"
+        class="fy-alert__close"
         aria-label="关闭"
         @click="handleClose"
       >
         <span class="material-symbols-outlined">close</span>
       </button>
 
-      <div v-if="$slots.extra || $slots.action" class="ui-alert__extra">
+      <div v-if="$slots.extra || $slots.action" class="fy-alert__extra">
         <slot name="extra"><slot name="action" /></slot>
       </div>
     </div>
@@ -96,20 +96,20 @@ function handleClose(event: MouseEvent) {
 </template>
 
 <style scoped lang="scss">
-.ui-alert {
+.fy-alert {
   position: relative;
   display: flex;
   align-items: flex-start;
   gap: 12px;
   padding: 12px 16px;
-  border-radius: var(--r-md);
-  font-size: var(--font-size-sm);
+  border-radius: var(--fy-r-md);
+  font-size: var(--fy-font-size-sm);
   line-height: 1.5;
   box-sizing: border-box;
-  transition: all 0.25s var(--ease-soft);
+  transition: all 0.25s var(--fy-ease-soft);
   backdrop-filter: blur(16px) saturate(1.35);
   -webkit-backdrop-filter: blur(16px) saturate(1.35);
-  box-shadow: inset 0 1px 0 var(--glass-hi);
+  box-shadow: inset 0 1px 0 var(--fy-glass-hi);
 
   &__icon {
     font-size: 20px;
@@ -126,7 +126,7 @@ function handleClose(event: MouseEvent) {
 
   &__title {
     font-weight: 700;
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
     color: inherit;
   }
 
@@ -156,7 +156,7 @@ function handleClose(event: MouseEvent) {
 
     &:hover {
       opacity: 1;
-      background: color-mix(in srgb, var(--on-surface) 8%, transparent);
+      background: color-mix(in srgb, var(--fy-on-surface) 8%, transparent);
     }
 
     .material-symbols-outlined {
@@ -165,45 +165,45 @@ function handleClose(event: MouseEvent) {
   }
 
   /* Alert Types */
-  &--info {
-    background: color-mix(in srgb, var(--primary) 10%, transparent);
-    color: var(--primary);
-    &.ui-alert--bordered {
-      border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  &--fy-info {
+    background: color-mix(in srgb, var(--fy-primary) 10%, transparent);
+    color: var(--fy-primary);
+    &.fy-alert--bordered {
+      border: 1px solid color-mix(in srgb, var(--fy-primary) 30%, transparent);
     }
   }
 
-  &--success {
-    background: color-mix(in srgb, var(--theme-green, #10b981) 12%, transparent);
-    color: var(--theme-green, #10b981);
-    &.ui-alert--bordered {
-      border: 1px solid color-mix(in srgb, var(--theme-green, #10b981) 32%, transparent);
+  &--fy-success {
+    background: color-mix(in srgb, var(--fy-theme-green, #10b981) 12%, transparent);
+    color: var(--fy-theme-green, #10b981);
+    &.fy-alert--bordered {
+      border: 1px solid color-mix(in srgb, var(--fy-theme-green, #10b981) 32%, transparent);
     }
   }
 
-  &--warning {
-    background: color-mix(in srgb, var(--theme-yellow, #f59e0b) 12%, transparent);
-    color: var(--theme-yellow, #f59e0b);
-    &.ui-alert--bordered {
-      border: 1px solid color-mix(in srgb, var(--theme-yellow, #f59e0b) 32%, transparent);
+  &--fy-warning {
+    background: color-mix(in srgb, var(--fy-theme-yellow, #f59e0b) 12%, transparent);
+    color: var(--fy-theme-yellow, #f59e0b);
+    &.fy-alert--bordered {
+      border: 1px solid color-mix(in srgb, var(--fy-theme-yellow, #f59e0b) 32%, transparent);
     }
   }
 
-  &--error {
-    background: color-mix(in srgb, var(--error) 10%, transparent);
-    color: var(--error);
-    &.ui-alert--bordered {
-      border: 1px solid color-mix(in srgb, var(--error) 30%, transparent);
+  &--fy-error {
+    background: color-mix(in srgb, var(--fy-error) 10%, transparent);
+    color: var(--fy-error);
+    &.fy-alert--bordered {
+      border: 1px solid color-mix(in srgb, var(--fy-error) 30%, transparent);
     }
   }
 }
 
-.ui-alert-fade-enter-active,
-.ui-alert-fade-leave-active {
-  transition: opacity 0.22s var(--ease-soft), transform 0.22s var(--ease-out);
+.fy-alert-fade-enter-active,
+.fy-alert-fade-leave-active {
+  transition: opacity 0.22s var(--fy-ease-soft), transform 0.22s var(--fy-ease-out);
 }
-.ui-alert-fade-enter-from,
-.ui-alert-fade-leave-to {
+.fy-alert-fade-enter-from,
+.fy-alert-fade-leave-to {
   opacity: 0;
   transform: translateY(-6px);
 }

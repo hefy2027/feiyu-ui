@@ -25,11 +25,11 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   colors: () => [
-    'color-mix(in srgb, var(--surface-container-high) 60%, transparent)',
-    'color-mix(in srgb, var(--primary) 28%, transparent)',
-    'color-mix(in srgb, var(--primary) 55%, transparent)',
-    'color-mix(in srgb, var(--primary) 80%, transparent)',
-    'var(--primary)'
+    'color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent)',
+    'color-mix(in srgb, var(--fy-primary) 28%, transparent)',
+    'color-mix(in srgb, var(--fy-primary) 55%, transparent)',
+    'color-mix(in srgb, var(--fy-primary) 80%, transparent)',
+    'var(--fy-primary)'
   ],
   max: undefined,
   cellSize: 14,
@@ -67,9 +67,9 @@ function getCellTooltip(item: HeatmapItem): string {
 </script>
 
 <template>
-  <div class="ui-heatmap">
+  <div class="fy-heatmap">
     <div
-      class="ui-heatmap__grid"
+      class="fy-heatmap__grid"
       :style="{
         gridTemplateRows: `repeat(${rows}, ${cellSize}px)`,
         gridAutoColumns: `${cellSize}px`,
@@ -83,7 +83,7 @@ function getCellTooltip(item: HeatmapItem): string {
           placement="top"
         >
           <div
-            class="ui-heatmap__cell"
+            class="fy-heatmap__cell"
             :style="{
               width: `${cellSize}px`,
               height: `${cellSize}px`,
@@ -98,7 +98,7 @@ function getCellTooltip(item: HeatmapItem): string {
 
         <div
           v-else
-          class="ui-heatmap__cell"
+          class="fy-heatmap__cell"
           :style="{
             width: `${cellSize}px`,
             height: `${cellSize}px`,
@@ -113,13 +113,13 @@ function getCellTooltip(item: HeatmapItem): string {
     </div>
 
     <!-- Legend -->
-    <div v-if="showLegend" class="ui-heatmap__legend">
-      <span class="ui-heatmap__legend-text">{{ legendText[0] }}</span>
-      <div class="ui-heatmap__legend-colors" :style="{ gap: `${gap}px` }">
+    <div v-if="showLegend" class="fy-heatmap__legend">
+      <span class="fy-heatmap__legend-text">{{ legendText[0] }}</span>
+      <div class="fy-heatmap__legend-colors" :style="{ gap: `${gap}px` }">
         <div
           v-for="(c, cIdx) in colors"
           :key="cIdx"
-          class="ui-heatmap__legend-item"
+          class="fy-heatmap__legend-item"
           :style="{
             width: `${cellSize - 2}px`,
             height: `${cellSize - 2}px`,
@@ -128,22 +128,22 @@ function getCellTooltip(item: HeatmapItem): string {
           }"
         />
       </div>
-      <span class="ui-heatmap__legend-text">{{ legendText[1] }}</span>
+      <span class="fy-heatmap__legend-text">{{ legendText[1] }}</span>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-heatmap {
+.fy-heatmap {
   display: inline-flex;
   flex-direction: column;
   gap: 10px;
   user-select: none;
   padding: 12px;
-  border-radius: var(--r-lg);
-  background: color-mix(in srgb, var(--surface-container-lowest) 70%, transparent);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--fy-r-lg);
+  background: color-mix(in srgb, var(--fy-surface-container-lowest) 70%, transparent);
+  border: 1px solid var(--fy-glass-border);
+  box-shadow: var(--fy-shadow-sm);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 
@@ -155,13 +155,13 @@ function getCellTooltip(item: HeatmapItem): string {
 
   &__cell {
     cursor: pointer;
-    transition: transform 0.15s var(--ease-soft), box-shadow 0.15s ease, outline 0.15s ease;
+    transition: transform 0.15s var(--fy-ease-soft), box-shadow 0.15s ease, outline 0.15s ease;
     outline: 1px solid transparent;
 
     &:hover {
       transform: scale(1.15);
       z-index: 3;
-      box-shadow: 0 0 0 2px var(--primary);
+      box-shadow: 0 0 0 2px var(--fy-primary);
     }
   }
 
@@ -170,8 +170,8 @@ function getCellTooltip(item: HeatmapItem): string {
     align-items: center;
     justify-content: flex-end;
     gap: 6px;
-    font-size: var(--font-size-xs);
-    color: var(--on-surface-variant);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-on-surface-variant);
   }
 
   &__legend-colors {

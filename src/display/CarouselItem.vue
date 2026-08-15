@@ -8,13 +8,13 @@ defineProps<Props>()
 </script>
 
 <template>
-  <div class="ui-carousel-item" :data-name="name">
+  <div class="fy-carousel-item" :data-name="name">
     <slot />
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-carousel-item {
+.fy-carousel-item {
   flex: 0 0 100%;
   width: 100%;
   min-width: 100%;

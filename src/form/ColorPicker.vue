@@ -42,7 +42,7 @@ const emit = defineEmits<{
 
 const isOpen = ref(false)
 const pickerContainerRef = ref<HTMLElement | null>(null)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const effectiveSwatches = computed(() => {
   return props.presetColors || props.swatches || []
@@ -89,36 +89,36 @@ onUnmounted(() => {
   <div
     ref="pickerContainerRef"
     :class="[
-      'ui-color-picker',
-      `ui-color-picker--${size}`,
+      'fy-color-picker',
+      `fy-color-picker--${size}`,
       {
-        'ui-color-picker--open': isOpen,
-        'ui-color-picker--disabled': disabled
+        'fy-color-picker--open': isOpen,
+        'fy-color-picker--disabled': disabled
       }
     ]"
   >
     <!-- Trigger button -->
     <button
       type="button"
-      class="ui-color-picker__trigger"
+      class="fy-color-picker__trigger"
       :disabled="disabled"
       @click="!disabled && (isOpen = !isOpen)"
     >
-      <span class="ui-color-picker__preview" :style="{ backgroundColor: modelValue }" />
-      <span class="ui-color-picker__text">{{ modelValue }}</span>
-      <span class="material-symbols-outlined ui-color-picker__arrow">expand_more</span>
+      <span class="fy-color-picker__preview" :style="{ backgroundColor: modelValue }" />
+      <span class="fy-color-picker__text">{{ modelValue }}</span>
+      <span class="material-symbols-outlined fy-color-picker__arrow">expand_more</span>
     </button>
 
     <!-- Popover -->
-    <transition name="ui-color-fade">
-      <div v-if="isOpen" class="ui-color-picker__popover" @click.stop>
-        <div class="ui-color-picker__header">推荐色板</div>
-        <div class="ui-color-picker__swatches">
+    <transition name="fy-color-fade">
+      <div v-if="isOpen" class="fy-color-picker__popover" @click.stop>
+        <div class="fy-color-picker__header">推荐色板</div>
+        <div class="fy-color-picker__swatches">
           <button
             v-for="c in effectiveSwatches"
             :key="c"
             type="button"
-            :class="['ui-color-picker__swatch', { 'is-active': c.toLowerCase() === modelValue.toLowerCase() }]"
+            :class="['fy-color-picker__swatch', { 'is-active': c.toLowerCase() === modelValue.toLowerCase() }]"
             :style="{ backgroundColor: c }"
             :title="c"
             @click="selectColor(c)"
@@ -126,17 +126,17 @@ onUnmounted(() => {
         </div>
 
         <!-- Custom Hex input -->
-        <div class="ui-color-picker__custom">
+        <div class="fy-color-picker__custom">
           <input
             type="color"
             :value="modelValue"
-            class="ui-color-picker__native-input"
+            class="fy-color-picker__native-input"
             @input="handleCustomInput"
           />
           <input
             type="text"
             :value="modelValue"
-            class="ui-color-picker__text-input"
+            class="fy-color-picker__text-input"
             @input="handleCustomInput"
           />
         </div>
@@ -146,7 +146,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-color-picker {
+.fy-color-picker {
   position: relative;
   display: inline-flex;
   font-family: inherit;
@@ -160,38 +160,38 @@ onUnmounted(() => {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-high) 42%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 42%, transparent);
     backdrop-filter: blur(14px) saturate(1.4);
     -webkit-backdrop-filter: blur(14px) saturate(1.4);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
     cursor: pointer;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     font-weight: 600;
     transition:
-      border-color 0.2s var(--ease-soft),
-      box-shadow 0.2s var(--ease-soft),
-      background 0.2s var(--ease-soft);
+      border-color 0.2s var(--fy-ease-soft),
+      box-shadow 0.2s var(--fy-ease-soft),
+      background 0.2s var(--fy-ease-soft);
 
     &:focus-visible {
       outline: none;
-      border-color: color-mix(in srgb, var(--primary) 55%, transparent);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
+      border-color: color-mix(in srgb, var(--fy-primary) 55%, transparent);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--fy-primary) 14%, transparent);
     }
   }
 
   &--open &__trigger {
-    border-color: color-mix(in srgb, var(--primary) 55%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
+    border-color: color-mix(in srgb, var(--fy-primary) 55%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--fy-primary) 14%, transparent);
   }
 
   &--disabled {
     opacity: 0.55;
     cursor: not-allowed;
 
-    .ui-color-picker__trigger {
+    .fy-color-picker__trigger {
       cursor: not-allowed;
-      background: color-mix(in srgb, var(--surface-container-low) 50%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-low) 50%, transparent);
     }
   }
 
@@ -199,22 +199,22 @@ onUnmounted(() => {
   &--sm &__trigger {
     height: 32px;
     padding: 0 8px;
-    font-size: var(--font-size-xs);
-    border-radius: var(--r-sm);
+    font-size: var(--fy-font-size-xs);
+    border-radius: var(--fy-r-sm);
   }
 
   &--md &__trigger {
     height: 40px;
     padding: 0 12px;
-    font-size: var(--font-size-base);
-    border-radius: var(--r-md);
+    font-size: var(--fy-font-size-base);
+    border-radius: var(--fy-r-md);
   }
 
   &--lg &__trigger {
     height: 46px;
     padding: 0 14px;
-    font-size: var(--font-size-md);
-    border-radius: var(--r-lg);
+    font-size: var(--fy-font-size-md);
+    border-radius: var(--fy-r-lg);
   }
 
   &__preview {
@@ -234,8 +234,8 @@ onUnmounted(() => {
 
   &__arrow {
     font-size: 18px;
-    color: var(--outline);
-    transition: transform 0.2s var(--ease-soft);
+    color: var(--fy-outline);
+    transition: transform 0.2s var(--fy-ease-soft);
   }
 
   &--open &__arrow {
@@ -250,21 +250,21 @@ onUnmounted(() => {
     z-index: 150;
     width: 200px;
     padding: 12px;
-    border-radius: var(--r-lg);
-    background: color-mix(in srgb, var(--surface-container-lowest) 92%, transparent);
+    border-radius: var(--fy-r-lg);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 92%, transparent);
     backdrop-filter: blur(28px) saturate(1.7);
     -webkit-backdrop-filter: blur(28px) saturate(1.7);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
   &__header {
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 700;
-    color: var(--outline);
+    color: var(--fy-outline);
     letter-spacing: 0.04em;
   }
 
@@ -277,19 +277,19 @@ onUnmounted(() => {
   &__swatch {
     width: 100%;
     aspect-ratio: 1;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
     border: 1.5px solid transparent;
     cursor: pointer;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 
     &:hover {
       transform: scale(1.15);
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--fy-shadow-sm);
     }
 
     &.is-active {
-      border-color: var(--on-surface);
-      box-shadow: 0 0 0 2px var(--surface-container-lowest), 0 0 0 3px var(--primary);
+      border-color: var(--fy-on-surface);
+      box-shadow: 0 0 0 2px var(--fy-surface-container-lowest), 0 0 0 3px var(--fy-primary);
     }
   }
 
@@ -298,7 +298,7 @@ onUnmounted(() => {
     align-items: center;
     gap: 8px;
     padding-top: 8px;
-    border-top: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
   }
 
   &__native-input {
@@ -315,8 +315,8 @@ onUnmounted(() => {
       padding: 0;
     }
     &::-webkit-color-swatch {
-      border: 1px solid var(--outline-variant);
-      border-radius: var(--r-sm);
+      border: 1px solid var(--fy-outline-variant);
+      border-radius: var(--fy-r-sm);
     }
   }
 
@@ -324,27 +324,27 @@ onUnmounted(() => {
     flex: 1;
     height: 28px;
     padding: 0 8px;
-    border-radius: var(--r-sm);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
-    background: color-mix(in srgb, var(--surface-container-high) 50%, transparent);
-    color: var(--on-surface);
+    border-radius: var(--fy-r-sm);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 50%, transparent);
+    color: var(--fy-on-surface);
     font-family: monospace;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 600;
 
     &:focus {
       outline: none;
-      border-color: var(--primary);
+      border-color: var(--fy-primary);
     }
   }
 }
 
-.ui-color-fade-enter-active,
-.ui-color-fade-leave-active {
-  transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-out);
+.fy-color-fade-enter-active,
+.fy-color-fade-leave-active {
+  transition: opacity 0.18s var(--fy-ease-soft), transform 0.18s var(--fy-ease-out);
 }
-.ui-color-fade-enter-from,
-.ui-color-fade-leave-to {
+.fy-color-fade-enter-from,
+.fy-color-fade-leave-to {
   opacity: 0;
   transform: translateY(-6px) scale(0.97);
 }

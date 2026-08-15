@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   itemPlacement: 'left'
 })
 
-provide<TimelineContext>('ui-timeline', {
+provide<TimelineContext>('fy-timeline', {
   horizontal: computed(() => props.horizontal),
   itemPlacement: computed(() => props.itemPlacement)
 })
@@ -25,9 +25,9 @@ provide<TimelineContext>('ui-timeline', {
 <template>
   <div
     :class="[
-      'ui-timeline',
-      horizontal ? 'ui-timeline--horizontal' : 'ui-timeline--vertical',
-      `ui-timeline--placement-${itemPlacement}`
+      'fy-timeline',
+      horizontal ? 'fy-timeline--horizontal' : 'fy-timeline--vertical',
+      `fy-timeline--placement-${itemPlacement}`
     ]"
   >
     <slot />
@@ -35,7 +35,7 @@ provide<TimelineContext>('ui-timeline', {
 </template>
 
 <style scoped lang="scss">
-.ui-timeline {
+.fy-timeline {
   display: flex;
   box-sizing: border-box;
   width: 100%;

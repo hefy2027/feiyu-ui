@@ -149,23 +149,23 @@ onUnmounted(() => {
   <div
     ref="treeSelectRef"
     :class="[
-      'ui-tree-select',
-      `ui-tree-select--${size}`,
+      'fy-tree-select',
+      `fy-tree-select--${size}`,
       {
-        'ui-tree-select--open': isOpen,
-        'ui-tree-select--disabled': disabled,
-        'ui-tree-select--block': block
+        'fy-tree-select--open': isOpen,
+        'fy-tree-select--disabled': disabled,
+        'fy-tree-select--block': block
       }
     ]"
   >
     <!-- Input Display Box -->
-    <div class="ui-tree-select__input-box" @click="toggleDropdown">
-      <div v-if="$slots.prefix" class="ui-tree-select__prefix">
+    <div class="fy-tree-select__input-box" @click="toggleDropdown">
+      <div v-if="$slots.prefix" class="fy-tree-select__prefix">
         <slot name="prefix" />
       </div>
 
       <!-- Multi Tags -->
-      <div v-if="multiple && selectedNodes.length > 0" class="ui-tree-select__tags">
+      <div v-if="multiple && selectedNodes.length > 0" class="fy-tree-select__tags">
         <template v-for="(n, idx) in displayedNodes" :key="String(n.key)">
           <slot name="tag" :node="n" :index="idx" :handle-close="(e: MouseEvent) => removeTag(n, e)">
             <Tag
@@ -188,12 +188,12 @@ onUnmounted(() => {
       </div>
 
       <!-- Single Label -->
-      <span v-else-if="!multiple && selectedNodes.length > 0" class="ui-tree-select__text">
+      <span v-else-if="!multiple && selectedNodes.length > 0" class="fy-tree-select__text">
         {{ selectedNodes[0].label }}
       </span>
 
       <!-- Placeholder -->
-      <span v-else class="ui-tree-select__placeholder">
+      <span v-else class="fy-tree-select__placeholder">
         {{ placeholder }}
       </span>
 
@@ -201,35 +201,35 @@ onUnmounted(() => {
       <button
         v-if="clearable && selectedNodes.length > 0 && !disabled"
         type="button"
-        class="ui-tree-select__clear"
+        class="fy-tree-select__clear"
         aria-label="清空"
         @click="handleClear"
       >
         <span class="material-symbols-outlined">cancel</span>
       </button>
-      <span v-else class="material-symbols-outlined ui-tree-select__arrow">
+      <span v-else class="material-symbols-outlined fy-tree-select__arrow">
         expand_more
       </span>
     </div>
 
     <!-- Dropdown Tree Popover -->
-    <transition name="ui-tree-select-fade">
-      <div v-if="isOpen" class="ui-tree-select__dropdown" @click.stop>
-        <div v-if="$slots.header" class="ui-tree-select__dropdown-header">
+    <transition name="fy-tree-select-fade">
+      <div v-if="isOpen" class="fy-tree-select__dropdown" @click.stop>
+        <div v-if="$slots.header" class="fy-tree-select__dropdown-header">
           <slot name="header" />
         </div>
 
         <!-- Search Filter -->
-        <div v-if="filterable" class="ui-tree-select__search">
+        <div v-if="filterable" class="fy-tree-select__search">
           <input
             v-model="searchQuery"
             placeholder="搜索节点..."
-            class="ui-tree-select__search-input"
+            class="fy-tree-select__search-input"
           />
         </div>
 
         <!-- Tree Container -->
-        <div class="ui-tree-select__tree-wrap">
+        <div class="fy-tree-select__tree-wrap">
           <Tree
             :data="options"
             :selected-keys="!checkable ? selectedKeysArray : []"
@@ -245,7 +245,7 @@ onUnmounted(() => {
           />
         </div>
 
-        <div v-if="$slots.footer" class="ui-tree-select__dropdown-footer">
+        <div v-if="$slots.footer" class="fy-tree-select__dropdown-footer">
           <slot name="footer" />
         </div>
       </div>
@@ -254,7 +254,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-tree-select {
+.fy-tree-select {
   position: relative;
   display: inline-flex;
   font-family: inherit;
@@ -274,33 +274,33 @@ onUnmounted(() => {
     align-items: center;
     width: 100%;
     cursor: pointer;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-high) 42%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 42%, transparent);
     backdrop-filter: blur(14px) saturate(1.4);
     -webkit-backdrop-filter: blur(14px) saturate(1.4);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
     min-height: 40px;
     padding: 4px 12px;
     box-sizing: border-box;
     gap: 6px;
     transition:
-      border-color 0.2s var(--ease-soft),
-      box-shadow 0.2s var(--ease-soft),
-      background 0.2s var(--ease-soft);
+      border-color 0.2s var(--fy-ease-soft),
+      box-shadow 0.2s var(--fy-ease-soft),
+      background 0.2s var(--fy-ease-soft);
   }
 
   &--open &__input-box {
-    border-color: color-mix(in srgb, var(--primary) 55%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
+    border-color: color-mix(in srgb, var(--fy-primary) 55%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--fy-primary) 14%, transparent);
   }
 
   &--disabled {
     opacity: 0.55;
     cursor: not-allowed;
 
-    .ui-tree-select__input-box {
+    .fy-tree-select__input-box {
       cursor: not-allowed;
-      background: color-mix(in srgb, var(--surface-container-low) 50%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-low) 50%, transparent);
     }
   }
 
@@ -308,22 +308,22 @@ onUnmounted(() => {
   &--sm &__input-box {
     min-height: 32px;
     padding: 2px 8px;
-    font-size: var(--font-size-xs);
-    border-radius: var(--r-sm);
+    font-size: var(--fy-font-size-xs);
+    border-radius: var(--fy-r-sm);
   }
 
   &--md &__input-box {
     min-height: 40px;
     padding: 4px 12px;
-    font-size: var(--font-size-base);
-    border-radius: var(--r-md);
+    font-size: var(--fy-font-size-base);
+    border-radius: var(--fy-r-md);
   }
 
   &--lg &__input-box {
     min-height: 46px;
     padding: 6px 14px;
-    font-size: var(--font-size-md);
-    border-radius: var(--r-lg);
+    font-size: var(--fy-font-size-md);
+    border-radius: var(--fy-r-lg);
   }
 
   &__tags {
@@ -335,7 +335,7 @@ onUnmounted(() => {
 
   &__text {
     flex: 1;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
@@ -344,13 +344,13 @@ onUnmounted(() => {
 
   &__placeholder {
     flex: 1;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 
   &__arrow {
     font-size: 20px;
-    color: var(--outline);
-    transition: transform 0.2s var(--ease-soft);
+    color: var(--fy-outline);
+    transition: transform 0.2s var(--fy-ease-soft);
   }
 
   &--open &__arrow {
@@ -360,14 +360,14 @@ onUnmounted(() => {
   &__clear {
     border: none;
     background: none;
-    color: var(--outline);
+    color: var(--fy-outline);
     cursor: pointer;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     &:hover {
-      color: var(--on-surface);
+      color: var(--fy-on-surface);
     }
 
     .material-symbols-outlined {
@@ -384,12 +384,12 @@ onUnmounted(() => {
     z-index: 150;
     min-width: 220px;
     padding: 8px;
-    border-radius: var(--r-lg);
-    background: color-mix(in srgb, var(--surface-container-lowest) 92%, transparent);
+    border-radius: var(--fy-r-lg);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 92%, transparent);
     backdrop-filter: blur(28px) saturate(1.7);
     -webkit-backdrop-filter: blur(28px) saturate(1.7);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -408,17 +408,17 @@ onUnmounted(() => {
     width: 100%;
     height: 30px;
     padding: 0 8px;
-    border-radius: var(--r-sm);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
-    background: color-mix(in srgb, var(--surface-container-high) 50%, transparent);
-    color: var(--on-surface);
+    border-radius: var(--fy-r-sm);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 50%, transparent);
+    color: var(--fy-on-surface);
     font: inherit;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     box-sizing: border-box;
 
     &:focus {
       outline: none;
-      border-color: var(--primary);
+      border-color: var(--fy-primary);
     }
   }
 
@@ -430,23 +430,23 @@ onUnmounted(() => {
 
   &__dropdown-header {
     padding: 4px 8px;
-    font-size: var(--font-size-xs);
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    font-size: var(--fy-font-size-xs);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
   }
 
   &__dropdown-footer {
     padding: 4px 8px;
-    font-size: var(--font-size-xs);
-    border-top: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    font-size: var(--fy-font-size-xs);
+    border-top: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
   }
 }
 
-.ui-tree-select-fade-enter-active,
-.ui-tree-select-fade-leave-active {
-  transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-out);
+.fy-tree-select-fade-enter-active,
+.fy-tree-select-fade-leave-active {
+  transition: opacity 0.18s var(--fy-ease-soft), transform 0.18s var(--fy-ease-out);
 }
-.ui-tree-select-fade-enter-from,
-.ui-tree-select-fade-leave-to {
+.fy-tree-select-fade-enter-from,
+.fy-tree-select-fade-leave-to {
   opacity: 0;
   transform: translateY(-4px) scale(0.97);
 }

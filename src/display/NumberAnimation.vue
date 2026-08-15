@@ -67,13 +67,13 @@ watch(() => props.to, () => {
 </script>
 
 <template>
-  <span class="ui-number-animation">
+  <span class="fy-number-animation">
     {{ formattedNumber }}
   </span>
 </template>
 
 <style scoped lang="scss">
-.ui-number-animation {
+.fy-number-animation {
   display: inline-block;
   font-family: inherit;
   font-feature-settings: "tnum";

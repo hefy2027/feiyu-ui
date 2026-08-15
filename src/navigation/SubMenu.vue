@@ -22,14 +22,14 @@ const props = withDefaults(defineProps<Props>(), {
   trigger: undefined
 })
 
-const menuContext = inject<MenuContext | null>('ui-menu', null)
-const parentPath = inject<(string | number)[]>('ui-submenu-path', [])
+const menuContext = inject<MenuContext | null>('fy-menu', null)
+const parentPath = inject<(string | number)[]>('fy-submenu-path', [])
 const itemKey = computed(() => props.index ?? props.name ?? '')
 const effectiveTitle = computed(() => props.title || props.label || '')
 const currentPath = computed(() => [...parentPath, itemKey.value])
 
 // Provide path to deeper nested SubMenus
-provide('ui-submenu-path', currentPath.value)
+provide('fy-submenu-path', currentPath.value)
 
 const isCollapsed = computed(() => {
   return menuContext?.collapsed.value ?? false
@@ -48,7 +48,7 @@ const isPopupOpen = computed(() => {
 
 // Provide uncollapsed context to nested sub-items so they render full label and badge
 if (menuContext) {
-  provide('ui-menu', {
+  provide('fy-menu', {
     ...menuContext,
     collapsed: computed(() => false),
     selectItem: (key: string | number) => menuContext.selectItem(key)
@@ -86,7 +86,7 @@ function handleMouseLeave() {
 <template>
   <div
     :class="[
-      'ui-submenu',
+      'fy-submenu',
       {
         'is-open': isOpen,
         'is-disabled': disabled,
@@ -97,43 +97,43 @@ function handleMouseLeave() {
     @mouseleave="handleMouseLeave"
   >
     <div
-      class="ui-submenu__title"
+      class="fy-submenu__title"
       role="menuitem"
       :aria-expanded="isOpen"
       :title="isCollapsed ? effectiveTitle : undefined"
       @click="handleToggle"
     >
-      <span v-if="icon" class="material-symbols-outlined ui-submenu__icon">
+      <span v-if="icon" class="material-symbols-outlined fy-submenu__icon">
         {{ icon }}
       </span>
-      <span v-if="!isCollapsed" class="ui-submenu__label">
+      <span v-if="!isCollapsed" class="fy-submenu__label">
         <slot name="title">{{ effectiveTitle }}</slot>
       </span>
       <span
         v-if="!isCollapsed"
-        class="material-symbols-outlined ui-submenu__arrow"
+        class="material-symbols-outlined fy-submenu__arrow"
       >
         expand_more
       </span>
     </div>
 
     <!-- Expanded inline content -->
-    <div v-show="isOpen && !isCollapsed" class="ui-submenu__content">
+    <div v-show="isOpen && !isCollapsed" class="fy-submenu__content">
       <slot />
     </div>
 
     <!-- Collapsed floating flyout popup -->
-    <transition name="ui-submenu-flyout">
+    <transition name="fy-submenu-flyout">
       <div
         v-if="isCollapsed && isPopupOpen"
-        class="ui-submenu__popup"
+        class="fy-submenu__popup"
         @click.stop
       >
-        <div class="ui-submenu__popup-header">
+        <div class="fy-submenu__popup-header">
           <span v-if="icon" class="material-symbols-outlined">{{ icon }}</span>
           <span>{{ effectiveTitle }}</span>
         </div>
-        <div class="ui-submenu__popup-body" @click="menuContext?.closePopup(itemKey)">
+        <div class="fy-submenu__popup-body" @click="menuContext?.closePopup(itemKey)">
           <slot />
         </div>
       </div>
@@ -142,7 +142,7 @@ function handleMouseLeave() {
 </template>
 
 <style scoped lang="scss">
-.ui-submenu {
+.fy-submenu {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -153,19 +153,19 @@ function handleMouseLeave() {
     align-items: center;
     gap: 14px;
     padding: 11px 14px;
-    border-radius: var(--r-md);
-    color: var(--on-surface-variant);
+    border-radius: var(--fy-r-md);
+    color: var(--fy-on-surface-variant);
     font-weight: 600;
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
     cursor: pointer;
     user-select: none;
     transition:
-      background 0.2s var(--ease-soft),
-      color 0.2s var(--ease-soft);
+      background 0.2s var(--fy-ease-soft),
+      color 0.2s var(--fy-ease-soft);
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
-      color: var(--on-surface);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
+      color: var(--fy-on-surface);
     }
   }
 
@@ -184,8 +184,8 @@ function handleMouseLeave() {
 
   &__arrow {
     font-size: 20px;
-    color: var(--outline);
-    transition: transform 0.24s var(--ease-soft);
+    color: var(--fy-outline);
+    transition: transform 0.24s var(--fy-ease-soft);
   }
 
   &.is-open > &__title > &__arrow {
@@ -199,42 +199,42 @@ function handleMouseLeave() {
     padding-left: 14px;
     margin-top: 4px;
     position: relative;
-    border-left: 1.5px solid color-mix(in srgb, var(--outline-variant) 35%, transparent);
+    border-left: 1.5px solid color-mix(in srgb, var(--fy-outline-variant) 35%, transparent);
     margin-left: 20px;
 
-    :deep(.ui-submenu__title) {
+    :deep(.fy-submenu__title) {
       padding: 9px 12px;
       gap: 10px;
     }
 
-    :deep(.ui-submenu__content) {
+    :deep(.fy-submenu__content) {
       margin-left: 14px;
       padding-left: 12px;
-      border-left: 1.5px dashed color-mix(in srgb, var(--outline-variant) 35%, transparent);
+      border-left: 1.5px dashed color-mix(in srgb, var(--fy-outline-variant) 35%, transparent);
     }
 
-    :deep(.ui-menu-item) {
+    :deep(.fy-menu-item) {
       padding: 9px 12px;
     }
   }
 
   &.is-collapsed {
-    > .ui-submenu__title {
+    > .fy-submenu__title {
       justify-content: center;
       padding: 12px;
-      border-radius: var(--r-md);
+      border-radius: var(--fy-r-md);
 
       &:hover {
-        background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
-        color: var(--primary);
+        background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
+        color: var(--fy-primary);
       }
     }
 
     &.is-open,
     &:hover {
-      > .ui-submenu__title {
-        color: var(--primary);
-        background: color-mix(in srgb, var(--primary) 12%, transparent);
+      > .fy-submenu__title {
+        color: var(--fy-primary);
+        background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
       }
     }
   }
@@ -247,15 +247,15 @@ function handleMouseLeave() {
     z-index: 100;
     min-width: 190px;
     padding: 8px;
-    border-radius: var(--r-lg);
-    background: color-mix(in srgb, var(--surface-container-lowest) 92%, transparent);
+    border-radius: var(--fy-r-lg);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 92%, transparent);
     backdrop-filter: blur(28px) saturate(1.7);
     -webkit-backdrop-filter: blur(28px) saturate(1.7);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
     display: flex;
     flex-direction: column;
-    animation: ui-submenu-pop 0.2s var(--ease-out);
+    animation: fy-submenu-pop 0.2s var(--fy-ease-out);
     gap: 4px;
   }
 
@@ -268,8 +268,8 @@ function handleMouseLeave() {
     gap: 6px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--outline);
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    color: var(--fy-outline);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
     margin-bottom: 4px;
   }
 
@@ -278,24 +278,24 @@ function handleMouseLeave() {
     flex-direction: column;
     gap: 4px;
 
-    :deep(.ui-submenu__content) {
+    :deep(.fy-submenu__content) {
       margin-left: 10px;
       padding-left: 12px;
     }
 
-    :deep(.ui-menu-item) {
+    :deep(.fy-menu-item) {
       justify-content: flex-start !important;
       padding: 9px 12px !important;
     }
   }
 }
 
-.ui-submenu-flyout-enter-active,
-.ui-submenu-flyout-leave-active {
-  transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-out);
+.fy-submenu-flyout-enter-active,
+.fy-submenu-flyout-leave-active {
+  transition: opacity 0.18s var(--fy-ease-soft), transform 0.18s var(--fy-ease-out);
 }
-.ui-submenu-flyout-enter-from,
-.ui-submenu-flyout-leave-to {
+.fy-submenu-flyout-enter-from,
+.fy-submenu-flyout-leave-to {
   opacity: 0;
   transform: translateX(-8px) scale(0.96);
 }

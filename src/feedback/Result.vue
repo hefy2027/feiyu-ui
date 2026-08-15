@@ -38,31 +38,31 @@ const statusIcon = computed(() => {
 </script>
 
 <template>
-  <div :class="['ui-result', `ui-result--${status}`, `ui-result--${size}`]">
-    <div class="ui-result__icon-wrap">
+  <div :class="['fy-result', `fy-result--${status}`, `fy-result--${size}`]">
+    <div class="fy-result__icon-wrap">
       <slot name="icon">
-        <div class="ui-result__icon-halo">
-          <span class="material-symbols-outlined ui-result__icon">{{ statusIcon }}</span>
+        <div class="fy-result__icon-halo">
+          <span class="material-symbols-outlined fy-result__icon">{{ statusIcon }}</span>
         </div>
       </slot>
     </div>
 
-    <div v-if="title || $slots.title" class="ui-result__title">
+    <div v-if="title || $slots.title" class="fy-result__title">
       <slot name="title">{{ title }}</slot>
     </div>
 
-    <div v-if="description || $slots.description" class="ui-result__description">
+    <div v-if="description || $slots.description" class="fy-result__description">
       <slot name="description">{{ description }}</slot>
     </div>
 
-    <div v-if="$slots.extra || $slots.default" class="ui-result__extra">
+    <div v-if="$slots.extra || $slots.default" class="fy-result__extra">
       <slot name="extra"><slot /></slot>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-result {
+.fy-result {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,18 +94,18 @@ const statusIcon = computed(() => {
   }
 
   &__title {
-    font-family: var(--font-display);
+    font-family: var(--fy-font-display);
     font-size: 22px;
     font-weight: 800;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     margin-bottom: 6px;
     letter-spacing: -0.02em;
   }
 
   &__description {
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
     font-weight: 500;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     max-width: 400px;
     line-height: 1.5;
   }
@@ -118,67 +118,67 @@ const statusIcon = computed(() => {
   }
 
   /* Status theme colors */
-  &--info {
-    .ui-result__icon-halo {
-      background: color-mix(in srgb, var(--primary) 12%, transparent);
-      color: var(--primary);
+  &--fy-info {
+    .fy-result__icon-halo {
+      background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
+      color: var(--fy-primary);
     }
   }
-  &--success {
-    .ui-result__icon-halo {
-      background: color-mix(in srgb, var(--theme-green, #10b981) 14%, transparent);
-      color: var(--theme-green, #10b981);
+  &--fy-success {
+    .fy-result__icon-halo {
+      background: color-mix(in srgb, var(--fy-theme-green, #10b981) 14%, transparent);
+      color: var(--fy-theme-green, #10b981);
     }
   }
-  &--warning {
-    .ui-result__icon-halo {
-      background: color-mix(in srgb, var(--theme-yellow, #f59e0b) 14%, transparent);
-      color: var(--theme-yellow, #f59e0b);
+  &--fy-warning {
+    .fy-result__icon-halo {
+      background: color-mix(in srgb, var(--fy-theme-yellow, #f59e0b) 14%, transparent);
+      color: var(--fy-theme-yellow, #f59e0b);
     }
   }
-  &--error,
+  &--fy-error,
   &--500 {
-    .ui-result__icon-halo {
-      background: color-mix(in srgb, var(--error) 12%, transparent);
-      color: var(--error);
+    .fy-result__icon-halo {
+      background: color-mix(in srgb, var(--fy-error) 12%, transparent);
+      color: var(--fy-error);
     }
   }
   &--404,
   &--403 {
-    .ui-result__icon-halo {
-      background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
-      color: var(--outline);
+    .fy-result__icon-halo {
+      background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
+      color: var(--fy-outline);
     }
   }
 
   /* Sizes */
   &--sm {
     padding: 24px 12px;
-    .ui-result__icon-halo {
+    .fy-result__icon-halo {
       width: 52px;
       height: 52px;
     }
-    .ui-result__icon {
+    .fy-result__icon {
       font-size: 28px;
     }
-    .ui-result__title {
+    .fy-result__title {
       font-size: 18px;
     }
-    .ui-result__description {
-      font-size: var(--font-size-sm);
+    .fy-result__description {
+      font-size: var(--fy-font-size-sm);
     }
   }
 
   &--lg {
     padding: 60px 24px;
-    .ui-result__icon-halo {
+    .fy-result__icon-halo {
       width: 88px;
       height: 88px;
     }
-    .ui-result__icon {
+    .fy-result__icon {
       font-size: 48px;
     }
-    .ui-result__title {
+    .fy-result__title {
       font-size: 26px;
     }
   }

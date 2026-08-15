@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const gutterRef = computed(() => props.gutter)
 
-provide<RowContext>('ui-row', {
+provide<RowContext>('fy-row', {
   gutter: gutterRef
 })
 
@@ -80,13 +80,13 @@ const rowStyle = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <div class="ui-row" :style="rowStyle">
+  <div class="fy-row" :style="rowStyle">
     <slot />
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-row {
+.fy-row {
   box-sizing: border-box;
   position: relative;
   width: auto;

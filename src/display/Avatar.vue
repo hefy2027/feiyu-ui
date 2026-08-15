@@ -73,10 +73,10 @@ function handleClick(event: MouseEvent) {
 <template>
   <div
     :class="[
-      'ui-avatar',
-      typeof size === 'string' ? `ui-avatar--${size}` : '',
-      `ui-avatar--shape-${shape}`,
-      { 'ui-avatar--border': border }
+      'fy-avatar',
+      typeof size === 'string' ? `fy-avatar--${size}` : '',
+      `fy-avatar--shape-${shape}`,
+      { 'fy-avatar--border': border }
     ]"
     :style="avatarStyle"
     :title="name || displayInitials"
@@ -86,23 +86,23 @@ function handleClick(event: MouseEvent) {
       v-if="src && !imageError"
       :src="src"
       :alt="name || displayInitials"
-      class="ui-avatar__img"
+      class="fy-avatar__img"
       :style="{ objectFit: fit }"
       @error="handleImageError"
     />
     <slot v-else-if="$slots.icon || icon" name="icon">
-      <span class="material-symbols-outlined ui-avatar__icon">{{ icon }}</span>
+      <span class="material-symbols-outlined fy-avatar__icon">{{ icon }}</span>
     </slot>
-    <span v-else class="ui-avatar__fallback">
+    <span v-else class="fy-avatar__fallback">
       <slot>{{ displayInitials }}</slot>
     </span>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-avatar {
+.fy-avatar {
   flex: none;
-  border-radius: var(--r-full);
+  border-radius: var(--fy-r-full);
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -113,15 +113,15 @@ function handleClick(event: MouseEvent) {
   position: relative;
 
   &--border {
-    border: 2px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+    border: 2px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
   }
 
   &--shape-circle {
-    border-radius: var(--r-full);
+    border-radius: var(--fy-r-full);
   }
 
   &--shape-square {
-    border-radius: var(--r-md);
+    border-radius: var(--fy-r-md);
   }
 
   &__img {

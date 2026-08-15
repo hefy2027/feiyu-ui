@@ -74,10 +74,32 @@ const keyword = ref('')
 | 参数名 | 类型 | 默认值 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `modelValue` | `string` | `''` | 绑定字符值 |
-| `length` | `number` | `4` | 方格位数 |
-| `type` | `'text' \| 'number' \| 'password'` | `'text'` | 字符类型 |
+| `length` | `number` | `6` | 方格位数（常用 4 或 6 位验证码） |
+| `type` | `'text' \| 'number' \| 'password' \| 'alphanumeric'` | `'number'` | 字符类型过滤 |
+| `inputmode` | `'text' \| 'numeric' \| 'tel' \| 'search' \| 'email' \| 'url'` | `undefined` | 虚拟键盘输入模式（默认根据 type 自动识别） |
 | `disabled` | `boolean` | `false` | 是否禁用 |
-| `autoFocus` | `boolean` | `false` | 是否挂载时自动聚焦第一格 |
+| `readonly` | `boolean` | `false` | 是否只读 |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 尺寸大小 |
+| `autoFocus` / `autofocus` | `boolean` | `false` | 是否挂载时自动聚焦第一格 |
+| `mask` | `boolean \| string` | `false` | 掩码模式（`true` 显示密码点，也可传入自定义字符如 `•` 或 `*`） |
+| `placeholder` | `string` | `'○'` | 空白占位符 |
+| `uppercase` | `boolean` | `false` | 字母是否自动转大写 |
+| `separator` | `string` | `''` | 分组分隔符（如 `-`） |
+| `groupSize` | `number` | `undefined` | 每几位插入一次分隔符（如 3 代表 3-3 分组） |
+| `separatorIndex` | `number \| number[]` | `undefined` | 指定在第几格后插入分隔符 |
+| `gap` | `number \| string` | `undefined` | 方格之间的自定义间距 |
+| `status` | `'error' \| 'warning' \| 'success'` | `undefined` | 校验状态边框色彩 |
+| `block` | `boolean` | `false` | 是否撑满父容器宽度 |
+
+### Events 事件与 Slots 插槽
+
+- **Events**:
+  - `@complete="(val: string) => void"`: 全部格子填满时触发
+  - `@change="(val: string) => void"` / `@input="(val: string) => void"` / `@update:modelValue`: 值变动时触发
+  - `@focus="(e, index) => void"` / `@blur="(e, index) => void"`: 单个格子的聚焦/失焦
+  - `@clear="() => void"`: 清空时触发
+- **Slots**:
+  - `#separator="{ index }"`: 自定义分隔符插槽
 
 ---
 

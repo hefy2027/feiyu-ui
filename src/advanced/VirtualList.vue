@@ -143,27 +143,27 @@ defineExpose({
 <template>
   <div
     ref="containerRef"
-    class="ui-virtual-list"
+    class="fy-virtual-list"
     :style="{ height: typeof height === 'number' ? `${height}px` : height }"
     @scroll="handleScroll"
   >
     <template v-if="safeItems.length > 0">
       <!-- Phantom total scroll height element -->
-      <div class="ui-virtual-list__phantom" :style="{ height: `${totalHeight}px` }" />
+      <div class="fy-virtual-list__phantom" :style="{ height: `${totalHeight}px` }" />
 
       <!-- Active visible items window with vertical translation -->
       <div
-        class="ui-virtual-list__content"
+        class="fy-virtual-list__content"
         :style="{ transform: `translateY(${offsetY}px)` }"
       >
         <div
           v-for="vItem in visibleItems"
           :key="(vItem.item as any)?.[keyField] ?? vItem.index"
-          class="ui-virtual-list__item"
+          class="fy-virtual-list__item"
           :style="{ height: `${effectiveItemSize}px` }"
         >
           <slot :item="vItem.item" :index="vItem.index">
-            <div class="ui-virtual-list__default-row">
+            <div class="fy-virtual-list__default-row">
               <span>#{{ vItem.index + 1 }}</span>
               <span>{{ JSON.stringify(vItem.item) }}</span>
             </div>
@@ -171,24 +171,24 @@ defineExpose({
         </div>
       </div>
     </template>
-    <div v-else class="ui-virtual-list__empty">
+    <div v-else class="fy-virtual-list__empty">
       <slot name="empty">
-        <span class="ui-virtual-list__empty-text">暂无数据</span>
+        <span class="fy-virtual-list__empty-text">暂无数据</span>
       </slot>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-virtual-list {
+.fy-virtual-list {
   width: 100%;
   overflow-y: auto;
   position: relative;
-  border-radius: var(--r-lg);
-  background: color-mix(in srgb, var(--surface-container-high) 35%, transparent);
+  border-radius: var(--fy-r-lg);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 35%, transparent);
   backdrop-filter: blur(14px) saturate(1.4);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 35%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 35%, transparent);
   box-sizing: border-box;
   user-select: none;
 
@@ -196,11 +196,11 @@ defineExpose({
     width: 6px;
   }
   &::-webkit-scrollbar-thumb {
-    background: color-mix(in srgb, var(--outline-variant) 50%, transparent);
+    background: color-mix(in srgb, var(--fy-outline-variant) 50%, transparent);
     border-radius: 4px;
 
     &:hover {
-      background: color-mix(in srgb, var(--primary) 50%, transparent);
+      background: color-mix(in srgb, var(--fy-primary) 50%, transparent);
     }
   }
 
@@ -225,11 +225,11 @@ defineExpose({
     display: flex;
     align-items: center;
     padding: 0 12px;
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 20%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 20%, transparent);
     transition: background 0.15s ease;
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-highest) 50%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-highest) 50%, transparent);
     }
   }
 
@@ -237,8 +237,8 @@ defineExpose({
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: var(--font-size-xs);
-    color: var(--on-surface);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-on-surface);
   }
 
   &__empty {
@@ -247,8 +247,8 @@ defineExpose({
     justify-content: center;
     height: 100%;
     min-height: 120px;
-    color: var(--outline);
-    font-size: var(--font-size-sm);
+    color: var(--fy-outline);
+    font-size: var(--fy-font-size-sm);
   }
 }
 </style>

@@ -133,46 +133,46 @@ defineExpose({
 <template>
   <div
     ref="popoverRef"
-    :class="['ui-popover', { 'ui-popover--open': isVisible }]"
+    :class="['fy-popover', { 'fy-popover--open': isVisible }]"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
     @focusin="handleFocusIn"
     @focusout="handleFocusOut"
   >
-    <div class="ui-popover__trigger" @click.stop="toggle">
+    <div class="fy-popover__trigger" @click.stop="toggle">
       <slot :is-open="isVisible" />
     </div>
 
-    <transition name="ui-popover-fade">
+    <transition name="fy-popover-fade">
       <div
         v-if="isVisible"
         :class="[
-          'ui-popover__content',
-          `ui-popover__content--${placement}`,
+          'fy-popover__content',
+          `fy-popover__content--${placement}`,
           { 'has-arrow': showArrow }
         ]"
         :style="{ width: typeof width === 'number' ? `${width}px` : width }"
         @click.stop
       >
-        <div v-if="title || $slots.header" class="ui-popover__header">
+        <div v-if="title || $slots.header" class="fy-popover__header">
           <slot name="header">{{ title }}</slot>
         </div>
-        <div class="ui-popover__body">
+        <div class="fy-popover__body">
           <slot name="content" />
         </div>
-        <div v-if="showArrow" class="ui-popover__arrow" />
+        <div v-if="showArrow" class="fy-popover__arrow" />
       </div>
     </transition>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-popover {
+.fy-popover {
   position: relative;
   display: inline-flex;
 
   &--open,
-  &:has(.ui-popover__content) {
+  &:has(.fy-popover__content) {
     z-index: 50;
   }
 
@@ -185,14 +185,14 @@ defineExpose({
     position: absolute;
     z-index: 150;
     padding: 12px 14px;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-lowest) 92%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 92%, transparent);
     backdrop-filter: blur(28px) saturate(1.7);
     -webkit-backdrop-filter: blur(28px) saturate(1.7);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
-    font-size: var(--font-size-sm);
-    color: var(--on-surface);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
+    font-size: var(--fy-font-size-sm);
+    color: var(--fy-on-surface);
     min-width: 140px;
     display: flex;
     flex-direction: column;
@@ -239,16 +239,16 @@ defineExpose({
 
   &__header {
     font-weight: 700;
-    font-size: var(--font-size-sm);
-    color: var(--on-surface);
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    font-size: var(--fy-font-size-sm);
+    color: var(--fy-on-surface);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
     padding-bottom: 6px;
     margin-bottom: 2px;
   }
 
   &__body {
     font-weight: 500;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     line-height: 1.5;
   }
 
@@ -256,8 +256,8 @@ defineExpose({
     position: absolute;
     width: 8px;
     height: 8px;
-    background: color-mix(in srgb, var(--surface-container-lowest) 92%, transparent);
-    border: 1px solid var(--glass-border);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 92%, transparent);
+    border: 1px solid var(--fy-glass-border);
     transform: rotate(45deg);
     pointer-events: none;
   }
@@ -298,12 +298,12 @@ defineExpose({
   }
 }
 
-.ui-popover-fade-enter-active,
-.ui-popover-fade-leave-active {
-  transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-out);
+.fy-popover-fade-enter-active,
+.fy-popover-fade-leave-active {
+  transition: opacity 0.18s var(--fy-ease-soft), transform 0.18s var(--fy-ease-out);
 }
-.ui-popover-fade-enter-from,
-.ui-popover-fade-leave-to {
+.fy-popover-fade-enter-from,
+.fy-popover-fade-leave-to {
   opacity: 0;
   transform: translateY(-4px) scale(0.96);
 }

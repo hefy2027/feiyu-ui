@@ -58,11 +58,11 @@ onUnmounted(() => {
 
 <template>
   <teleport to="body">
-    <transition name="ui-backtop-fade">
+    <transition name="fy-backtop-fade">
       <button
         v-if="visible"
         type="button"
-        class="ui-backtop"
+        class="fy-backtop"
         :style="{
           right: typeof right === 'number' ? `${right}px` : right,
           bottom: typeof bottom === 'number' ? `${bottom}px` : bottom
@@ -71,7 +71,7 @@ onUnmounted(() => {
         @click="scrollToTop"
       >
         <slot>
-          <span class="material-symbols-outlined ui-backtop__icon">arrow_upward</span>
+          <span class="material-symbols-outlined fy-backtop__icon">arrow_upward</span>
         </slot>
       </button>
     </transition>
@@ -79,32 +79,32 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-backtop {
+.fy-backtop {
   position: fixed;
   z-index: 200;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--surface-container-lowest) 90%, transparent);
+  background: color-mix(in srgb, var(--fy-surface-container-lowest) 90%, transparent);
   backdrop-filter: blur(24px) saturate(1.6);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
-  color: var(--on-surface);
+  border: 1px solid var(--fy-glass-border);
+  box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
+  color: var(--fy-on-surface);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   user-select: none;
   transition:
-    transform 0.2s var(--ease-soft),
-    background 0.2s var(--ease-soft),
-    color 0.2s var(--ease-soft);
+    transform 0.2s var(--fy-ease-soft),
+    background 0.2s var(--fy-ease-soft),
+    color 0.2s var(--fy-ease-soft);
 
   &:hover {
     transform: translateY(-3px);
-    color: var(--primary);
-    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    color: var(--fy-primary);
+    background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
   }
 
   &:active {
@@ -117,12 +117,12 @@ onUnmounted(() => {
   }
 }
 
-.ui-backtop-fade-enter-active,
-.ui-backtop-fade-leave-active {
-  transition: opacity 0.2s var(--ease-soft), transform 0.2s var(--ease-out);
+.fy-backtop-fade-enter-active,
+.fy-backtop-fade-leave-active {
+  transition: opacity 0.2s var(--fy-ease-soft), transform 0.2s var(--fy-ease-out);
 }
-.ui-backtop-fade-enter-from,
-.ui-backtop-fade-leave-to {
+.fy-backtop-fade-enter-from,
+.fy-backtop-fade-leave-to {
   opacity: 0;
   transform: scale(0.6);
 }

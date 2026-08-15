@@ -84,29 +84,29 @@ onUnmounted(() => {
 
 <template>
   <teleport to="body">
-    <transition name="ui-modal-fade">
+    <transition name="fy-modal-fade">
       <div
         v-if="modelValue"
-        class="ui-modal-overlay"
+        class="fy-modal-overlay"
         :style="{ zIndex }"
         @click="handleOverlayClick"
       >
         <div
-          class="ui-modal-dialog"
+          class="fy-modal-dialog"
           :style="{ maxWidth: dialogWidth, width: '100%' }"
           role="dialog"
           aria-modal="true"
         >
-          <div class="ui-modal__header">
+          <div class="fy-modal__header">
             <slot name="header">
-              <h3 v-if="title" class="ui-modal__title">{{ title }}</h3>
+              <h3 v-if="title" class="fy-modal__title">{{ title }}</h3>
               <div v-else />
             </slot>
 
             <button
               v-if="isClosable"
               type="button"
-              class="ui-modal__close-btn"
+              class="fy-modal__close-btn"
               aria-label="关闭"
               @click="handleClose"
             >
@@ -114,11 +114,11 @@ onUnmounted(() => {
             </button>
           </div>
 
-          <div class="ui-modal__body">
+          <div class="fy-modal__body">
             <slot />
           </div>
 
-          <div v-if="$slots.footer" class="ui-modal__footer">
+          <div v-if="$slots.footer" class="fy-modal__footer">
             <slot name="footer" />
           </div>
         </div>
@@ -128,7 +128,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-modal-overlay {
+.fy-modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 80;
@@ -140,51 +140,51 @@ onUnmounted(() => {
   padding: 20px;
 }
 
-.ui-modal-dialog {
+.fy-modal-dialog {
   width: 100%;
-  border-radius: var(--r-lg);
+  border-radius: var(--fy-r-lg);
   padding: 24px;
-  background: color-mix(in srgb, var(--surface-container-lowest) 88%, transparent);
+  background: color-mix(in srgb, var(--fy-surface-container-lowest) 88%, transparent);
   backdrop-filter: blur(28px) saturate(1.6);
   -webkit-backdrop-filter: blur(28px) saturate(1.6);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+  border: 1px solid var(--fy-glass-border);
+  box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  animation: ui-modal-pop 0.28s var(--ease-out);
+  animation: fy-modal-pop 0.28s var(--fy-ease-out);
 }
 
-.ui-modal__header {
+.fy-modal__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
 }
 
-.ui-modal__title {
-  font-family: var(--font-display);
+.fy-modal__title {
+  font-family: var(--fy-font-display);
   font-size: 20px;
   font-weight: 800;
-  color: var(--on-surface);
+  color: var(--fy-on-surface);
   letter-spacing: -0.02em;
 }
 
-.ui-modal__close-btn {
+.fy-modal__close-btn {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  color: var(--on-surface-variant);
+  color: var(--fy-on-surface-variant);
   border: none;
   background: transparent;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
 
   &:hover {
-    background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
-    color: var(--on-surface);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
+    color: var(--fy-on-surface);
   }
 
   .material-symbols-outlined {
@@ -192,12 +192,12 @@ onUnmounted(() => {
   }
 }
 
-.ui-modal__body {
+.fy-modal__body {
   flex: 1;
   min-height: 0;
 }
 
-.ui-modal__footer {
+.fy-modal__footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -206,17 +206,17 @@ onUnmounted(() => {
 }
 
 /* Transitions */
-.ui-modal-fade-enter-active,
-.ui-modal-fade-leave-active {
-  transition: opacity 0.24s var(--ease-soft);
+.fy-modal-fade-enter-active,
+.fy-modal-fade-leave-active {
+  transition: opacity 0.24s var(--fy-ease-soft);
 }
 
-.ui-modal-fade-enter-from,
-.ui-modal-fade-leave-to {
+.fy-modal-fade-enter-from,
+.fy-modal-fade-leave-to {
   opacity: 0;
 }
 
-@keyframes ui-modal-pop {
+@keyframes fy-modal-pop {
   0% {
     transform: scale(0.94) translateY(8px);
     opacity: 0;

@@ -25,24 +25,24 @@ const keyList = computed<string[]>(() => {
 </script>
 
 <template>
-  <span :class="['ui-kbd-group', `ui-kbd-group--${size}`]">
+  <span :class="['fy-kbd-group', `fy-kbd-group--${size}`]">
     <template v-if="keyList.length > 0">
       <kbd
         v-for="(keyItem, index) in keyList"
         :key="index"
-        :class="['ui-kbd', { 'ui-kbd--bordered': bordered }]"
+        :class="['fy-kbd', { 'fy-kbd--bordered': bordered }]"
       >
         {{ keyItem }}
       </kbd>
     </template>
-    <kbd v-else :class="['ui-kbd', { 'ui-kbd--bordered': bordered }]">
+    <kbd v-else :class="['fy-kbd', { 'fy-kbd--bordered': bordered }]">
       <slot />
     </kbd>
   </span>
 </template>
 
 <style scoped lang="scss">
-.ui-kbd-group {
+.fy-kbd-group {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -50,7 +50,7 @@ const keyList = computed<string[]>(() => {
   vertical-align: middle;
 
   &--sm {
-    .ui-kbd {
+    .fy-kbd {
       min-width: 18px;
       height: 18px;
       font-size: 10px;
@@ -60,7 +60,7 @@ const keyList = computed<string[]>(() => {
   }
 
   &--md {
-    .ui-kbd {
+    .fy-kbd {
       min-width: 22px;
       height: 22px;
       font-size: 11px;
@@ -70,7 +70,7 @@ const keyList = computed<string[]>(() => {
   }
 
   &--lg {
-    .ui-kbd {
+    .fy-kbd {
       min-width: 28px;
       height: 28px;
       font-size: 13px;
@@ -80,21 +80,21 @@ const keyList = computed<string[]>(() => {
   }
 }
 
-.ui-kbd {
+.fy-kbd {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: inherit;
   font-weight: 700;
-  color: var(--on-surface-variant);
-  background: color-mix(in srgb, var(--surface-container-high) 70%, transparent);
+  color: var(--fy-on-surface-variant);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 70%, transparent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 1.5px 0 color-mix(in srgb, var(--outline) 30%, transparent);
+  box-shadow: 0 1.5px 0 color-mix(in srgb, var(--fy-outline) 30%, transparent);
   line-height: 1;
 
   &--bordered {
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
   }
 }
 </style>

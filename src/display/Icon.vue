@@ -41,8 +41,8 @@ const iconStyle = computed(() => {
   <span
     :class="[
       'material-symbols-outlined',
-      'ui-icon',
-      { 'ui-icon--spin': spin }
+      'fy-icon',
+      { 'fy-icon--spin': spin }
     ]"
     :style="iconStyle"
     :aria-label="ariaLabel || name"
@@ -53,7 +53,7 @@ const iconStyle = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-icon {
+.fy-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -64,11 +64,11 @@ const iconStyle = computed(() => {
   transition: transform 0.2s ease, color 0.2s ease;
 
   &--spin {
-    animation: ui-icon-spin 1.2s infinite linear;
+    animation: fy-icon-spin 1.2s infinite linear;
   }
 }
 
-@keyframes ui-icon-spin {
+@keyframes fy-icon-spin {
   from {
     transform: rotate(0deg);
   }

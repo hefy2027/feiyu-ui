@@ -34,12 +34,12 @@ const itemStyle = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <div class="ui-skeleton-group">
+  <div class="fy-skeleton-group">
     <div
       v-for="i in repeat"
       :key="i"
       :class="[
-        'ui-skeleton',
+        'fy-skeleton',
         {
           'is-text': text,
           'is-round': round,
@@ -53,19 +53,19 @@ const itemStyle = computed<CSSProperties>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-skeleton-group {
+.fy-skeleton-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
 
-.ui-skeleton {
+.fy-skeleton {
   display: block;
   width: 100%;
   height: 20px;
-  border-radius: var(--r-sm);
-  background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
+  border-radius: var(--fy-r-sm);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
   position: relative;
   overflow: hidden;
 
@@ -80,7 +80,7 @@ const itemStyle = computed<CSSProperties>(() => {
   }
 
   &.is-round {
-    border-radius: var(--r-full);
+    border-radius: var(--fy-r-full);
   }
 
   &.is-circle {
@@ -98,14 +98,14 @@ const itemStyle = computed<CSSProperties>(() => {
     background: linear-gradient(
       90deg,
       transparent 0%,
-      color-mix(in srgb, var(--surface-container-lowest) 45%, transparent) 50%,
+      color-mix(in srgb, var(--fy-surface-container-lowest) 45%, transparent) 50%,
       transparent 100%
     );
-    animation: ui-skeleton-shimmer 1.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fy-skeleton-shimmer 1.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-@keyframes ui-skeleton-shimmer {
+@keyframes fy-skeleton-shimmer {
   100% {
     transform: translateX(100%);
   }

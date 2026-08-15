@@ -25,8 +25,8 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   readonly: false,
   size: 'md',
-  color: 'var(--theme-yellow, #f59e0b)',
-  voidColor: 'color-mix(in srgb, var(--outline-variant) 70%, transparent)',
+  color: 'var(--fy-theme-yellow, #f59e0b)',
+  voidColor: 'color-mix(in srgb, var(--fy-outline-variant) 70%, transparent)',
   icon: 'star'
 })
 
@@ -37,7 +37,7 @@ const emit = defineEmits<{
 }>()
 
 const hoverValue = ref<number | null>(null)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const activeValue = computed(() => {
   return hoverValue.value !== null ? hoverValue.value : props.modelValue
@@ -79,11 +79,11 @@ function handleClick(index: number, isHalf: boolean) {
 <template>
   <div
     :class="[
-      'ui-rate',
-      `ui-rate--${size}`,
+      'fy-rate',
+      `fy-rate--${size}`,
       {
-        'ui-rate--disabled': disabled,
-        'ui-rate--readonly': readonly
+        'fy-rate--disabled': disabled,
+        'fy-rate--readonly': readonly
       }
     ]"
     role="radiogroup"
@@ -92,26 +92,26 @@ function handleClick(index: number, isHalf: boolean) {
     <div
       v-for="i in count"
       :key="i"
-      class="ui-rate__item"
+      class="fy-rate__item"
     >
       <!-- Left half touch zone -->
       <div
         v-if="allowHalf"
-        class="ui-rate__half ui-rate__half--left"
+        class="fy-rate__half fy-rate__half--left"
         @mouseenter="handleMouseEnter(i, true)"
         @click="handleClick(i, true)"
       />
 
       <!-- Right half / full touch zone -->
       <div
-        class="ui-rate__half ui-rate__half--right"
+        class="fy-rate__half fy-rate__half--right"
         @mouseenter="handleMouseEnter(i, false)"
         @click="handleClick(i, false)"
       />
 
       <!-- Star background / filled icon -->
       <span
-        class="material-symbols-outlined ui-rate__icon"
+        class="material-symbols-outlined fy-rate__icon"
         :class="{
           'is-full': activeValue >= i,
           'is-half': allowHalf && activeValue === i - 0.5
@@ -122,14 +122,14 @@ function handleClick(index: number, isHalf: boolean) {
       </span>
     </div>
 
-    <span v-if="showText && currentText" class="ui-rate__text">
+    <span v-if="showText && currentText" class="fy-rate__text">
       {{ currentText }}
     </span>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-rate {
+.fy-rate {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -139,15 +139,15 @@ function handleClick(index: number, isHalf: boolean) {
     opacity: 0.55;
     cursor: not-allowed;
 
-    .ui-rate__item,
-    .ui-rate__half {
+    .fy-rate__item,
+    .fy-rate__half {
       cursor: not-allowed !important;
     }
   }
 
   &--readonly {
-    .ui-rate__item,
-    .ui-rate__half {
+    .fy-rate__item,
+    .fy-rate__half {
       cursor: default !important;
     }
   }
@@ -158,9 +158,9 @@ function handleClick(index: number, isHalf: boolean) {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.15s var(--ease-soft);
+    transition: transform 0.15s var(--fy-ease-soft);
 
-    &:hover:not(.ui-rate--readonly):not(.ui-rate--disabled) {
+    &:hover:not(.fy-rate--readonly):not(.fy-rate--disabled) {
       transform: scale(1.18);
     }
   }
@@ -195,28 +195,28 @@ function handleClick(index: number, isHalf: boolean) {
 
   /* Sizes */
   &--sm {
-    .ui-rate__icon {
+    .fy-rate__icon {
       font-size: 16px;
     }
   }
 
   &--md {
-    .ui-rate__icon {
+    .fy-rate__icon {
       font-size: 22px;
     }
   }
 
   &--lg {
-    .ui-rate__icon {
+    .fy-rate__icon {
       font-size: 28px;
     }
   }
 
   &__text {
     margin-left: 6px;
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
     font-weight: 600;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
   }
 }
 </style>

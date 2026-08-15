@@ -153,42 +153,42 @@ defineExpose({
 
 <template>
   <teleport to="body">
-    <transition name="ui-image-viewer-fade">
+    <transition name="fy-image-viewer-fade">
       <div
         v-if="show"
-        class="ui-image-viewer"
+        class="fy-image-viewer"
         :style="{ zIndex }"
         @click="handleMaskClick"
         @wheel="handleWheel"
       >
         <!-- Index indicator / Counter -->
-        <div v-if="urlList.length > 1" class="ui-image-viewer__counter" @click.stop>
+        <div v-if="urlList.length > 1" class="fy-image-viewer__counter" @click.stop>
           {{ activeIndex + 1 }} / {{ urlList.length }}
         </div>
 
         <!-- Top Toolbar -->
-        <div class="ui-image-viewer__toolbar" @click.stop>
-          <button type="button" class="ui-image-viewer__btn" title="缩小" @click="zoomOut">
+        <div class="fy-image-viewer__toolbar" @click.stop>
+          <button type="button" class="fy-image-viewer__btn" title="缩小" @click="zoomOut">
             <span class="material-symbols-outlined">zoom_out</span>
           </button>
-          <button type="button" class="ui-image-viewer__btn" title="放大" @click="zoomIn">
+          <button type="button" class="fy-image-viewer__btn" title="放大" @click="zoomIn">
             <span class="material-symbols-outlined">zoom_in</span>
           </button>
-          <button type="button" class="ui-image-viewer__btn" title="向左旋转" @click="rotateLeft">
+          <button type="button" class="fy-image-viewer__btn" title="向左旋转" @click="rotateLeft">
             <span class="material-symbols-outlined">rotate_left</span>
           </button>
-          <button type="button" class="ui-image-viewer__btn" title="向右旋转" @click="rotateRight">
+          <button type="button" class="fy-image-viewer__btn" title="向右旋转" @click="rotateRight">
             <span class="material-symbols-outlined">rotate_right</span>
           </button>
-          <button type="button" class="ui-image-viewer__btn" title="水平镜像翻转" @click="toggleFlip">
+          <button type="button" class="fy-image-viewer__btn" title="水平镜像翻转" @click="toggleFlip">
             <span class="material-symbols-outlined">flip</span>
           </button>
-          <button type="button" class="ui-image-viewer__btn" title="重置缩放与角度" @click="resetTransform">
+          <button type="button" class="fy-image-viewer__btn" title="重置缩放与角度" @click="resetTransform">
             <span class="material-symbols-outlined">restart_alt</span>
           </button>
           <button
             type="button"
-            class="ui-image-viewer__btn ui-image-viewer__btn--close"
+            class="fy-image-viewer__btn fy-image-viewer__btn--close"
             title="关闭 (Esc)"
             @click="handleClose"
           >
@@ -200,7 +200,7 @@ defineExpose({
         <template v-if="urlList.length > 1">
           <button
             type="button"
-            class="ui-image-viewer__arrow ui-image-viewer__arrow--prev"
+            class="fy-image-viewer__arrow fy-image-viewer__arrow--prev"
             title="上一张 (←)"
             @click.stop="prev"
           >
@@ -208,7 +208,7 @@ defineExpose({
           </button>
           <button
             type="button"
-            class="ui-image-viewer__arrow ui-image-viewer__arrow--next"
+            class="fy-image-viewer__arrow fy-image-viewer__arrow--next"
             title="下一张 (→)"
             @click.stop="next"
           >
@@ -217,11 +217,11 @@ defineExpose({
         </template>
 
         <!-- Image Canvas -->
-        <div class="ui-image-viewer__canvas" @click.stop>
+        <div class="fy-image-viewer__canvas" @click.stop>
           <img
             :src="currentImgSrc"
             alt="Preview"
-            class="ui-image-viewer__img"
+            class="fy-image-viewer__img"
             :style="previewImageStyle"
           />
         </div>
@@ -231,7 +231,7 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.ui-image-viewer {
+.fy-image-viewer {
   position: fixed;
   inset: 0;
   background: rgba(10, 12, 16, 0.82);
@@ -248,12 +248,12 @@ defineExpose({
     top: 24px;
     left: 24px;
     padding: 6px 14px;
-    border-radius: var(--r-full);
-    background: color-mix(in srgb, var(--surface-container-lowest) 85%, transparent);
+    border-radius: var(--fy-r-full);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 85%, transparent);
     backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    color: var(--on-surface);
-    font-size: var(--font-size-sm);
+    border: 1px solid var(--fy-glass-border);
+    color: var(--fy-on-surface);
+    font-size: var(--fy-font-size-sm);
     font-weight: 700;
     z-index: 10;
   }
@@ -266,18 +266,18 @@ defineExpose({
     align-items: center;
     gap: 8px;
     padding: 6px 14px;
-    border-radius: var(--r-full);
-    background: color-mix(in srgb, var(--surface-container-lowest) 88%, transparent);
+    border-radius: var(--fy-r-full);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 88%, transparent);
     backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop);
     z-index: 10;
   }
 
   &__btn {
     border: none;
     background: transparent;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     cursor: pointer;
     padding: 6px;
     border-radius: 50%;
@@ -287,8 +287,8 @@ defineExpose({
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
+      color: var(--fy-primary);
     }
 
     .material-symbols-outlined {
@@ -296,7 +296,7 @@ defineExpose({
     }
 
     &--close:hover {
-      color: var(--error);
+      color: var(--fy-error);
     }
   }
 
@@ -308,20 +308,20 @@ defineExpose({
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 1px solid var(--glass-border);
-    background: color-mix(in srgb, var(--surface-container-lowest) 80%, transparent);
+    border: 1px solid var(--fy-glass-border);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 80%, transparent);
     backdrop-filter: blur(14px);
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: var(--shadow-pop);
-    transition: all 0.2s var(--ease-soft);
+    box-shadow: var(--fy-shadow-pop);
+    transition: all 0.2s var(--fy-ease-soft);
 
     &:hover {
-      background: var(--surface-container-lowest);
-      color: var(--primary);
+      background: var(--fy-surface-container-lowest);
+      color: var(--fy-primary);
       transform: translateY(-50%) scale(1.1);
     }
 
@@ -351,18 +351,18 @@ defineExpose({
     max-width: 90vw;
     max-height: 85vh;
     object-fit: contain;
-    border-radius: var(--r-md);
+    border-radius: var(--fy-r-md);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     user-select: none;
   }
 }
 
-.ui-image-viewer-fade-enter-active,
-.ui-image-viewer-fade-leave-active {
-  transition: opacity 0.24s var(--ease-soft);
+.fy-image-viewer-fade-enter-active,
+.fy-image-viewer-fade-leave-active {
+  transition: opacity 0.24s var(--fy-ease-soft);
 }
-.ui-image-viewer-fade-enter-from,
-.ui-image-viewer-fade-leave-to {
+.fy-image-viewer-fade-enter-from,
+.fy-image-viewer-fade-leave-to {
   opacity: 0;
 }
 </style>

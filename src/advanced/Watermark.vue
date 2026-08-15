@@ -163,11 +163,11 @@ watch(
 <template>
   <div
     ref="containerRef"
-    :class="['ui-watermark', { 'ui-watermark--fullscreen': fullscreen }]"
+    :class="['fy-watermark', { 'fy-watermark--fullscreen': fullscreen }]"
   >
     <slot />
     <div
-      class="ui-watermark__overlay"
+      class="fy-watermark__overlay"
       :style="{
         zIndex: zIndex,
         backgroundImage: `url(${base64Url})`,
@@ -178,7 +178,7 @@ watch(
 </template>
 
 <style scoped lang="scss">
-.ui-watermark {
+.fy-watermark {
   position: relative;
   width: 100%;
   height: 100%;

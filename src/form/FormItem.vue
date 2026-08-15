@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   showMessage: true
 })
 
-const formContext = inject<FormContext | null>('ui-form', null)
+const formContext = inject<FormContext | null>('fy-form', null)
 
 const validateError = ref('')
 const isValidating = ref(false)
@@ -167,7 +167,7 @@ onUnmounted(() => {
   }
 })
 
-provide('ui-form-item', {
+provide('fy-form-item', {
   validate,
   clearValidate,
   prop: props.prop
@@ -183,8 +183,8 @@ defineExpose({
 <template>
   <div
     :class="[
-      'ui-form-item',
-      `ui-form-item--${currentLayout}`,
+      'fy-form-item',
+      `fy-form-item--${currentLayout}`,
       {
         'is-error': Boolean(errorMessage),
         'is-required': isRequired
@@ -193,18 +193,18 @@ defineExpose({
   >
     <label
       v-if="label || $slots.label"
-      class="ui-form-item__label"
+      class="fy-form-item__label"
       :style="{ width: effectiveLabelWidth }"
     >
-      <span v-if="isRequired" class="ui-form-item__required">*</span>
+      <span v-if="isRequired" class="fy-form-item__required">*</span>
       <slot name="label">{{ label }}</slot>
     </label>
 
-    <div class="ui-form-item__content">
+    <div class="fy-form-item__content">
       <slot />
 
-      <transition name="ui-form-error-fade">
-        <div v-if="showMessage && errorMessage" class="ui-form-item__error">
+      <transition name="fy-form-error-fade">
+        <div v-if="showMessage && errorMessage" class="fy-form-item__error">
           {{ errorMessage }}
         </div>
       </transition>
@@ -213,7 +213,7 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.ui-form-item {
+.fy-form-item {
   display: flex;
   position: relative;
 
@@ -227,7 +227,7 @@ defineExpose({
     align-items: flex-start;
     gap: 12px;
 
-    .ui-form-item__label {
+    .fy-form-item__label {
       padding-top: 8px;
       text-align: right;
     }
@@ -240,15 +240,15 @@ defineExpose({
   }
 
   &__label {
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 800;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     user-select: none;
     white-space: nowrap;
   }
 
   &__required {
-    color: var(--error);
+    color: var(--fy-error);
     margin-right: 3px;
     font-weight: bold;
   }
@@ -260,7 +260,7 @@ defineExpose({
   }
 
   &__error {
-    color: var(--error);
+    color: var(--fy-error);
     font-size: 11px;
     font-weight: 600;
     margin-top: 4px;
@@ -268,32 +268,32 @@ defineExpose({
   }
 
   &.is-error {
-    :deep(.ui-input-wrap),
-    :deep(.ui-textarea-wrap),
-    :deep(.ui-select-wrap),
-    :deep(.ui-select__trigger),
-    :deep(.ui-input-number),
-    :deep(.ui-color-picker__trigger),
-    :deep(.ui-mentions__textarea),
-    :deep(.ui-cascader__input-box),
-    :deep(.ui-date-picker__input-box),
-    :deep(.ui-datetime-picker__input-box),
-    :deep(.ui-time-picker__input-box),
-    :deep(.ui-time-select__input-box) {
-      border-color: color-mix(in srgb, var(--error) 65%, transparent) !important;
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--error) 15%, transparent) !important;
+    :deep(.fy-input-wrap),
+    :deep(.fy-textarea-wrap),
+    :deep(.fy-select-wrap),
+    :deep(.fy-select__trigger),
+    :deep(.fy-input-number),
+    :deep(.fy-color-picker__trigger),
+    :deep(.fy-mentions__textarea),
+    :deep(.fy-cascader__input-box),
+    :deep(.fy-date-picker__input-box),
+    :deep(.fy-datetime-picker__input-box),
+    :deep(.fy-time-picker__input-box),
+    :deep(.fy-time-select__input-box) {
+      border-color: color-mix(in srgb, var(--fy-error) 65%, transparent) !important;
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--fy-error) 15%, transparent) !important;
     }
   }
 }
 
 /* Error fade animation */
-.ui-form-error-fade-enter-active,
-.ui-form-error-fade-leave-active {
-  transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-out);
+.fy-form-error-fade-enter-active,
+.fy-form-error-fade-leave-active {
+  transition: opacity 0.18s var(--fy-ease-soft), transform 0.18s var(--fy-ease-out);
 }
 
-.ui-form-error-fade-enter-from,
-.ui-form-error-fade-leave-to {
+.fy-form-error-fade-enter-from,
+.fy-form-error-fade-leave-to {
   opacity: 0;
   transform: translateY(-4px);
 }

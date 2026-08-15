@@ -19,41 +19,41 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="ui-thing">
-    <div v-if="avatar || avatarText || $slots.avatar" class="ui-thing__avatar">
+  <div class="fy-thing">
+    <div v-if="avatar || avatarText || $slots.avatar" class="fy-thing__avatar">
       <slot name="avatar">
-        <img v-if="avatar" :src="avatar" class="ui-thing__avatar-img" alt="avatar" />
-        <div v-else class="ui-thing__avatar-text">{{ avatarText }}</div>
+        <img v-if="avatar" :src="avatar" class="fy-thing__avatar-img" alt="avatar" />
+        <div v-else class="fy-thing__avatar-text">{{ avatarText }}</div>
       </slot>
     </div>
 
-    <div class="ui-thing__main">
-      <div v-if="title || titleExtra || $slots.header || $slots.title || $slots['header-extra'] || $slots.titleExtra" class="ui-thing__header">
-        <div class="ui-thing__title">
+    <div class="fy-thing__main">
+      <div v-if="title || titleExtra || $slots.header || $slots.title || $slots['header-extra'] || $slots.titleExtra" class="fy-thing__header">
+        <div class="fy-thing__title">
           <slot name="header">
             <slot name="title">{{ title }}</slot>
           </slot>
         </div>
-        <div v-if="titleExtra || $slots['header-extra'] || $slots.titleExtra" class="ui-thing__header-extra">
+        <div v-if="titleExtra || $slots['header-extra'] || $slots.titleExtra" class="fy-thing__header-extra">
           <slot name="header-extra">
             <slot name="titleExtra">{{ titleExtra }}</slot>
           </slot>
         </div>
       </div>
 
-      <div v-if="description || $slots.description" class="ui-thing__desc">
+      <div v-if="description || $slots.description" class="fy-thing__desc">
         <slot name="description">{{ description }}</slot>
       </div>
 
-      <div v-if="content || $slots.default" class="ui-thing__content">
+      <div v-if="content || $slots.default" class="fy-thing__content">
         <slot>{{ content }}</slot>
       </div>
 
-      <div v-if="$slots.footer || $slots.action || $slots.actions || $slots.extra" class="ui-thing__footer">
-        <div v-if="$slots.footer" class="ui-thing__footer-content">
+      <div v-if="$slots.footer || $slots.action || $slots.actions || $slots.extra" class="fy-thing__footer">
+        <div v-if="$slots.footer" class="fy-thing__footer-content">
           <slot name="footer" />
         </div>
-        <div class="ui-thing__action">
+        <div class="fy-thing__action">
           <slot name="action">
             <slot name="actions">
               <slot name="extra" />
@@ -66,12 +66,12 @@ withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped lang="scss">
-.ui-thing {
+.fy-thing {
   display: flex;
   gap: 14px;
   width: 100%;
   font-family: inherit;
-  color: var(--on-surface);
+  color: var(--fy-on-surface);
 
   &__avatar {
     flex-shrink: 0;
@@ -80,17 +80,17 @@ withDefaults(defineProps<Props>(), {
   &__avatar-img {
     width: 42px;
     height: 42px;
-    border-radius: var(--r-md);
+    border-radius: var(--fy-r-md);
     object-fit: cover;
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
   }
 
   &__avatar-text {
     width: 42px;
     height: 42px;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--primary) 15%, transparent);
-    color: var(--primary);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-primary) 15%, transparent);
+    color: var(--fy-primary);
     font-weight: 800;
     display: flex;
     align-items: center;
@@ -114,26 +114,26 @@ withDefaults(defineProps<Props>(), {
   }
 
   &__title {
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
     font-weight: 700;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     letter-spacing: -0.01em;
   }
 
   &__header-extra {
-    font-size: var(--font-size-xs);
-    color: var(--outline);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-outline);
   }
 
   &__desc {
-    font-size: var(--font-size-xs);
-    color: var(--on-surface-variant);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-on-surface-variant);
     line-height: 1.5;
   }
 
   &__content {
-    font-size: var(--font-size-sm);
-    color: var(--on-surface);
+    font-size: var(--fy-font-size-sm);
+    color: var(--fy-on-surface);
     margin-top: 4px;
     line-height: 1.6;
   }

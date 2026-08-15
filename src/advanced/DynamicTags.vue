@@ -74,7 +74,7 @@ function handleClose(index: number) {
 </script>
 
 <template>
-  <div :class="['ui-dynamic-tags', `ui-dynamic-tags--${size}`, { 'ui-dynamic-tags--disabled': disabled }]">
+  <div :class="['fy-dynamic-tags', `fy-dynamic-tags--${size}`, { 'fy-dynamic-tags--disabled': disabled }]">
     <template v-for="(tag, idx) in modelValue" :key="tag">
       <slot name="tag" :tag="tag" :index="idx" :handle-close="() => handleClose(idx)">
         <Tag
@@ -89,12 +89,12 @@ function handleClose(index: number) {
     </template>
 
     <!-- Adding input -->
-    <div v-if="isAdding" class="ui-dynamic-tags__input-wrap">
+    <div v-if="isAdding" class="fy-dynamic-tags__input-wrap">
       <input
         ref="inputRef"
         v-model="inputValue"
         :placeholder="inputPlaceholder"
-        class="ui-dynamic-tags__input"
+        class="fy-dynamic-tags__input"
         @blur="confirmAdd"
         @keydown.enter.prevent="confirmAdd"
         @keydown.esc="isAdding = false"
@@ -105,7 +105,7 @@ function handleClose(index: number) {
     <button
       v-else-if="!max || modelValue.length < max"
       type="button"
-      class="ui-dynamic-tags__add-btn"
+      class="fy-dynamic-tags__add-btn"
       :disabled="disabled"
       @click="startAdd"
     >
@@ -119,7 +119,7 @@ function handleClose(index: number) {
   </div>
 </template>
 <style scoped lang="scss">
-.ui-dynamic-tags {
+.fy-dynamic-tags {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -138,18 +138,18 @@ function handleClose(index: number) {
   &__input {
     height: 28px;
     padding: 0 10px;
-    border-radius: var(--r-full);
-    border: 1px solid var(--primary);
-    background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
-    color: var(--on-surface);
+    border-radius: var(--fy-r-full);
+    border: 1px solid var(--fy-primary);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
+    color: var(--fy-on-surface);
     font: inherit;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 600;
     width: 80px;
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 15%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--fy-primary) 15%, transparent);
     }
   }
 
@@ -159,19 +159,19 @@ function handleClose(index: number) {
     gap: 4px;
     height: 28px;
     padding: 0 10px;
-    border-radius: var(--r-full);
-    border: 1px dashed color-mix(in srgb, var(--outline-variant) 55%, transparent);
-    background: color-mix(in srgb, var(--surface-container-high) 35%, transparent);
-    color: var(--outline);
-    font-size: var(--font-size-xs);
+    border-radius: var(--fy-r-full);
+    border: 1px dashed color-mix(in srgb, var(--fy-outline-variant) 55%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 35%, transparent);
+    color: var(--fy-outline);
+    font-size: var(--fy-font-size-xs);
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s var(--ease-soft);
+    transition: all 0.2s var(--fy-ease-soft);
 
     &:hover:not(:disabled) {
-      border-color: var(--primary);
-      color: var(--primary);
-      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      border-color: var(--fy-primary);
+      color: var(--fy-primary);
+      background: color-mix(in srgb, var(--fy-primary) 10%, transparent);
     }
 
     .material-symbols-outlined {
@@ -181,8 +181,8 @@ function handleClose(index: number) {
 
   /* Sizes */
   &--sm {
-    .ui-dynamic-tags__input,
-    .ui-dynamic-tags__add-btn {
+    .fy-dynamic-tags__input,
+    .fy-dynamic-tags__add-btn {
       height: 22px;
       padding: 0 8px;
       font-size: 10.5px;
@@ -190,11 +190,11 @@ function handleClose(index: number) {
   }
 
   &--lg {
-    .ui-dynamic-tags__input,
-    .ui-dynamic-tags__add-btn {
+    .fy-dynamic-tags__input,
+    .fy-dynamic-tags__add-btn {
       height: 34px;
       padding: 0 12px;
-      font-size: var(--font-size-sm);
+      font-size: var(--fy-font-size-sm);
     }
   }
 }

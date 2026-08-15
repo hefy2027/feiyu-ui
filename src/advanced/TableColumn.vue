@@ -26,12 +26,12 @@ const slots = useSlots()
 const parentColumnContext = inject<{
   registerChild: (col: TableColumn) => void
   unregisterChild: (col: TableColumn) => void
-} | null>('ui-table-column', null)
+} | null>('fy-table-column', null)
 
 const tableContext = inject<{
   registerColumn: (col: TableColumn) => void
   unregisterColumn: (col: TableColumn) => void
-} | null>('ui-data-table', null)
+} | null>('fy-data-table', null)
 
 const children = reactive<TableColumn[]>([])
 
@@ -59,7 +59,7 @@ function unregisterChild(col: TableColumn) {
   if (idx > -1) children.splice(idx, 1)
 }
 
-provide('ui-table-column', {
+provide('fy-table-column', {
   registerChild,
   unregisterChild
 })

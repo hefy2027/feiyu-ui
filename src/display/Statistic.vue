@@ -42,55 +42,55 @@ const formattedValue = computed(() => {
 </script>
 
 <template>
-  <div class="ui-statistic">
-    <div v-if="label || title || $slots.label || $slots.title" class="ui-statistic__label">
+  <div class="fy-statistic">
+    <div v-if="label || title || $slots.label || $slots.title" class="fy-statistic__label">
       <slot name="title">
         <slot name="label">{{ label || title }}</slot>
       </slot>
     </div>
 
-    <div class="ui-statistic__value-wrap" :style="{ color }">
-      <span v-if="prefix || $slots.prefix" class="ui-statistic__prefix">
+    <div class="fy-statistic__value-wrap" :style="{ color }">
+      <span v-if="prefix || $slots.prefix" class="fy-statistic__prefix">
         <slot name="prefix">{{ prefix }}</slot>
       </span>
 
-      <span class="ui-statistic__value">
+      <span class="fy-statistic__value">
         <slot>{{ formattedValue }}</slot>
       </span>
 
-      <span v-if="suffix || $slots.suffix" class="ui-statistic__suffix">
+      <span v-if="suffix || $slots.suffix" class="fy-statistic__suffix">
         <slot name="suffix">{{ suffix }}</slot>
       </span>
     </div>
 
     <div
       v-if="trend || trendValue !== undefined || $slots.trend"
-      :class="['ui-statistic__trend', `ui-statistic__trend--${trend}`]"
+      :class="['fy-statistic__trend', `fy-statistic__trend--${trend}`]"
     >
       <slot name="trend">
-        <span v-if="trend === 'up'" class="material-symbols-outlined ui-statistic__trend-icon">
+        <span v-if="trend === 'up'" class="material-symbols-outlined fy-statistic__trend-icon">
           trending_up
         </span>
-        <span v-else-if="trend === 'down'" class="material-symbols-outlined ui-statistic__trend-icon">
+        <span v-else-if="trend === 'down'" class="material-symbols-outlined fy-statistic__trend-icon">
           trending_down
         </span>
-        <span class="ui-statistic__trend-text">{{ trendValue }}</span>
+        <span class="fy-statistic__trend-text">{{ trendValue }}</span>
       </slot>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-statistic {
+.fy-statistic {
   display: inline-flex;
   flex-direction: column;
   gap: 4px;
   user-select: none;
 
   &__label {
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 700;
-    color: var(--outline);
+    color: var(--fy-outline);
     letter-spacing: 0.02em;
   }
 
@@ -98,17 +98,17 @@ const formattedValue = computed(() => {
     display: flex;
     align-items: baseline;
     gap: 4px;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
   }
 
   &__prefix {
     font-size: 16px;
     font-weight: 700;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 
   &__value {
-    font-family: var(--font-display);
+    font-family: var(--fy-font-display);
     font-size: 28px;
     font-weight: 800;
     letter-spacing: -0.03em;
@@ -118,7 +118,7 @@ const formattedValue = computed(() => {
   &__suffix {
     font-size: 13px;
     font-weight: 600;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 
   &__trend {
@@ -130,11 +130,11 @@ const formattedValue = computed(() => {
     margin-top: 2px;
 
     &--up {
-      color: var(--theme-green, #10b981);
+      color: var(--fy-theme-green, #10b981);
     }
 
     &--down {
-      color: var(--error, #ba1a1a);
+      color: var(--fy-error, #ba1a1a);
     }
   }
 

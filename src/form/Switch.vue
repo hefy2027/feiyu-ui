@@ -39,7 +39,7 @@ const emit = defineEmits<{
   change: [value: boolean | string | number]
 }>()
 
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const isChecked = computed(() => {
   return props.modelValue === props.activeValue
@@ -60,8 +60,8 @@ function handleClick() {
 <template>
   <div
     :class="[
-      'ui-switch',
-      `ui-switch--${size}`,
+      'fy-switch',
+      `fy-switch--${size}`,
       {
         'is-active': isChecked,
         'is-disabled': disabled,
@@ -81,21 +81,21 @@ function handleClick() {
       :name="name"
       :checked="isChecked"
       :disabled="disabled || loading"
-      class="ui-switch__input"
+      class="fy-switch__input"
     />
 
-    <span v-if="labelLeft" class="ui-switch__label ui-switch__label--left">
+    <span v-if="labelLeft" class="fy-switch__label fy-switch__label--left">
       {{ labelLeft }}
     </span>
 
     <div
-      class="ui-switch__track"
+      class="fy-switch__track"
       :style="{ backgroundColor: modelValue && activeColor ? activeColor : undefined }"
     >
-      <div class="ui-switch__handle">
+      <div class="fy-switch__handle">
         <span
           v-if="loading"
-          class="material-symbols-outlined ui-switch__spinner"
+          class="material-symbols-outlined fy-switch__spinner"
         >
           progress_activity
         </span>
@@ -108,14 +108,14 @@ function handleClick() {
       </div>
     </div>
 
-    <span v-if="labelRight" class="ui-switch__label ui-switch__label--right">
+    <span v-if="labelRight" class="fy-switch__label fy-switch__label--right">
       {{ labelRight }}
     </span>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-switch {
+.fy-switch {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -143,31 +143,31 @@ function handleClick() {
   }
 
   &__label {
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
     font-weight: 600;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     transition: color 0.2s ease;
 
     &--left {
-      color: var(--on-surface);
+      color: var(--fy-on-surface);
     }
   }
 
   &.is-active &__label--right {
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
   }
 
   &__track {
     position: relative;
-    border-radius: var(--r-full);
-    background: color-mix(in srgb, var(--outline-variant) 60%, transparent);
-    border: 1.5px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+    border-radius: var(--fy-r-full);
+    background: color-mix(in srgb, var(--fy-outline-variant) 60%, transparent);
+    border: 1.5px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     transition:
-      background-color 0.24s var(--ease-soft),
-      border-color 0.24s var(--ease-soft),
-      box-shadow 0.24s var(--ease-soft);
+      background-color 0.24s var(--fy-ease-soft),
+      border-color 0.24s var(--fy-ease-soft),
+      box-shadow 0.24s var(--fy-ease-soft);
   }
 
   &__handle {
@@ -176,8 +176,8 @@ function handleClick() {
     left: 2px;
     transform: translateY(-50%);
     border-radius: 50%;
-    background: var(--surface-container-lowest);
-    box-shadow: var(--shadow-sm);
+    background: var(--fy-surface-container-lowest);
+    box-shadow: var(--fy-shadow-sm);
     display: grid;
     place-items: center;
     transition:
@@ -187,59 +187,59 @@ function handleClick() {
 
   &__spinner {
     font-size: 13px;
-    color: var(--primary);
+    color: var(--fy-primary);
     animation: spin 1s linear infinite;
   }
 
   /* Sizes */
   &--sm {
-    .ui-switch__track {
+    .fy-switch__track {
       width: 34px;
       height: 18px;
     }
-    .ui-switch__handle {
+    .fy-switch__handle {
       width: 12px;
       height: 12px;
     }
-    &.is-active .ui-switch__handle {
+    &.is-active .fy-switch__handle {
       transform: translate(16px, -50%);
     }
   }
 
   &--md {
-    .ui-switch__track {
+    .fy-switch__track {
       width: 44px;
       height: 24px;
     }
-    .ui-switch__handle {
+    .fy-switch__handle {
       width: 18px;
       height: 18px;
     }
-    &.is-active .ui-switch__handle {
+    &.is-active .fy-switch__handle {
       transform: translate(20px, -50%);
     }
   }
 
   &--lg {
-    .ui-switch__track {
+    .fy-switch__track {
       width: 54px;
       height: 30px;
     }
-    .ui-switch__handle {
+    .fy-switch__handle {
       width: 24px;
       height: 24px;
     }
-    &.is-active .ui-switch__handle {
+    &.is-active .fy-switch__handle {
       transform: translate(24px, -50%);
     }
   }
 
   /* Active state */
   &.is-active {
-    .ui-switch__track {
-      background-color: var(--primary);
-      border-color: var(--primary);
-      box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--primary) 70%, transparent);
+    .fy-switch__track {
+      background-color: var(--fy-primary);
+      border-color: var(--fy-primary);
+      box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--fy-primary) 70%, transparent);
     }
   }
 }

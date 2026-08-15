@@ -34,9 +34,9 @@ const emit = defineEmits<{
   change: [value: (string | number)[]]
 }>()
 
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
-provide('ui-checkbox-group', {
+provide('fy-checkbox-group', {
   modelValue: toRef(props, 'modelValue'),
   disabled: toRef(props, 'disabled'),
   updateValue: (value: string | number, checked: boolean) => {
@@ -67,9 +67,9 @@ const normalizedOptions = computed<CheckboxOption[] | undefined>(() => {
 <template>
   <div
     :class="[
-      'ui-checkbox-group',
-      `ui-checkbox-group--${size}`,
-      `ui-checkbox-group--${direction}`
+      'fy-checkbox-group',
+      `fy-checkbox-group--${size}`,
+      `fy-checkbox-group--${direction}`
     ]"
     role="group"
   >
@@ -87,7 +87,7 @@ const normalizedOptions = computed<CheckboxOption[] | undefined>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-checkbox-group {
+.fy-checkbox-group {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;

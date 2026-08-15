@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
   xl: undefined
 })
 
-const rowContext = inject<RowContext | null>('ui-row', null)
+const rowContext = inject<RowContext | null>('fy-row', null)
 
 const colStyle = computed<CSSProperties>(() => {
   const styles: CSSProperties = {}
@@ -57,19 +57,19 @@ const colStyle = computed<CSSProperties>(() => {
 })
 
 const colClasses = computed(() => {
-  const classes: string[] = ['ui-col']
+  const classes: string[] = ['fy-col']
 
   if (props.span !== undefined) {
-    classes.push(`ui-col-${props.span}`)
+    classes.push(`fy-col-${props.span}`)
   }
   if (props.offset > 0) {
-    classes.push(`ui-col-offset-${props.offset}`)
+    classes.push(`fy-col-offset-${props.offset}`)
   }
   if (props.push > 0) {
-    classes.push(`ui-col-push-${props.push}`)
+    classes.push(`fy-col-push-${props.push}`)
   }
   if (props.pull > 0) {
-    classes.push(`ui-col-pull-${props.pull}`)
+    classes.push(`fy-col-pull-${props.pull}`)
   }
 
   // Responsive breakpoints
@@ -77,12 +77,12 @@ const colClasses = computed(() => {
   breakpoints.forEach((bp) => {
     const val = props[bp]
     if (typeof val === 'number') {
-      classes.push(`ui-col-${bp}-${val}`)
+      classes.push(`fy-col-${bp}-${val}`)
     } else if (typeof val === 'object' && val !== null) {
-      if (val.span !== undefined) classes.push(`ui-col-${bp}-${val.span}`)
-      if (val.offset !== undefined) classes.push(`ui-col-${bp}-offset-${val.offset}`)
-      if (val.push !== undefined) classes.push(`ui-col-${bp}-push-${val.push}`)
-      if (val.pull !== undefined) classes.push(`ui-col-${bp}-pull-${val.pull}`)
+      if (val.span !== undefined) classes.push(`fy-col-${bp}-${val.span}`)
+      if (val.offset !== undefined) classes.push(`fy-col-${bp}-offset-${val.offset}`)
+      if (val.push !== undefined) classes.push(`fy-col-${bp}-push-${val.push}`)
+      if (val.pull !== undefined) classes.push(`fy-col-${bp}-pull-${val.pull}`)
     }
   })
 
@@ -97,14 +97,14 @@ const colClasses = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-col {
+.fy-col {
   box-sizing: border-box;
   position: relative;
   min-height: 1px;
 }
 
 @for $i from 0 through 24 {
-  .ui-col-#{$i} {
+  .fy-col-#{$i} {
     @if $i == 0 {
       display: none;
     } @else {
@@ -112,20 +112,20 @@ const colClasses = computed(() => {
       max-width: calc($i / 24 * 100%);
     }
   }
-  .ui-col-offset-#{$i} {
+  .fy-col-offset-#{$i} {
     margin-left: calc($i / 24 * 100%);
   }
-  .ui-col-push-#{$i} {
+  .fy-col-push-#{$i} {
     left: calc($i / 24 * 100%);
   }
-  .ui-col-pull-#{$i} {
+  .fy-col-pull-#{$i} {
     right: calc($i / 24 * 100%);
   }
 }
 
 @media (max-width: 576px) {
   @for $i from 0 through 24 {
-    .ui-col-xs-#{$i} {
+    .fy-col-xs-#{$i} {
       @if $i == 0 {
         display: none;
       } @else {
@@ -133,13 +133,13 @@ const colClasses = computed(() => {
         max-width: calc($i / 24 * 100%);
       }
     }
-    .ui-col-xs-offset-#{$i} {
+    .fy-col-xs-offset-#{$i} {
       margin-left: calc($i / 24 * 100%);
     }
-    .ui-col-xs-push-#{$i} {
+    .fy-col-xs-push-#{$i} {
       left: calc($i / 24 * 100%);
     }
-    .ui-col-xs-pull-#{$i} {
+    .fy-col-xs-pull-#{$i} {
       right: calc($i / 24 * 100%);
     }
   }
@@ -147,7 +147,7 @@ const colClasses = computed(() => {
 
 @media (min-width: 576px) {
   @for $i from 0 through 24 {
-    .ui-col-sm-#{$i} {
+    .fy-col-sm-#{$i} {
       @if $i == 0 {
         display: none;
       } @else {
@@ -155,13 +155,13 @@ const colClasses = computed(() => {
         max-width: calc($i / 24 * 100%);
       }
     }
-    .ui-col-sm-offset-#{$i} {
+    .fy-col-sm-offset-#{$i} {
       margin-left: calc($i / 24 * 100%);
     }
-    .ui-col-sm-push-#{$i} {
+    .fy-col-sm-push-#{$i} {
       left: calc($i / 24 * 100%);
     }
-    .ui-col-sm-pull-#{$i} {
+    .fy-col-sm-pull-#{$i} {
       right: calc($i / 24 * 100%);
     }
   }
@@ -169,7 +169,7 @@ const colClasses = computed(() => {
 
 @media (min-width: 768px) {
   @for $i from 0 through 24 {
-    .ui-col-md-#{$i} {
+    .fy-col-md-#{$i} {
       @if $i == 0 {
         display: none;
       } @else {
@@ -177,13 +177,13 @@ const colClasses = computed(() => {
         max-width: calc($i / 24 * 100%);
       }
     }
-    .ui-col-md-offset-#{$i} {
+    .fy-col-md-offset-#{$i} {
       margin-left: calc($i / 24 * 100%);
     }
-    .ui-col-md-push-#{$i} {
+    .fy-col-md-push-#{$i} {
       left: calc($i / 24 * 100%);
     }
-    .ui-col-md-pull-#{$i} {
+    .fy-col-md-pull-#{$i} {
       right: calc($i / 24 * 100%);
     }
   }
@@ -191,7 +191,7 @@ const colClasses = computed(() => {
 
 @media (min-width: 992px) {
   @for $i from 0 through 24 {
-    .ui-col-lg-#{$i} {
+    .fy-col-lg-#{$i} {
       @if $i == 0 {
         display: none;
       } @else {
@@ -199,13 +199,13 @@ const colClasses = computed(() => {
         max-width: calc($i / 24 * 100%);
       }
     }
-    .ui-col-lg-offset-#{$i} {
+    .fy-col-lg-offset-#{$i} {
       margin-left: calc($i / 24 * 100%);
     }
-    .ui-col-lg-push-#{$i} {
+    .fy-col-lg-push-#{$i} {
       left: calc($i / 24 * 100%);
     }
-    .ui-col-lg-pull-#{$i} {
+    .fy-col-lg-pull-#{$i} {
       right: calc($i / 24 * 100%);
     }
   }
@@ -213,7 +213,7 @@ const colClasses = computed(() => {
 
 @media (min-width: 1200px) {
   @for $i from 0 through 24 {
-    .ui-col-xl-#{$i} {
+    .fy-col-xl-#{$i} {
       @if $i == 0 {
         display: none;
       } @else {
@@ -221,13 +221,13 @@ const colClasses = computed(() => {
         max-width: calc($i / 24 * 100%);
       }
     }
-    .ui-col-xl-offset-#{$i} {
+    .fy-col-xl-offset-#{$i} {
       margin-left: calc($i / 24 * 100%);
     }
-    .ui-col-xl-push-#{$i} {
+    .fy-col-xl-push-#{$i} {
       left: calc($i / 24 * 100%);
     }
-    .ui-col-xl-pull-#{$i} {
+    .fy-col-xl-pull-#{$i} {
       right: calc($i / 24 * 100%);
     }
   }
@@ -235,7 +235,7 @@ const colClasses = computed(() => {
 
 @media (min-width: 1400px) {
   @for $i from 0 through 24 {
-    .ui-col-xxl-#{$i} {
+    .fy-col-xxl-#{$i} {
       @if $i == 0 {
         display: none;
       } @else {
@@ -243,13 +243,13 @@ const colClasses = computed(() => {
         max-width: calc($i / 24 * 100%);
       }
     }
-    .ui-col-xxl-offset-#{$i} {
+    .fy-col-xxl-offset-#{$i} {
       margin-left: calc($i / 24 * 100%);
     }
-    .ui-col-xxl-push-#{$i} {
+    .fy-col-xxl-push-#{$i} {
       left: calc($i / 24 * 100%);
     }
-    .ui-col-xxl-pull-#{$i} {
+    .fy-col-xxl-pull-#{$i} {
       right: calc($i / 24 * 100%);
     }
   }

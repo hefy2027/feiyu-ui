@@ -71,7 +71,7 @@ function selectHref(href: string) {
   }
 }
 
-provide<AnchorContext>('ui-anchor', {
+provide<AnchorContext>('fy-anchor', {
   activeHref,
   selectHref,
   registerLink,
@@ -89,15 +89,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="ui-anchor">
-    <div class="ui-anchor__rail">
+  <div class="fy-anchor">
+    <div class="fy-anchor__rail">
       <slot />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-anchor {
+.fy-anchor {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -109,7 +109,7 @@ onUnmounted(() => {
     flex-direction: column;
     gap: 4px;
     padding-left: 12px;
-    border-left: 2px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+    border-left: 2px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
   }
 }
 </style>

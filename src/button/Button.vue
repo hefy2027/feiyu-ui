@@ -76,15 +76,15 @@ function handleClick(event: MouseEvent) {
   <button
     :type="htmlButtonType"
     :class="[
-      'ui-button',
-      `ui-button--${effectiveVariant}`,
-      `ui-button--${effectiveSize}`,
+      'fy-button',
+      `fy-button--${effectiveVariant}`,
+      `fy-button--${effectiveSize}`,
       {
-        'ui-button--block': block,
-        'ui-button--round': round,
-        'ui-button--circle': circle,
-        'ui-button--loading': loading,
-        'ui-button--icon-only': effectiveVariant === 'icon' || circle || (!($slots.default) && (icon || $slots.icon))
+        'fy-button--block': block,
+        'fy-button--round': round,
+        'fy-button--circle': circle,
+        'fy-button--loading': loading,
+        'fy-button--icon-only': effectiveVariant === 'icon' || circle || (!($slots.default) && (icon || $slots.icon))
       }
     ]"
     :disabled="disabled || loading"
@@ -92,25 +92,25 @@ function handleClick(event: MouseEvent) {
     :aria-disabled="disabled || loading"
     @click="handleClick"
   >
-    <span v-if="loading" class="ui-button__spinner material-symbols-outlined">
+    <span v-if="loading" class="fy-button__spinner material-symbols-outlined">
       progress_activity
     </span>
     <template v-else>
       <slot v-if="iconPosition === 'left'" name="icon">
         <span
           v-if="icon"
-          class="material-symbols-outlined ui-button__icon"
+          class="material-symbols-outlined fy-button__icon"
         >
           {{ icon }}
         </span>
       </slot>
-      <span v-if="$slots.default" class="ui-button__content">
+      <span v-if="$slots.default" class="fy-button__content">
         <slot />
       </span>
       <slot v-if="iconPosition === 'right'" name="icon">
         <span
           v-if="icon"
-          class="material-symbols-outlined ui-button__icon"
+          class="material-symbols-outlined fy-button__icon"
         >
           {{ icon }}
         </span>
@@ -120,7 +120,7 @@ function handleClick(event: MouseEvent) {
 </template>
 
 <style scoped lang="scss">
-.ui-button {
+.fy-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -132,11 +132,11 @@ function handleClick(event: MouseEvent) {
   white-space: nowrap;
   text-decoration: none;
   transition:
-    background 0.2s var(--ease-soft),
-    color 0.2s var(--ease-soft),
-    border-color 0.2s var(--ease-soft),
-    box-shadow 0.2s var(--ease-soft),
-    transform 0.15s var(--ease-soft),
+    background 0.2s var(--fy-ease-soft),
+    color 0.2s var(--fy-ease-soft),
+    border-color 0.2s var(--fy-ease-soft),
+    box-shadow 0.2s var(--fy-ease-soft),
+    transform 0.15s var(--fy-ease-soft),
     filter 0.2s ease;
 
   &:disabled {
@@ -147,7 +147,7 @@ function handleClick(event: MouseEvent) {
   }
 
   &:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--fy-primary);
     outline-offset: 2px;
   }
 
@@ -167,7 +167,7 @@ function handleClick(event: MouseEvent) {
   }
 
   &--round {
-    border-radius: var(--r-full) !important;
+    border-radius: var(--fy-r-full) !important;
   }
 
   &--circle {
@@ -178,12 +178,12 @@ function handleClick(event: MouseEvent) {
   &--sm {
     height: 32px;
     padding: 0 12px;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 700;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
     gap: 5px;
 
-    &.ui-button--icon-only {
+    &.fy-button--icon-only {
       width: 32px;
       padding: 0;
     }
@@ -192,12 +192,12 @@ function handleClick(event: MouseEvent) {
   &--md {
     height: 40px;
     padding: 0 16px;
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
     font-weight: 700;
-    border-radius: var(--r-md);
+    border-radius: var(--fy-r-md);
     gap: 7px;
 
-    &.ui-button--icon-only {
+    &.fy-button--icon-only {
       width: 40px;
       padding: 0;
     }
@@ -206,27 +206,27 @@ function handleClick(event: MouseEvent) {
   &--lg {
     height: 48px;
     padding: 0 22px;
-    font-size: var(--font-size-md);
+    font-size: var(--fy-font-size-md);
     font-weight: 800;
-    border-radius: var(--r-lg);
+    border-radius: var(--fy-r-lg);
     gap: 8px;
 
-    &.ui-button--icon-only {
+    &.fy-button--icon-only {
       width: 48px;
       padding: 0;
     }
   }
 
   /* Variants */
-  &--primary {
-    background: var(--primary);
-    color: var(--on-primary);
-    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--primary) 70%, transparent);
+  &--fy-primary {
+    background: var(--fy-primary);
+    color: var(--fy-on-primary);
+    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--fy-primary) 70%, transparent);
 
     &:hover:not(:disabled) {
       transform: translateY(-1px);
       filter: brightness(1.06);
-      box-shadow: 0 14px 28px -10px color-mix(in srgb, var(--primary) 80%, transparent);
+      box-shadow: 0 14px 28px -10px color-mix(in srgb, var(--fy-primary) 80%, transparent);
     }
 
     &:active:not(:disabled) {
@@ -234,16 +234,16 @@ function handleClick(event: MouseEvent) {
     }
   }
 
-  &--success,
+  &--fy-success,
   &--type-success {
-    background: var(--theme-green, #10b981);
+    background: var(--fy-theme-green, #10b981);
     color: #ffffff;
-    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--theme-green, #10b981) 70%, transparent);
+    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--fy-theme-green, #10b981) 70%, transparent);
 
     &:hover:not(:disabled) {
       transform: translateY(-1px);
       filter: brightness(1.06);
-      box-shadow: 0 14px 28px -10px color-mix(in srgb, var(--theme-green, #10b981) 80%, transparent);
+      box-shadow: 0 14px 28px -10px color-mix(in srgb, var(--fy-theme-green, #10b981) 80%, transparent);
     }
 
     &:active:not(:disabled) {
@@ -251,16 +251,16 @@ function handleClick(event: MouseEvent) {
     }
   }
 
-  &--warning,
+  &--fy-warning,
   &--type-warning {
-    background: var(--theme-yellow, #f59e0b);
+    background: var(--fy-theme-yellow, #f59e0b);
     color: #ffffff;
-    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--theme-yellow, #f59e0b) 70%, transparent);
+    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--fy-theme-yellow, #f59e0b) 70%, transparent);
 
     &:hover:not(:disabled) {
       transform: translateY(-1px);
       filter: brightness(1.06);
-      box-shadow: 0 14px 28px -10px color-mix(in srgb, var(--theme-yellow, #f59e0b) 80%, transparent);
+      box-shadow: 0 14px 28px -10px color-mix(in srgb, var(--fy-theme-yellow, #f59e0b) 80%, transparent);
     }
 
     &:active:not(:disabled) {
@@ -268,16 +268,16 @@ function handleClick(event: MouseEvent) {
     }
   }
 
-  &--info,
+  &--fy-info,
   &--type-info {
-    background: var(--theme-blue, #3b82f6);
+    background: var(--fy-theme-blue, #3b82f6);
     color: #ffffff;
-    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--theme-blue, #3b82f6) 70%, transparent);
+    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--fy-theme-blue, #3b82f6) 70%, transparent);
 
     &:hover:not(:disabled) {
       transform: translateY(-1px);
       filter: brightness(1.06);
-      box-shadow: 0 14px 28px -10px color-mix(in srgb, var(--theme-blue, #3b82f6) 80%, transparent);
+      box-shadow: 0 14px 28px -10px color-mix(in srgb, var(--fy-theme-blue, #3b82f6) 80%, transparent);
     }
 
     &:active:not(:disabled) {
@@ -286,17 +286,17 @@ function handleClick(event: MouseEvent) {
   }
 
   &--ghost {
-    background: color-mix(in srgb, var(--surface-container-high) 40%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 40%, transparent);
     backdrop-filter: blur(12px) saturate(1.4);
     -webkit-backdrop-filter: blur(12px) saturate(1.4);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
-    box-shadow: inset 0 1px 0 var(--glass-hi);
-    color: var(--on-surface);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
+    box-shadow: inset 0 1px 0 var(--fy-glass-hi);
+    color: var(--fy-on-surface);
 
     &:hover:not(:disabled) {
-      background: color-mix(in srgb, var(--surface-container-high) 70%, transparent);
-      box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-hi);
-      color: var(--on-surface);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 70%, transparent);
+      box-shadow: var(--fy-shadow-sm), inset 0 1px 0 var(--fy-glass-hi);
+      color: var(--fy-on-surface);
     }
 
     &:active:not(:disabled) {
@@ -304,12 +304,12 @@ function handleClick(event: MouseEvent) {
     }
   }
 
-  &--secondary {
-    background: color-mix(in srgb, var(--surface-container-high) 65%, transparent);
-    color: var(--on-surface);
+  &--fy-secondary {
+    background: color-mix(in srgb, var(--fy-surface-container-high) 65%, transparent);
+    color: var(--fy-on-surface);
 
     &:hover:not(:disabled) {
-      background: color-mix(in srgb, var(--surface-container-highest) 85%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-highest) 85%, transparent);
     }
 
     &:active:not(:disabled) {
@@ -317,15 +317,15 @@ function handleClick(event: MouseEvent) {
     }
   }
 
-  &--outline {
+  &--fy-outline {
     background: transparent;
-    border: 1.5px solid color-mix(in srgb, var(--outline) 40%, transparent);
-    color: var(--on-surface);
+    border: 1.5px solid color-mix(in srgb, var(--fy-outline) 40%, transparent);
+    color: var(--fy-on-surface);
 
     &:hover:not(:disabled) {
-      border-color: var(--primary);
-      color: var(--primary);
-      background: color-mix(in srgb, var(--primary) 8%, transparent);
+      border-color: var(--fy-primary);
+      color: var(--fy-primary);
+      background: color-mix(in srgb, var(--fy-primary) 8%, transparent);
     }
 
     &:active:not(:disabled) {
@@ -335,13 +335,13 @@ function handleClick(event: MouseEvent) {
 
   &--dashed {
     background: transparent;
-    border: 1.5px dashed color-mix(in srgb, var(--outline) 50%, transparent);
-    color: var(--on-surface);
+    border: 1.5px dashed color-mix(in srgb, var(--fy-outline) 50%, transparent);
+    color: var(--fy-on-surface);
 
     &:hover:not(:disabled) {
-      border-color: var(--primary);
-      color: var(--primary);
-      background: color-mix(in srgb, var(--primary) 8%, transparent);
+      border-color: var(--fy-primary);
+      color: var(--fy-primary);
+      background: color-mix(in srgb, var(--fy-primary) 8%, transparent);
     }
 
     &:active:not(:disabled) {
@@ -351,13 +351,13 @@ function handleClick(event: MouseEvent) {
 
   &--icon {
     background: transparent;
-    color: var(--on-surface-variant);
-    border-radius: var(--r-full);
+    color: var(--fy-on-surface-variant);
+    border-radius: var(--fy-r-full);
     border: none;
 
     &:hover:not(:disabled) {
-      background: color-mix(in srgb, var(--surface-container-high) 70%, transparent);
-      color: var(--on-surface);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 70%, transparent);
+      color: var(--fy-on-surface);
     }
 
     &:active:not(:disabled) {
@@ -365,10 +365,10 @@ function handleClick(event: MouseEvent) {
     }
   }
 
-  &--danger {
-    background: var(--error);
-    color: var(--on-error);
-    box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--error) 70%, transparent);
+  &--fy-danger {
+    background: var(--fy-error);
+    color: var(--fy-on-error);
+    box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--fy-error) 70%, transparent);
 
     &:hover:not(:disabled) {
       filter: brightness(1.08);

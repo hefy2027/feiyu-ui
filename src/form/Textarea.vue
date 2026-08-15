@@ -49,7 +49,7 @@ const emit = defineEmits<{
 
 const textareaRef = ref<HTMLTextAreaElement | null>(null)
 const isFocused = ref(false)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const currentLength = computed(() => props.modelValue?.length || 0)
 
@@ -136,12 +136,12 @@ defineExpose({
 <template>
   <div
     :class="[
-      'ui-textarea-wrap',
-      `ui-textarea-wrap--${size}`,
-      { 'ui-textarea-wrap--block': block },
+      'fy-textarea-wrap',
+      `fy-textarea-wrap--${size}`,
+      { 'fy-textarea-wrap--block': block },
       {
-        'ui-textarea-wrap--focused': isFocused,
-        'ui-textarea-wrap--disabled': disabled
+        'fy-textarea-wrap--focused': isFocused,
+        'fy-textarea-wrap--disabled': disabled
       }
     ]"
   >
@@ -153,7 +153,7 @@ defineExpose({
       :maxlength="maxlength"
       :disabled="disabled"
       :readonly="readonly"
-      class="ui-textarea"
+      class="fy-textarea"
       @input="handleInput"
       @change="handleChange"
       @focus="handleFocus"
@@ -164,14 +164,14 @@ defineExpose({
     <button
       v-if="clearable && modelValue && !disabled && !readonly"
       type="button"
-      class="ui-textarea__clear"
+      class="fy-textarea__clear"
       aria-label="清空"
       @click.stop="handleClear"
     >
       <span class="material-symbols-outlined">cancel</span>
     </button>
 
-    <div v-if="showCount" class="ui-textarea__count">
+    <div v-if="showCount" class="fy-textarea__count">
       <span>{{ currentLength }}</span>
       <span v-if="maxlength"> / {{ maxlength }}</span>
     </div>
@@ -179,56 +179,56 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.ui-textarea-wrap {
+.fy-textarea-wrap {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-radius: var(--r-md);
-  background: color-mix(in srgb, var(--surface-container-high) 42%, transparent);
+  border-radius: var(--fy-r-md);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 42%, transparent);
   backdrop-filter: blur(14px) saturate(1.4);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
   transition:
-    border-color 0.2s var(--ease-soft),
-    box-shadow 0.2s var(--ease-soft),
-    background 0.2s var(--ease-soft);
+    border-color 0.2s var(--fy-ease-soft),
+    box-shadow 0.2s var(--fy-ease-soft),
+    background 0.2s var(--fy-ease-soft);
   padding: 10px 14px;
 
   &--focused {
-    border-color: color-mix(in srgb, var(--primary) 55%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 14%, transparent);
+    border-color: color-mix(in srgb, var(--fy-primary) 55%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--fy-primary) 14%, transparent);
   }
 
   &--disabled {
     opacity: 0.55;
     cursor: not-allowed;
-    background: color-mix(in srgb, var(--surface-container-low) 50%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-low) 50%, transparent);
 
-    .ui-textarea {
+    .fy-textarea {
       cursor: not-allowed;
     }
   }
 
   &--sm {
     padding: 8px 10px;
-    font-size: var(--font-size-xs);
-    border-radius: var(--r-sm);
+    font-size: var(--fy-font-size-xs);
+    border-radius: var(--fy-r-sm);
   }
 
   &--lg {
     padding: 14px 18px;
-    font-size: var(--font-size-md);
-    border-radius: var(--r-lg);
+    font-size: var(--fy-font-size-md);
+    border-radius: var(--fy-r-lg);
   }
 }
 
-.ui-textarea {
+.fy-textarea {
   width: 100%;
   border: none;
   background: transparent;
   font-family: inherit;
-  color: var(--on-surface);
+  color: var(--fy-on-surface);
   font-size: inherit;
   line-height: 1.6;
   resize: vertical;
@@ -236,17 +236,17 @@ defineExpose({
   outline: none;
 
   &::placeholder {
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 }
 
-.ui-textarea__clear {
+.fy-textarea__clear {
   position: absolute;
   top: 10px;
   right: 12px;
   border: none;
   background: none;
-  color: var(--outline);
+  color: var(--fy-outline);
   cursor: pointer;
   padding: 0;
   display: flex;
@@ -255,7 +255,7 @@ defineExpose({
   transition: color 0.15s ease;
 
   &:hover {
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
   }
 
   .material-symbols-outlined {
@@ -263,11 +263,11 @@ defineExpose({
   }
 }
 
-.ui-textarea__count {
+.fy-textarea__count {
   margin-top: 6px;
   text-align: right;
-  font-size: var(--font-size-xs);
-  color: var(--outline);
+  font-size: var(--fy-font-size-xs);
+  color: var(--fy-outline);
   user-select: none;
   font-weight: 500;
 }

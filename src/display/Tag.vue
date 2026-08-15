@@ -59,10 +59,10 @@ function handleClick(event: MouseEvent) {
 <template>
   <span
     :class="[
-      'ui-tag',
-      `ui-tag--${variant}`,
-      `ui-tag--theme-${theme}`,
-      `ui-tag--${size}`,
+      'fy-tag',
+      `fy-tag--${variant}`,
+      `fy-tag--theme-${theme}`,
+      `fy-tag--${size}`,
       {
         'is-closable': closable,
         'is-disabled': disabled,
@@ -74,13 +74,13 @@ function handleClick(event: MouseEvent) {
     @click="handleClick"
   >
     <slot v-if="$slots.icon || icon" name="icon">
-      <span class="material-symbols-outlined ui-tag__icon">{{ icon }}</span>
+      <span class="material-symbols-outlined fy-tag__icon">{{ icon }}</span>
     </slot>
     <slot />
     <button
       v-if="closable"
       type="button"
-      class="ui-tag__close"
+      class="fy-tag__close"
       aria-label="关闭标签"
       @click.stop="handleClose"
     >
@@ -90,12 +90,12 @@ function handleClick(event: MouseEvent) {
 </template>
 
 <style scoped lang="scss">
-.ui-tag {
+.fy-tag {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   font-weight: 700;
-  border-radius: var(--r-full);
+  border-radius: var(--fy-r-full);
   user-select: none;
   white-space: nowrap;
 
@@ -115,43 +115,43 @@ function handleClick(event: MouseEvent) {
   }
 
   &--default {
-    background: color-mix(in srgb, var(--surface-container-high) 70%, transparent);
-    color: var(--on-surface-variant);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 70%, transparent);
+    color: var(--fy-on-surface-variant);
   }
 
-  &--primary {
-    background: color-mix(in srgb, var(--primary) 14%, transparent);
-    color: var(--primary);
+  &--fy-primary {
+    background: color-mix(in srgb, var(--fy-primary) 14%, transparent);
+    color: var(--fy-primary);
   }
 
-  &--success {
-    background: color-mix(in srgb, var(--status-done) 14%, transparent);
-    color: var(--status-done);
+  &--fy-success {
+    background: color-mix(in srgb, var(--fy-status-done) 14%, transparent);
+    color: var(--fy-status-done);
   }
 
-  &--warning {
-    background: color-mix(in srgb, var(--status-review) 14%, transparent);
-    color: var(--status-review);
+  &--fy-warning {
+    background: color-mix(in srgb, var(--fy-status-review) 14%, transparent);
+    color: var(--fy-status-review);
   }
 
-  &--danger {
-    background: color-mix(in srgb, var(--error) 14%, transparent);
-    color: var(--error);
+  &--fy-danger {
+    background: color-mix(in srgb, var(--fy-error) 14%, transparent);
+    color: var(--fy-error);
   }
 
-  &--info {
-    background: color-mix(in srgb, var(--theme-blue, #3b82f6) 14%, transparent);
-    color: var(--theme-blue, #3b82f6);
+  &--fy-info {
+    background: color-mix(in srgb, var(--fy-theme-blue, #3b82f6) 14%, transparent);
+    color: var(--fy-theme-blue, #3b82f6);
   }
 
   /* Task themes */
-  &--theme-blue { background: color-mix(in srgb, var(--theme-blue) 14%, transparent); color: var(--theme-blue); }
-  &--theme-purple { background: color-mix(in srgb, var(--theme-purple) 14%, transparent); color: var(--theme-purple); }
-  &--theme-red { background: color-mix(in srgb, var(--theme-red) 14%, transparent); color: var(--theme-red); }
-  &--theme-yellow { background: color-mix(in srgb, var(--theme-yellow) 14%, transparent); color: var(--theme-yellow); }
-  &--theme-green { background: color-mix(in srgb, var(--theme-green) 14%, transparent); color: var(--theme-green); }
-  &--theme-pink { background: color-mix(in srgb, var(--theme-pink) 14%, transparent); color: var(--theme-pink); }
-  &--theme-cyan { background: color-mix(in srgb, var(--theme-cyan) 14%, transparent); color: var(--theme-cyan); }
+  &--fy-theme-blue { background: color-mix(in srgb, var(--fy-theme-blue) 14%, transparent); color: var(--fy-theme-blue); }
+  &--fy-theme-purple { background: color-mix(in srgb, var(--fy-theme-purple) 14%, transparent); color: var(--fy-theme-purple); }
+  &--fy-theme-red { background: color-mix(in srgb, var(--fy-theme-red) 14%, transparent); color: var(--fy-theme-red); }
+  &--fy-theme-yellow { background: color-mix(in srgb, var(--fy-theme-yellow) 14%, transparent); color: var(--fy-theme-yellow); }
+  &--fy-theme-green { background: color-mix(in srgb, var(--fy-theme-green) 14%, transparent); color: var(--fy-theme-green); }
+  &--fy-theme-pink { background: color-mix(in srgb, var(--fy-theme-pink) 14%, transparent); color: var(--fy-theme-pink); }
+  &--fy-theme-cyan { background: color-mix(in srgb, var(--fy-theme-cyan) 14%, transparent); color: var(--fy-theme-cyan); }
 
   &__icon {
     font-size: 1.15em;
@@ -174,7 +174,7 @@ function handleClick(event: MouseEvent) {
 
     &:hover {
       opacity: 1;
-      background: color-mix(in srgb, var(--on-surface) 10%, transparent);
+      background: color-mix(in srgb, var(--fy-on-surface) 10%, transparent);
     }
 
     .material-symbols-outlined {

@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false
 })
 
-const stepsContext = inject<StepsContext | null>('ui-steps', null)
+const stepsContext = inject<StepsContext | null>('fy-steps', null)
 
 const effectiveIndex = computed(() => props.stepIndex ?? props.index ?? 1)
 
@@ -48,8 +48,8 @@ function handleClick() {
 <template>
   <div
     :class="[
-      'ui-step',
-      `ui-step--${stepStatus}`,
+      'fy-step',
+      `fy-step--${stepStatus}`,
       {
         'is-clickable': isClickable,
         'is-disabled': disabled,
@@ -58,21 +58,21 @@ function handleClick() {
     ]"
     @click="handleClick"
   >
-    <div class="ui-step__indicator">
-      <div class="ui-step__icon-box">
-        <span v-if="icon" class="material-symbols-outlined ui-step__icon">{{ icon }}</span>
-        <span v-else-if="stepStatus === 'finish'" class="material-symbols-outlined ui-step__icon">check</span>
-        <span v-else-if="stepStatus === 'error'" class="material-symbols-outlined ui-step__icon">close</span>
-        <span v-else class="ui-step__number">{{ effectiveIndex }}</span>
+    <div class="fy-step__indicator">
+      <div class="fy-step__icon-box">
+        <span v-if="icon" class="material-symbols-outlined fy-step__icon">{{ icon }}</span>
+        <span v-else-if="stepStatus === 'finish'" class="material-symbols-outlined fy-step__icon">check</span>
+        <span v-else-if="stepStatus === 'error'" class="material-symbols-outlined fy-step__icon">close</span>
+        <span v-else class="fy-step__number">{{ effectiveIndex }}</span>
       </div>
-      <div class="ui-step__line" />
+      <div class="fy-step__line" />
     </div>
 
-    <div class="ui-step__content">
-      <div class="ui-step__title">
+    <div class="fy-step__content">
+      <div class="fy-step__title">
         <slot name="title">{{ title }}</slot>
       </div>
-      <div v-if="description || $slots.description" class="ui-step__description">
+      <div v-if="description || $slots.description" class="fy-step__description">
         <slot name="description">{{ description }}</slot>
       </div>
     </div>
@@ -80,7 +80,7 @@ function handleClick() {
 </template>
 
 <style scoped lang="scss">
-.ui-step {
+.fy-step {
   position: relative;
   display: flex;
   flex: 1;
@@ -89,8 +89,8 @@ function handleClick() {
   &.is-clickable {
     cursor: pointer;
 
-    &:hover .ui-step__title {
-      color: var(--primary);
+    &:hover .fy-step__title {
+      color: var(--fy-primary);
     }
   }
 
@@ -108,18 +108,18 @@ function handleClick() {
   &__icon-box {
     width: 32px;
     height: 32px;
-    border-radius: var(--r-full);
+    border-radius: var(--fy-r-full);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 13px;
     font-weight: 700;
-    background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 35%, transparent);
-    color: var(--outline);
-    transition: all 0.25s var(--ease-soft);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 35%, transparent);
+    color: var(--fy-outline);
+    transition: all 0.25s var(--fy-ease-soft);
     z-index: 2;
     flex-shrink: 0;
   }
@@ -135,7 +135,7 @@ function handleClick() {
     left: 32px;
     right: 0;
     height: 2px;
-    background: color-mix(in srgb, var(--outline-variant) 45%, transparent);
+    background: color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
     transform: translateY(-50%);
     transition: background 0.25s ease;
   }
@@ -153,57 +153,57 @@ function handleClick() {
   }
 
   &__title {
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
     font-weight: 700;
-    color: var(--outline);
+    color: var(--fy-outline);
     line-height: 32px;
     transition: color 0.2s ease;
     white-space: nowrap;
   }
 
   &__description {
-    font-size: var(--font-size-xs);
-    color: var(--on-surface-variant);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-on-surface-variant);
     line-height: 1.4;
   }
 
   /* Status styles */
   &--process {
-    .ui-step__icon-box {
-      background: var(--primary);
-      color: var(--on-primary);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent);
-      border-color: var(--primary);
+    .fy-step__icon-box {
+      background: var(--fy-primary);
+      color: var(--fy-on-primary);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--fy-primary) 20%, transparent);
+      border-color: var(--fy-primary);
     }
-    .ui-step__title {
-      color: var(--on-surface);
+    .fy-step__title {
+      color: var(--fy-on-surface);
       font-weight: 800;
     }
   }
 
   &--finish {
-    .ui-step__icon-box {
-      background: color-mix(in srgb, var(--primary) 15%, transparent);
-      color: var(--primary);
-      border-color: var(--primary);
+    .fy-step__icon-box {
+      background: color-mix(in srgb, var(--fy-primary) 15%, transparent);
+      color: var(--fy-primary);
+      border-color: var(--fy-primary);
     }
-    .ui-step__title {
-      color: var(--on-surface);
+    .fy-step__title {
+      color: var(--fy-on-surface);
     }
-    .ui-step__line {
-      background: var(--primary);
+    .fy-step__line {
+      background: var(--fy-primary);
     }
   }
 
-  &--error {
-    .ui-step__icon-box {
-      background: var(--error);
-      color: var(--on-error);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--error) 20%, transparent);
-      border-color: var(--error);
+  &--fy-error {
+    .fy-step__icon-box {
+      background: var(--fy-error);
+      color: var(--fy-on-error);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--fy-error) 20%, transparent);
+      border-color: var(--fy-error);
     }
-    .ui-step__title {
-      color: var(--error);
+    .fy-step__title {
+      color: var(--fy-error);
     }
   }
 
@@ -216,7 +216,7 @@ function handleClick() {
       padding-bottom: 0;
     }
 
-    .ui-step__line {
+    .fy-step__line {
       top: 32px;
       bottom: 0;
       left: 16px;
@@ -226,7 +226,7 @@ function handleClick() {
       transform: translateX(-50%);
     }
 
-    .ui-step__content {
+    .fy-step__content {
       margin-left: 14px;
       margin-right: 0;
     }

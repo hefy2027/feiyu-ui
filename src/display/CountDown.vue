@@ -142,7 +142,7 @@ defineExpose({
 </script>
 
 <template>
-  <span class="ui-countdown">
+  <span class="fy-countdown">
     <slot :formatted="formattedTime" :remaining="remainingMs">
       {{ formattedTime }}
     </slot>
@@ -150,11 +150,11 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.ui-countdown {
+.fy-countdown {
   font-family: inherit;
   font-variant-numeric: tabular-nums;
   font-weight: 700;
-  color: var(--on-surface);
+  color: var(--fy-on-surface);
   display: inline-flex;
   align-items: center;
 }

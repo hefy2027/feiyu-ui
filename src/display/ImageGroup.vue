@@ -43,7 +43,7 @@ function openPreview(src: string) {
   isViewerOpen.value = true
 }
 
-provide<ImageGroupContext>('ui-image-group', {
+provide<ImageGroupContext>('fy-image-group', {
   previewDisabled: computed(() => props.previewDisabled),
   registerImage,
   openPreview
@@ -53,7 +53,7 @@ const urlList = computed(() => registeredImages.value.map((img) => img.previewSr
 </script>
 
 <template>
-  <div class="ui-image-group" :style="{ gap: typeof gap === 'number' ? `${gap}px` : gap }">
+  <div class="fy-image-group" :style="{ gap: typeof gap === 'number' ? `${gap}px` : gap }">
     <slot />
 
     <!-- Unified Group Image Viewer -->
@@ -62,7 +62,7 @@ const urlList = computed(() => registeredImages.value.map((img) => img.previewSr
 </template>
 
 <style scoped lang="scss">
-.ui-image-group {
+.fy-image-group {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;

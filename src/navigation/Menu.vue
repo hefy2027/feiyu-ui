@@ -103,7 +103,7 @@ onUnmounted(() => {
   window.removeEventListener('click', handleGlobalClick)
 })
 
-provide('ui-menu', {
+provide('fy-menu', {
   activeKey: currentActiveKey,
   collapsed: toRef(props, 'collapsed'),
   mode: toRef(props, 'mode'),
@@ -120,9 +120,9 @@ provide('ui-menu', {
 <template>
   <nav
     :class="[
-      'ui-menu',
-      `ui-menu--${mode}`,
-      { 'ui-menu--collapsed': collapsed }
+      'fy-menu',
+      `fy-menu--${mode}`,
+      { 'fy-menu--collapsed': collapsed }
     ]"
     role="menubar"
   >
@@ -131,13 +131,13 @@ provide('ui-menu', {
 </template>
 
 <style scoped lang="scss">
-.ui-menu {
+.fy-menu {
   display: flex;
   list-style: none;
   padding: 0;
   margin: 0;
   user-select: none;
-  transition: width 0.3s var(--ease-soft);
+  transition: width 0.3s var(--fy-ease-soft);
 
   &--vertical {
     flex-direction: column;

@@ -49,8 +49,8 @@ function handleCancel() {
     @update:model-value="emit('update:modelValue', $event)"
     @close="handleCancel"
   >
-    <div class="ui-confirm">
-      <div :class="['ui-confirm__icon-wrap', `ui-confirm__icon-wrap--${type}`]">
+    <div class="fy-confirm">
+      <div :class="['fy-confirm__icon-wrap', `fy-confirm__icon-wrap--${type}`]">
         <span class="material-symbols-outlined">
           {{
             type === 'danger'
@@ -64,7 +64,7 @@ function handleCancel() {
         </span>
       </div>
 
-      <div class="ui-confirm__message">
+      <div class="fy-confirm__message">
         <slot>{{ content }}</slot>
       </div>
     </div>
@@ -85,7 +85,7 @@ function handleCancel() {
 </template>
 
 <style scoped lang="scss">
-.ui-confirm {
+.fy-confirm {
   display: flex;
   align-items: flex-start;
   gap: 14px;
@@ -94,29 +94,29 @@ function handleCancel() {
   &__icon-wrap {
     width: 40px;
     height: 40px;
-    border-radius: var(--r-md);
+    border-radius: var(--fy-r-md);
     display: grid;
     place-items: center;
     flex-shrink: 0;
 
-    &--danger {
-      background: color-mix(in srgb, var(--error) 15%, transparent);
-      color: var(--error);
+    &--fy-danger {
+      background: color-mix(in srgb, var(--fy-error) 15%, transparent);
+      color: var(--fy-error);
     }
 
-    &--warning {
-      background: color-mix(in srgb, var(--status-review) 15%, transparent);
-      color: var(--status-review);
+    &--fy-warning {
+      background: color-mix(in srgb, var(--fy-status-review) 15%, transparent);
+      color: var(--fy-status-review);
     }
 
-    &--info {
-      background: color-mix(in srgb, var(--primary) 15%, transparent);
-      color: var(--primary);
+    &--fy-info {
+      background: color-mix(in srgb, var(--fy-primary) 15%, transparent);
+      color: var(--fy-primary);
     }
 
-    &--success {
-      background: color-mix(in srgb, var(--theme-green, #10b981) 15%, transparent);
-      color: var(--theme-green, #10b981);
+    &--fy-success {
+      background: color-mix(in srgb, var(--fy-theme-green, #10b981) 15%, transparent);
+      color: var(--fy-theme-green, #10b981);
     }
 
     .material-symbols-outlined {
@@ -125,8 +125,8 @@ function handleCancel() {
   }
 
   &__message {
-    font-size: var(--font-size-base);
-    color: var(--on-surface-variant);
+    font-size: var(--fy-font-size-base);
+    color: var(--fy-on-surface-variant);
     line-height: 1.5;
     font-weight: 500;
   }

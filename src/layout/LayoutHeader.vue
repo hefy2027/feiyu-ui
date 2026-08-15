@@ -37,11 +37,11 @@ const headerStyle = computed<CSSProperties>(() => {
 <template>
   <header
     :class="[
-      'ui-layout-header',
+      'fy-layout-header',
       {
-        'ui-layout-header--bordered': bordered,
-        'ui-layout-header--fixed': fixed || position === 'fixed',
-        'ui-layout-header--sticky': position === 'sticky'
+        'fy-layout-header--bordered': bordered,
+        'fy-layout-header--fixed': fixed || position === 'fixed',
+        'fy-layout-header--sticky': position === 'sticky'
       }
     ]"
     :style="headerStyle"
@@ -51,14 +51,14 @@ const headerStyle = computed<CSSProperties>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-layout-header {
+.fy-layout-header {
   box-sizing: border-box;
   width: 100%;
   flex-shrink: 0;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 
   &--bordered {
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
   }
 
   &--fixed,

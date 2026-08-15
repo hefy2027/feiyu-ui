@@ -40,7 +40,7 @@ function handleStepClick(stepIndex: number) {
   emit('change', stepIndex)
 }
 
-provide<StepsContext>('ui-steps', {
+provide<StepsContext>('fy-steps', {
   current: computed(() => props.current),
   status: computed(() => props.status),
   vertical: isVertical,
@@ -52,8 +52,8 @@ provide<StepsContext>('ui-steps', {
 <template>
   <div
     :class="[
-      'ui-steps',
-      isVertical ? 'ui-steps--vertical' : 'ui-steps--horizontal'
+      'fy-steps',
+      isVertical ? 'fy-steps--vertical' : 'fy-steps--horizontal'
     ]"
   >
     <slot />
@@ -61,7 +61,7 @@ provide<StepsContext>('ui-steps', {
 </template>
 
 <style scoped lang="scss">
-.ui-steps {
+.fy-steps {
   display: flex;
   width: 100%;
   box-sizing: border-box;

@@ -44,7 +44,7 @@ function handleClick(event: MouseEvent) {
 </script>
 
 <template>
-  <div class="ui-float-btn-wrap" :title="tooltip || undefined">
+  <div class="fy-float-btn-wrap" :title="tooltip || undefined">
     <Badge
       :value="badge"
       :dot="badgeDot"
@@ -56,12 +56,12 @@ function handleClick(event: MouseEvent) {
         :href="disabled ? undefined : href"
         :target="disabled ? undefined : target"
         :class="[
-          'ui-float-btn',
-          `ui-float-btn--${shape}`,
-          `ui-float-btn--${type}`,
+          'fy-float-btn',
+          `fy-float-btn--${shape}`,
+          `fy-float-btn--${type}`,
           {
             'is-disabled': disabled,
-            'ui-float-btn--with-desc': description || $slots.description
+            'fy-float-btn--with-desc': description || $slots.description
           }
         ]"
         :disabled="disabled"
@@ -71,13 +71,13 @@ function handleClick(event: MouseEvent) {
       >
         <slot>
           <slot name="icon">
-            <span v-if="icon" class="material-symbols-outlined ui-float-btn__icon">
+            <span v-if="icon" class="material-symbols-outlined fy-float-btn__icon">
               {{ icon }}
             </span>
           </slot>
           <span
             v-if="description || $slots.description"
-            class="ui-float-btn__description"
+            class="fy-float-btn__description"
           >
             <slot name="description">{{ description }}</slot>
           </span>
@@ -88,12 +88,12 @@ function handleClick(event: MouseEvent) {
 </template>
 
 <style scoped lang="scss">
-.ui-float-btn-wrap {
+.fy-float-btn-wrap {
   display: inline-flex;
   position: relative;
 }
 
-.ui-float-btn {
+.fy-float-btn {
   min-width: 44px;
   width: 44px;
   height: 44px;
@@ -101,22 +101,22 @@ function handleClick(event: MouseEvent) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
   backdrop-filter: blur(16px) saturate(1.4);
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+  box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
   cursor: pointer;
   user-select: none;
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  color: var(--on-surface);
-  background: color-mix(in srgb, var(--surface-container-high) 85%, transparent);
+  color: var(--fy-on-surface);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 85%, transparent);
 
   &--circle {
     border-radius: 50%;
   }
 
   &--square {
-    border-radius: var(--r-lg);
+    border-radius: var(--fy-r-lg);
   }
 
   &__icon {
@@ -134,7 +134,7 @@ function handleClick(event: MouseEvent) {
 
   &:hover:not(.is-disabled) {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: var(--shadow-lg), 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--fy-shadow-lg), 0 8px 24px rgba(0, 0, 0, 0.15);
   }
 
   &:active:not(.is-disabled) {
@@ -147,35 +147,35 @@ function handleClick(event: MouseEvent) {
   }
 
   /* Types */
-  &--primary {
-    background: var(--primary);
+  &--fy-primary {
+    background: var(--fy-primary);
     color: #fff;
-    border-color: var(--primary);
-    box-shadow: var(--shadow-md), 0 4px 20px color-mix(in srgb, var(--primary) 40%, transparent);
+    border-color: var(--fy-primary);
+    box-shadow: var(--fy-shadow-md), 0 4px 20px color-mix(in srgb, var(--fy-primary) 40%, transparent);
   }
 
-  &--success {
-    background: var(--success, #22c55e);
+  &--fy-success {
+    background: var(--fy-success, #22c55e);
     color: #fff;
-    border-color: var(--success, #22c55e);
+    border-color: var(--fy-success, #22c55e);
   }
 
-  &--danger {
-    background: var(--danger, #ef4444);
+  &--fy-danger {
+    background: var(--fy-danger, #ef4444);
     color: #fff;
-    border-color: var(--danger, #ef4444);
+    border-color: var(--fy-danger, #ef4444);
   }
 
-  &--warning {
-    background: var(--warning, #f59e0b);
+  &--fy-warning {
+    background: var(--fy-warning, #f59e0b);
     color: #fff;
-    border-color: var(--warning, #f59e0b);
+    border-color: var(--fy-warning, #f59e0b);
   }
 
-  &--info {
-    background: var(--info, #38bdf8);
+  &--fy-info {
+    background: var(--fy-info, #38bdf8);
     color: #fff;
-    border-color: var(--info, #38bdf8);
+    border-color: var(--fy-info, #38bdf8);
   }
 }
 </style>

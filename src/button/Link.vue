@@ -39,8 +39,8 @@ function handleClick(event: MouseEvent) {
 <template>
   <a
     :class="[
-      'ui-link',
-      `ui-link--${type}`,
+      'fy-link',
+      `fy-link--${type}`,
       {
         'is-underline': underline,
         'is-disabled': disabled
@@ -54,17 +54,17 @@ function handleClick(event: MouseEvent) {
     @click="handleClick"
   >
     <slot v-if="iconPlacement === 'left'" name="icon">
-      <span v-if="icon" class="material-symbols-outlined ui-link__icon">
+      <span v-if="icon" class="material-symbols-outlined fy-link__icon">
         {{ icon }}
       </span>
     </slot>
 
-    <span class="ui-link__inner">
+    <span class="fy-link__inner">
       <slot />
     </span>
 
     <slot v-if="iconPlacement === 'right'" name="icon">
-      <span v-if="icon" class="material-symbols-outlined ui-link__icon ui-link__icon--right">
+      <span v-if="icon" class="material-symbols-outlined fy-link__icon fy-link__icon--right">
         {{ icon }}
       </span>
     </slot>
@@ -72,25 +72,25 @@ function handleClick(event: MouseEvent) {
 </template>
 
 <style scoped lang="scss">
-.ui-link {
+.fy-link {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  font-size: var(--font-size-base);
+  font-size: var(--fy-font-size-base);
   font-weight: 500;
   line-height: 1.5;
   text-decoration: none;
   cursor: pointer;
   outline: none;
   user-select: none;
-  transition: color 0.18s var(--ease-soft), opacity 0.18s var(--ease-soft);
+  transition: color 0.18s var(--fy-ease-soft), opacity 0.18s var(--fy-ease-soft);
 
   &:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--fy-primary);
     outline-offset: 2px;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
   }
 
   &__icon {
@@ -125,42 +125,42 @@ function handleClick(event: MouseEvent) {
 
   /* Variants */
   &--default {
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     &:hover:not(.is-disabled) {
-      color: var(--primary);
+      color: var(--fy-primary);
     }
   }
 
-  &--primary {
-    color: var(--primary);
-    &:hover:not(.is-disabled) {
-      filter: brightness(1.15);
-    }
-  }
-
-  &--success {
-    color: var(--theme-green, #10b981);
+  &--fy-primary {
+    color: var(--fy-primary);
     &:hover:not(.is-disabled) {
       filter: brightness(1.15);
     }
   }
 
-  &--warning {
-    color: var(--theme-yellow, #f59e0b);
+  &--fy-success {
+    color: var(--fy-theme-green, #10b981);
     &:hover:not(.is-disabled) {
       filter: brightness(1.15);
     }
   }
 
-  &--danger {
-    color: var(--error);
+  &--fy-warning {
+    color: var(--fy-theme-yellow, #f59e0b);
     &:hover:not(.is-disabled) {
       filter: brightness(1.15);
     }
   }
 
-  &--info {
-    color: var(--theme-blue, #3b82f6);
+  &--fy-danger {
+    color: var(--fy-error);
+    &:hover:not(.is-disabled) {
+      filter: brightness(1.15);
+    }
+  }
+
+  &--fy-info {
+    color: var(--fy-theme-blue, #3b82f6);
     &:hover:not(.is-disabled) {
       filter: brightness(1.15);
     }

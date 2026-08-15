@@ -35,7 +35,7 @@ const emit = defineEmits<{
 
 const trackRef = ref<HTMLElement | null>(null)
 const isDragging = ref<false | 'first' | 'second' | 'single'>(false)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const firstValue = computed<number>(() => {
   if (props.range && Array.isArray(props.modelValue)) {
@@ -180,18 +180,18 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
 <template>
   <div
     :class="[
-      'ui-slider',
-      `ui-slider--${size}`,
-      { 'ui-slider--disabled': disabled }
+      'fy-slider',
+      `fy-slider--${size}`,
+      { 'fy-slider--disabled': disabled }
     ]"
   >
-    <div ref="trackRef" class="ui-slider__rail" @click="handleTrackClick">
+    <div ref="trackRef" class="fy-slider__rail" @click="handleTrackClick">
       <!-- Active Bar -->
-      <div class="ui-slider__bar" :style="barStyle" />
+      <div class="fy-slider__bar" :style="barStyle" />
 
       <!-- Single / First Handle -->
       <div
-        class="ui-slider__handle"
+        class="fy-slider__handle"
         role="slider"
         tabindex="0"
         :aria-valuenow="firstValue"
@@ -204,7 +204,7 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
       >
         <div
           v-if="showTooltip"
-          :class="['ui-slider__tooltip', { 'is-active': isDragging !== false }]"
+          :class="['fy-slider__tooltip', { 'is-active': isDragging !== false }]"
         >
           {{ formatTooltip(firstValue) }}
         </div>
@@ -213,7 +213,7 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
       <!-- Second Handle (Range mode) -->
       <div
         v-if="range"
-        class="ui-slider__handle"
+        class="fy-slider__handle"
         role="slider"
         tabindex="0"
         :aria-valuenow="secondValue"
@@ -226,7 +226,7 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
       >
         <div
           v-if="showTooltip"
-          :class="['ui-slider__tooltip', { 'is-active': isDragging !== false }]"
+          :class="['fy-slider__tooltip', { 'is-active': isDragging !== false }]"
         >
           {{ formatTooltip(secondValue) }}
         </div>
@@ -237,11 +237,11 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
         <div
           v-for="(label, markVal) in marks"
           :key="markVal"
-          class="ui-slider__mark"
+          class="fy-slider__mark"
           :style="{ left: `${getPercent(Number(markVal))}%` }"
         >
-          <span class="ui-slider__mark-dot" />
-          <span class="ui-slider__mark-text">{{ label }}</span>
+          <span class="fy-slider__mark-dot" />
+          <span class="fy-slider__mark-text">{{ label }}</span>
         </div>
       </template>
     </div>
@@ -249,7 +249,7 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
 </template>
 
 <style scoped lang="scss">
-.ui-slider {
+.fy-slider {
   position: relative;
   display: flex;
   align-items: center;
@@ -262,8 +262,8 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
     opacity: 0.5;
     cursor: not-allowed;
 
-    .ui-slider__rail,
-    .ui-slider__handle {
+    .fy-slider__rail,
+    .fy-slider__handle {
       cursor: not-allowed !important;
     }
   }
@@ -272,8 +272,8 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
     position: relative;
     width: 100%;
     height: 6px;
-    border-radius: var(--r-full);
-    background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
+    border-radius: var(--fy-r-full);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
     cursor: pointer;
   }
 
@@ -281,9 +281,9 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
     position: absolute;
     top: 0;
     height: 100%;
-    border-radius: var(--r-full);
-    background: linear-gradient(90deg, var(--primary-container), var(--primary));
-    box-shadow: 0 1px 4px color-mix(in srgb, var(--primary) 35%, transparent);
+    border-radius: var(--fy-r-full);
+    background: linear-gradient(90deg, var(--fy-primary-container), var(--fy-primary));
+    box-shadow: 0 1px 4px color-mix(in srgb, var(--fy-primary) 35%, transparent);
   }
 
   &__handle {
@@ -292,9 +292,9 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: var(--surface-container-lowest);
-    border: 2.5px solid var(--primary);
-    box-shadow: var(--shadow-sm), 0 0 0 2px color-mix(in srgb, var(--primary) 15%, transparent);
+    background: var(--fy-surface-container-lowest);
+    border: 2.5px solid var(--fy-primary);
+    box-shadow: var(--fy-shadow-sm), 0 0 0 2px color-mix(in srgb, var(--fy-primary) 15%, transparent);
     transform: translate(-50%, -50%);
     cursor: grab;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -302,7 +302,7 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
     &:hover,
     &:active {
       transform: translate(-50%, -50%) scale(1.15);
-      box-shadow: var(--shadow-sm), 0 0 0 5px color-mix(in srgb, var(--primary) 20%, transparent);
+      box-shadow: var(--fy-shadow-sm), 0 0 0 5px color-mix(in srgb, var(--fy-primary) 20%, transparent);
     }
 
     &:active {
@@ -316,8 +316,8 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
     left: 50%;
     transform: translateX(-50%) scale(0.9);
     padding: 3px 8px;
-    background: var(--inverse-surface);
-    color: var(--inverse-on-surface);
+    background: var(--fy-inverse-surface);
+    color: var(--fy-inverse-on-surface);
     font-size: 11px;
     font-weight: 700;
     border-radius: 6px;
@@ -333,7 +333,7 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
       left: 50%;
       transform: translateX(-50%);
       border: 4px solid transparent;
-      border-top-color: var(--inverse-surface);
+      border-top-color: var(--fy-inverse-surface);
     }
   }
 
@@ -354,7 +354,7 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: var(--outline);
+    background: var(--fy-outline);
   }
 
   &__mark-text {
@@ -363,7 +363,7 @@ function handleKeyDown(handle: 'single' | 'first' | 'second', event: KeyboardEve
     left: 50%;
     transform: translateX(-50%);
     font-size: 11px;
-    color: var(--outline);
+    color: var(--fy-outline);
     white-space: nowrap;
     font-weight: 600;
   }

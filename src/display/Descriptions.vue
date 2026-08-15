@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
   contentStyle: undefined
 })
 
-provide<DescriptionsContext>('ui-descriptions', {
+provide<DescriptionsContext>('fy-descriptions', {
   column: computed(() => props.column),
   bordered: computed(() => props.bordered),
   size: computed(() => props.size),
@@ -43,35 +43,35 @@ provide<DescriptionsContext>('ui-descriptions', {
 <template>
   <div
     :class="[
-      'ui-descriptions',
-      `ui-descriptions--${size}`,
-      `ui-descriptions--${labelPlacement}`,
-      { 'ui-descriptions--bordered': bordered }
+      'fy-descriptions',
+      `fy-descriptions--${size}`,
+      `fy-descriptions--${labelPlacement}`,
+      { 'fy-descriptions--bordered': bordered }
     ]"
   >
-    <div v-if="title || $slots.header || $slots.title || $slots.extra" class="ui-descriptions__header">
-      <div class="ui-descriptions__title">
+    <div v-if="title || $slots.header || $slots.title || $slots.extra" class="fy-descriptions__header">
+      <div class="fy-descriptions__title">
         <slot name="title">
           <slot name="header">{{ title }}</slot>
         </slot>
       </div>
-      <div v-if="$slots.extra" class="ui-descriptions__extra">
+      <div v-if="$slots.extra" class="fy-descriptions__extra">
         <slot name="extra" />
       </div>
     </div>
 
-    <div class="ui-descriptions__table" :style="{ gridTemplateColumns: `repeat(${column}, minmax(0, 1fr))` }">
+    <div class="fy-descriptions__table" :style="{ gridTemplateColumns: `repeat(${column}, minmax(0, 1fr))` }">
       <slot />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-descriptions {
+.fy-descriptions {
   width: 100%;
   box-sizing: border-box;
-  font-size: var(--font-size-sm);
-  color: var(--on-surface);
+  font-size: var(--fy-font-size-sm);
+  color: var(--fy-on-surface);
 
   &__header {
     display: flex;
@@ -81,29 +81,29 @@ provide<DescriptionsContext>('ui-descriptions', {
   }
 
   &__title {
-    font-family: var(--font-display);
+    font-family: var(--fy-font-display);
     font-size: 16px;
     font-weight: 800;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
   }
 
   &__extra {
-    font-size: var(--font-size-xs);
-    color: var(--outline);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-outline);
   }
 
   &__table {
     display: grid;
     width: 100%;
-    border-radius: var(--r-md);
+    border-radius: var(--fy-r-md);
     overflow: hidden;
-    background: color-mix(in srgb, var(--surface-container-lowest) 75%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 75%, transparent);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
   }
 
   &--bordered &__table {
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 35%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 35%, transparent);
   }
 }
 </style>

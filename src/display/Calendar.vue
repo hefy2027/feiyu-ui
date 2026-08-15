@@ -169,41 +169,41 @@ function handleCellClick(cell: CalendarCell) {
 </script>
 
 <template>
-  <div class="ui-calendar">
+  <div class="fy-calendar">
     <!-- Header -->
-    <div class="ui-calendar__header">
-      <div class="ui-calendar__title">
-        <span class="ui-calendar__year-month">
+    <div class="fy-calendar__header">
+      <div class="fy-calendar__title">
+        <span class="fy-calendar__year-month">
           {{ currentYear }} 年 {{ currentMonth }} 月
         </span>
       </div>
-      <div class="ui-calendar__actions">
-        <button type="button" class="ui-calendar__btn" aria-label="上个月" @click="prevMonth">
+      <div class="fy-calendar__actions">
+        <button type="button" class="fy-calendar__btn" aria-label="上个月" @click="prevMonth">
           <span class="material-symbols-outlined">chevron_left</span>
         </button>
-        <button type="button" class="ui-calendar__btn ui-calendar__btn--today" @click="goToday">
+        <button type="button" class="fy-calendar__btn fy-calendar__btn--today" @click="goToday">
           今天
         </button>
-        <button type="button" class="ui-calendar__btn" aria-label="下个月" @click="nextMonth">
+        <button type="button" class="fy-calendar__btn" aria-label="下个月" @click="nextMonth">
           <span class="material-symbols-outlined">chevron_right</span>
         </button>
       </div>
     </div>
 
     <!-- Week days header -->
-    <div class="ui-calendar__weekdays">
-      <div v-for="w in weekDays" :key="w" class="ui-calendar__weekday">
+    <div class="fy-calendar__weekdays">
+      <div v-for="w in weekDays" :key="w" class="fy-calendar__weekday">
         周{{ w }}
       </div>
     </div>
 
     <!-- Days Grid -->
-    <div class="ui-calendar__grid">
+    <div class="fy-calendar__grid">
       <div
         v-for="cell in calendarCells"
         :key="cell.dateStr"
         :class="[
-          'ui-calendar__cell',
+          'fy-calendar__cell',
           {
             'is-other-month': !cell.isCurrentMonth,
             'is-today': cell.isToday,
@@ -212,11 +212,11 @@ function handleCellClick(cell: CalendarCell) {
         ]"
         @click="handleCellClick(cell)"
       >
-        <div class="ui-calendar__cell-head">
-          <span class="ui-calendar__day-num">{{ cell.day }}</span>
-          <span v-if="cell.isToday" class="ui-calendar__today-badge">今</span>
+        <div class="fy-calendar__cell-head">
+          <span class="fy-calendar__day-num">{{ cell.day }}</span>
+          <span v-if="cell.isToday" class="fy-calendar__today-badge">今</span>
         </div>
-        <div class="ui-calendar__cell-content">
+        <div class="fy-calendar__cell-content">
           <slot name="date-cell" :cell="cell" />
         </div>
       </div>
@@ -225,15 +225,15 @@ function handleCellClick(cell: CalendarCell) {
 </template>
 
 <style scoped lang="scss">
-.ui-calendar {
+.fy-calendar {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: color-mix(in srgb, var(--surface-container-low) 60%, transparent);
+  background: color-mix(in srgb, var(--fy-surface-container-low) 60%, transparent);
   backdrop-filter: blur(16px) saturate(1.3);
   -webkit-backdrop-filter: blur(16px) saturate(1.3);
-  border: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
-  border-radius: var(--r-xl);
+  border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
+  border-radius: var(--fy-r-xl);
   padding: 16px;
   user-select: none;
 
@@ -246,9 +246,9 @@ function handleCellClick(cell: CalendarCell) {
   }
 
   &__year-month {
-    font-size: var(--font-size-lg);
+    font-size: var(--fy-font-size-lg);
     font-weight: 700;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     letter-spacing: -0.01em;
   }
 
@@ -264,19 +264,19 @@ function handleCellClick(cell: CalendarCell) {
     justify-content: center;
     height: 32px;
     padding: 0 8px;
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
-    background: color-mix(in srgb, var(--surface-container-high) 50%, transparent);
-    border-radius: var(--r-md);
-    color: var(--on-surface);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 50%, transparent);
+    border-radius: var(--fy-r-md);
+    color: var(--fy-on-surface);
     cursor: pointer;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 600;
-    transition: all 0.2s var(--ease-soft);
+    transition: all 0.2s var(--fy-ease-soft);
 
     &:hover {
-      background: color-mix(in srgb, var(--primary) 15%, transparent);
-      border-color: color-mix(in srgb, var(--primary) 40%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-primary) 15%, transparent);
+      border-color: color-mix(in srgb, var(--fy-primary) 40%, transparent);
+      color: var(--fy-primary);
     }
 
     .material-symbols-outlined {
@@ -293,14 +293,14 @@ function handleCellClick(cell: CalendarCell) {
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
     padding: 8px 0;
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
     margin-bottom: 6px;
   }
 
   &__weekday {
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 600;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 
   &__grid {
@@ -312,17 +312,17 @@ function handleCellClick(cell: CalendarCell) {
   &__cell {
     min-height: 72px;
     padding: 6px;
-    border-radius: var(--r-md);
+    border-radius: var(--fy-r-md);
     border: 1px solid transparent;
-    background: color-mix(in srgb, var(--surface-container-high) 25%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 25%, transparent);
     transition: all 0.15s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-highest) 50%, transparent);
-      border-color: color-mix(in srgb, var(--outline-variant) 45%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-highest) 50%, transparent);
+      border-color: color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
     }
 
     &.is-other-month {
@@ -330,14 +330,14 @@ function handleCellClick(cell: CalendarCell) {
     }
 
     &.is-today {
-      border-color: color-mix(in srgb, var(--primary) 50%, transparent);
-      background: color-mix(in srgb, var(--primary) 8%, transparent);
+      border-color: color-mix(in srgb, var(--fy-primary) 50%, transparent);
+      background: color-mix(in srgb, var(--fy-primary) 8%, transparent);
     }
 
     &.is-selected {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 20%, transparent);
-      background: color-mix(in srgb, var(--primary) 12%, transparent);
+      border-color: var(--fy-primary);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--fy-primary) 20%, transparent);
+      background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
     }
   }
 
@@ -349,16 +349,16 @@ function handleCellClick(cell: CalendarCell) {
   }
 
   &__day-num {
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
     font-weight: 700;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
   }
 
   &__today-badge {
     font-size: 10px;
     font-weight: 800;
-    color: var(--on-primary);
-    background: var(--primary);
+    color: var(--fy-on-primary);
+    background: var(--fy-primary);
     padding: 1px 4px;
     border-radius: 4px;
     line-height: 1.2;

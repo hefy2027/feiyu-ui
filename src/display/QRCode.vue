@@ -16,8 +16,8 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   size: 140,
-  color: 'var(--on-surface)',
-  backgroundColor: 'var(--surface-container-lowest)',
+  color: 'var(--fy-on-surface)',
+  backgroundColor: 'var(--fy-surface-container-lowest)',
   icon: undefined,
   iconSize: 32,
   bordered: true,
@@ -110,25 +110,25 @@ watch(() => [props.value, props.size], () => {
 <template>
   <div
     :class="[
-      'ui-qr-code',
-      { 'ui-qr-code--bordered': bordered }
+      'fy-qr-code',
+      { 'fy-qr-code--bordered': bordered }
     ]"
     :style="{ width: `${size}px`, height: `${size}px` }"
   >
-    <img v-if="qrDataUrl" :src="qrDataUrl" :alt="value" class="ui-qr-code__img" />
-    <div v-if="icon" class="ui-qr-code__logo" :style="{ width: `${iconSize}px`, height: `${iconSize}px` }">
-      <img :src="icon" class="ui-qr-code__logo-img" />
+    <img v-if="qrDataUrl" :src="qrDataUrl" :alt="value" class="fy-qr-code__img" />
+    <div v-if="icon" class="fy-qr-code__logo" :style="{ width: `${iconSize}px`, height: `${iconSize}px` }">
+      <img :src="icon" class="fy-qr-code__logo-img" />
     </div>
 
     <!-- Status overlay -->
-    <div v-if="status && status !== 'active'" class="ui-qr-code__mask">
-      <div v-if="status === 'loading'" class="ui-qr-code__loading">
+    <div v-if="status && status !== 'active'" class="fy-qr-code__mask">
+      <div v-if="status === 'loading'" class="fy-qr-code__loading">
         <Spin size="sm" />
       </div>
-      <div v-else-if="status === 'expired'" class="ui-qr-code__expired">
+      <div v-else-if="status === 'expired'" class="fy-qr-code__expired">
         <span class="material-symbols-outlined">refresh</span>
         <span>二维码已失效</span>
-        <button type="button" class="ui-qr-code__refresh-btn" @click="emit('refresh')">
+        <button type="button" class="fy-qr-code__refresh-btn" @click="emit('refresh')">
           点击刷新
         </button>
       </div>
@@ -137,24 +137,24 @@ watch(() => [props.value, props.size], () => {
 </template>
 
 <style scoped lang="scss">
-.ui-qr-code {
+.fy-qr-code {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--r-md);
-  background: color-mix(in srgb, var(--surface-container-lowest) 88%, transparent);
+  border-radius: var(--fy-r-md);
+  background: color-mix(in srgb, var(--fy-surface-container-lowest) 88%, transparent);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-hi);
+  border: 1px solid var(--fy-glass-border);
+  box-shadow: var(--fy-shadow-sm), inset 0 1px 0 var(--fy-glass-hi);
   padding: 10px;
   box-sizing: border-box;
   user-select: none;
 
   &--bordered {
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-sm);
   }
 
   &__img {
@@ -169,7 +169,7 @@ watch(() => [props.value, props.size], () => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--surface-container-lowest);
+    background: var(--fy-surface-container-lowest);
     padding: 3px;
     border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -187,7 +187,7 @@ watch(() => [props.value, props.size], () => {
   &__mask {
     position: absolute;
     inset: 0;
-    background: color-mix(in srgb, var(--surface-container-lowest) 90%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 90%, transparent);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: flex;
@@ -204,11 +204,11 @@ watch(() => [props.value, props.size], () => {
     gap: 4px;
     font-size: 11px;
     font-weight: 600;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
 
     .material-symbols-outlined {
       font-size: 20px;
-      color: var(--primary);
+      color: var(--fy-primary);
     }
   }
 
@@ -216,9 +216,9 @@ watch(() => [props.value, props.size], () => {
     margin-top: 4px;
     padding: 2px 8px;
     border-radius: 4px;
-    border: 1px solid var(--primary);
-    background: var(--primary);
-    color: var(--on-primary);
+    border: 1px solid var(--fy-primary);
+    background: var(--fy-primary);
+    color: var(--fy-on-primary);
     font-size: 11px;
     font-weight: 700;
     cursor: pointer;

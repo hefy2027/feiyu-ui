@@ -38,10 +38,10 @@ const layoutStyle = computed<CSSProperties>(() => {
 <template>
   <div
     :class="[
-      'ui-layout',
+      'fy-layout',
       {
-        'ui-layout--has-sider': hasSider || isRow,
-        'ui-layout--embedded': embedded
+        'fy-layout--has-sider': hasSider || isRow,
+        'fy-layout--embedded': embedded
       }
     ]"
     :style="layoutStyle"
@@ -51,7 +51,7 @@ const layoutStyle = computed<CSSProperties>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-layout {
+.fy-layout {
   box-sizing: border-box;
   flex: auto;
   min-width: 0;
@@ -64,7 +64,7 @@ const layoutStyle = computed<CSSProperties>(() => {
   }
 
   &--embedded {
-    background: color-mix(in srgb, var(--surface-container-low) 50%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-low) 50%, transparent);
   }
 }
 </style>

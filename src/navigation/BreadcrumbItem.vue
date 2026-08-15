@@ -22,7 +22,7 @@ const emit = defineEmits<{
   click: [event: MouseEvent]
 }>()
 
-const breadcrumbContext = inject<BreadcrumbContext | null>('ui-breadcrumb', null)
+const breadcrumbContext = inject<BreadcrumbContext | null>('fy-breadcrumb', null)
 const isLink = computed(() => !!props.to || !!props.href || props.clickable)
 
 function handleClick(event: MouseEvent) {
@@ -31,26 +31,26 @@ function handleClick(event: MouseEvent) {
 </script>
 
 <template>
-  <li class="ui-breadcrumb-item">
+  <li class="fy-breadcrumb-item">
     <component
       :is="to ? 'RouterLink' : (href ? 'a' : 'span')"
       :to="to"
       :href="href"
       :replace="replace"
-      :class="['ui-breadcrumb-item__link', { 'is-link': isLink }]"
+      :class="['fy-breadcrumb-item__link', { 'is-link': isLink }]"
       @click="handleClick"
     >
       <slot name="icon">
-        <span v-if="icon" class="material-symbols-outlined ui-breadcrumb-item__icon">{{ icon }}</span>
+        <span v-if="icon" class="material-symbols-outlined fy-breadcrumb-item__icon">{{ icon }}</span>
       </slot>
       <slot />
     </component>
 
-    <span class="ui-breadcrumb-item__separator" aria-hidden="true">
+    <span class="fy-breadcrumb-item__separator" aria-hidden="true">
       <slot name="separator">
         <span
           v-if="breadcrumbContext?.separatorIcon.value"
-          class="material-symbols-outlined ui-breadcrumb-item__separator-icon"
+          class="material-symbols-outlined fy-breadcrumb-item__separator-icon"
         >
           {{ breadcrumbContext.separatorIcon.value }}
         </span>
@@ -61,17 +61,17 @@ function handleClick(event: MouseEvent) {
 </template>
 
 <style scoped lang="scss">
-.ui-breadcrumb-item {
+.fy-breadcrumb-item {
   display: inline-flex;
   align-items: center;
-  font-size: var(--font-size-sm);
+  font-size: var(--fy-font-size-sm);
   font-weight: 600;
-  color: var(--on-surface-variant);
+  color: var(--fy-on-surface-variant);
 
   &__link {
     color: inherit;
     text-decoration: none;
-    transition: color 0.15s var(--ease-soft);
+    transition: color 0.15s var(--fy-ease-soft);
     display: inline-flex;
     align-items: center;
     gap: 4px;
@@ -80,7 +80,7 @@ function handleClick(event: MouseEvent) {
       cursor: pointer;
 
       &:hover {
-        color: var(--primary);
+        color: var(--fy-primary);
       }
     }
   }
@@ -91,14 +91,14 @@ function handleClick(event: MouseEvent) {
   }
 
   &:last-child &__link {
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     font-weight: 700;
     cursor: default;
   }
 
   &__separator {
     margin: 0 6px;
-    color: var(--outline-variant);
+    color: var(--fy-outline-variant);
     display: inline-flex;
     align-items: center;
   }

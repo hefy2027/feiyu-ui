@@ -41,15 +41,15 @@ function toggleCollapse() {
 <template>
   <aside
     :class="[
-      'ui-layout-sider',
+      'fy-layout-sider',
       {
-        'ui-layout-sider--collapsed': collapsed,
-        'ui-layout-sider--bordered': bordered
+        'fy-layout-sider--collapsed': collapsed,
+        'fy-layout-sider--bordered': bordered
       }
     ]"
     :style="{ width: currentWidth, minWidth: currentWidth, maxWidth: currentWidth, flex: `0 0 ${currentWidth}` }"
   >
-    <div class="ui-layout-sider__content">
+    <div class="fy-layout-sider__content">
       <slot />
     </div>
 
@@ -60,7 +60,7 @@ function toggleCollapse() {
       :toggle-collapse="toggleCollapse"
     >
       <div
-        class="ui-layout-sider__trigger"
+        class="fy-layout-sider__trigger"
         @click="toggleCollapse"
       >
         <span class="material-symbols-outlined">
@@ -72,16 +72,16 @@ function toggleCollapse() {
 </template>
 
 <style scoped lang="scss">
-.ui-layout-sider {
+.fy-layout-sider {
   position: relative;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   height: 100%;
-  transition: width 0.28s var(--ease-out), flex 0.28s var(--ease-out);
+  transition: width 0.28s var(--fy-ease-out), flex 0.28s var(--fy-ease-out);
 
   &--bordered {
-    border-right: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    border-right: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
   }
 
   &__content {
@@ -98,13 +98,13 @@ function toggleCollapse() {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-top: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
-    color: var(--outline);
+    border-top: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
+    color: var(--fy-outline);
     transition: color 0.15s ease, background 0.15s ease;
 
     &:hover {
-      color: var(--primary);
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+      color: var(--fy-primary);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
     }
   }
 }

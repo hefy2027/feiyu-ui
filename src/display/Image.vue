@@ -33,7 +33,7 @@ const emit = defineEmits<{
   click: [event: MouseEvent]
 }>()
 
-const groupContext = inject<ImageGroupContext | null>('ui-image-group', null)
+const groupContext = inject<ImageGroupContext | null>('fy-image-group', null)
 
 const isError = ref(false)
 const isLoaded = ref(false)
@@ -132,7 +132,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="ui-image"
+    class="fy-image"
     :style="{
       width: typeof width === 'number' ? `${width}px` : width,
       height: typeof height === 'number' ? `${height}px` : height,
@@ -144,48 +144,48 @@ onUnmounted(() => {
       :alt="alt"
       :loading="lazy ? 'lazy' : undefined"
       :style="imgStyle"
-      :class="['ui-image__img', { 'is-previewable': !previewDisabled && !isError }]"
+      :class="['fy-image__img', { 'is-previewable': !previewDisabled && !isError }]"
       @click="handleImageClick"
       @load="handleImgLoad"
       @error="handleImgError"
     />
 
-    <div v-if="!previewDisabled && !isError" class="ui-image__overlay" @click="handleImageClick">
-      <span class="material-symbols-outlined ui-image__overlay-icon">visibility</span>
+    <div v-if="!previewDisabled && !isError" class="fy-image__overlay" @click="handleImageClick">
+      <span class="material-symbols-outlined fy-image__overlay-icon">visibility</span>
     </div>
 
     <!-- Lightbox Modal (for standalone image) -->
     <teleport to="body">
-      <transition name="ui-image-fade">
-        <div v-if="!groupContext && isPreviewOpen" class="ui-image-lightbox" @click="closePreview">
+      <transition name="fy-image-fade">
+        <div v-if="!groupContext && isPreviewOpen" class="fy-image-lightbox" @click="closePreview">
           <!-- Top Control Toolbar -->
-          <div class="ui-image-lightbox__toolbar" @click.stop>
-            <button type="button" class="ui-image-lightbox__btn" title="缩小" @click="zoomOut">
+          <div class="fy-image-lightbox__toolbar" @click.stop>
+            <button type="button" class="fy-image-lightbox__btn" title="缩小" @click="zoomOut">
               <span class="material-symbols-outlined">zoom_out</span>
             </button>
-            <button type="button" class="ui-image-lightbox__btn" title="放大" @click="zoomIn">
+            <button type="button" class="fy-image-lightbox__btn" title="放大" @click="zoomIn">
               <span class="material-symbols-outlined">zoom_in</span>
             </button>
-            <button type="button" class="ui-image-lightbox__btn" title="向左旋转" @click="rotateLeft">
+            <button type="button" class="fy-image-lightbox__btn" title="向左旋转" @click="rotateLeft">
               <span class="material-symbols-outlined">rotate_left</span>
             </button>
-            <button type="button" class="ui-image-lightbox__btn" title="向右旋转" @click="rotateRight">
+            <button type="button" class="fy-image-lightbox__btn" title="向右旋转" @click="rotateRight">
               <span class="material-symbols-outlined">rotate_right</span>
             </button>
-            <button type="button" class="ui-image-lightbox__btn" title="重置" @click="resetTransform">
+            <button type="button" class="fy-image-lightbox__btn" title="重置" @click="resetTransform">
               <span class="material-symbols-outlined">restart_alt</span>
             </button>
-            <button type="button" class="ui-image-lightbox__btn ui-image-lightbox__btn--close" title="关闭" @click="closePreview">
+            <button type="button" class="fy-image-lightbox__btn fy-image-lightbox__btn--close" title="关闭" @click="closePreview">
               <span class="material-symbols-outlined">close</span>
             </button>
           </div>
 
           <!-- Full Preview Container -->
-          <div class="ui-image-lightbox__canvas" @click.stop>
+          <div class="fy-image-lightbox__canvas" @click.stop>
             <img
               :src="previewSrc || src"
               :alt="alt"
-              class="ui-image-lightbox__img"
+              class="fy-image-lightbox__img"
               :style="previewImageStyle"
             />
           </div>
@@ -196,19 +196,19 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-image {
+.fy-image {
   position: relative;
   display: inline-flex;
-  border-radius: var(--r-md);
+  border-radius: var(--fy-r-md);
   overflow: hidden;
   vertical-align: middle;
-  background: color-mix(in srgb, var(--surface-container-high) 50%, transparent);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 50%, transparent);
 
   &__img {
     width: 100%;
     height: 100%;
     display: block;
-    transition: transform 0.25s var(--ease-soft);
+    transition: transform 0.25s var(--fy-ease-soft);
 
     &.is-previewable {
       cursor: pointer;
@@ -239,7 +239,7 @@ onUnmounted(() => {
 }
 
 /* Lightbox View */
-.ui-image-lightbox {
+.fy-image-lightbox {
   position: fixed;
   inset: 0;
   z-index: 1000;
@@ -257,18 +257,18 @@ onUnmounted(() => {
     align-items: center;
     gap: 12px;
     padding: 8px 16px;
-    border-radius: var(--r-full);
-    background: color-mix(in srgb, var(--surface-container-lowest) 88%, transparent);
+    border-radius: var(--fy-r-full);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 88%, transparent);
     backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop);
     z-index: 1010;
   }
 
   &__btn {
     border: none;
     background: transparent;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     cursor: pointer;
     padding: 6px;
     border-radius: 50%;
@@ -278,8 +278,8 @@ onUnmounted(() => {
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
+      color: var(--fy-primary);
     }
 
     .material-symbols-outlined {
@@ -287,7 +287,7 @@ onUnmounted(() => {
     }
 
     &--close:hover {
-      color: var(--error);
+      color: var(--fy-error);
     }
   }
 
@@ -304,18 +304,18 @@ onUnmounted(() => {
     max-width: 90vw;
     max-height: 85vh;
     object-fit: contain;
-    border-radius: var(--r-md);
+    border-radius: var(--fy-r-md);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s var(--ease-soft);
+    transition: transform 0.2s var(--fy-ease-soft);
   }
 }
 
-.ui-image-fade-enter-active,
-.ui-image-fade-leave-active {
-  transition: opacity 0.22s var(--ease-soft);
+.fy-image-fade-enter-active,
+.fy-image-fade-leave-active {
+  transition: opacity 0.22s var(--fy-ease-soft);
 }
-.ui-image-fade-enter-from,
-.ui-image-fade-leave-to {
+.fy-image-fade-enter-from,
+.fy-image-fade-leave-to {
   opacity: 0;
 }
 </style>

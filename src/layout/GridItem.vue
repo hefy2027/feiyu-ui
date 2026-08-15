@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
   suffix: false
 })
 
-const gridContext = inject<GridContext | null>('ui-grid', null)
+const gridContext = inject<GridContext | null>('fy-grid', null)
 
 const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1200)
 
@@ -97,8 +97,8 @@ const itemStyle = computed<CSSProperties>(() => {
 <template>
   <div
     :class="[
-      'ui-grid-item',
-      { 'ui-grid-item--suffix': suffix }
+      'fy-grid-item',
+      { 'fy-grid-item--suffix': suffix }
     ]"
     :style="itemStyle"
   >
@@ -107,7 +107,7 @@ const itemStyle = computed<CSSProperties>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-grid-item {
+.fy-grid-item {
   box-sizing: border-box;
   min-width: 0;
 }

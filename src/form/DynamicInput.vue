@@ -31,7 +31,7 @@ const emit = defineEmits<{
   remove: [index: number]
 }>()
 
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const list = computed(() => {
   return props.modelValue && props.modelValue.length > 0 ? props.modelValue : ['']
@@ -65,14 +65,14 @@ function handleRemove(index: number) {
 </script>
 
 <template>
-  <div :class="['ui-dynamic-input', `ui-dynamic-input--${size}`, { 'is-disabled': disabled }]">
-    <div class="ui-dynamic-input__list">
+  <div :class="['fy-dynamic-input', `fy-dynamic-input--${size}`, { 'is-disabled': disabled }]">
+    <div class="fy-dynamic-input__list">
       <div
         v-for="(item, index) in list"
         :key="index"
-        class="ui-dynamic-input__row"
+        class="fy-dynamic-input__row"
       >
-        <div class="ui-dynamic-input__field">
+        <div class="fy-dynamic-input__field">
           <slot :value="item" :index="index" :update="(val: string) => updateItem(index, val)" :remove="() => handleRemove(index)">
             <Input
               :model-value="String(item)"
@@ -87,7 +87,7 @@ function handleRemove(index: number) {
 
         <button
           type="button"
-          class="ui-dynamic-input__remove-btn"
+          class="fy-dynamic-input__remove-btn"
           :disabled="disabled || list.length <= min"
           aria-label="删除此项"
           @click="handleRemove(index)"
@@ -97,7 +97,7 @@ function handleRemove(index: number) {
       </div>
     </div>
 
-    <div v-if="list.length < max" class="ui-dynamic-input__action">
+    <div v-if="list.length < max" class="fy-dynamic-input__action">
       <slot name="action" :add="handleAdd" :disabled="disabled || list.length >= max">
       <Button
         variant="dashed"
@@ -115,7 +115,7 @@ function handleRemove(index: number) {
 </template>
 
 <style scoped lang="scss">
-.ui-dynamic-input {
+.fy-dynamic-input {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -141,7 +141,7 @@ function handleRemove(index: number) {
   &__remove-btn {
     border: none;
     background: transparent;
-    color: var(--outline);
+    color: var(--fy-outline);
     cursor: pointer;
     padding: 4px;
     display: flex;
@@ -152,8 +152,8 @@ function handleRemove(index: number) {
     flex-shrink: 0;
 
     &:hover:not(:disabled) {
-      color: var(--error);
-      background: color-mix(in srgb, var(--error) 12%, transparent);
+      color: var(--fy-error);
+      background: color-mix(in srgb, var(--fy-error) 12%, transparent);
     }
 
     &:disabled {

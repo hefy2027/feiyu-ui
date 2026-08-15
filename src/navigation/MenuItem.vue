@@ -26,7 +26,7 @@ const emit = defineEmits<{
   click: [index: string | number]
 }>()
 
-const menuContext = inject<MenuContext | null>('ui-menu', null)
+const menuContext = inject<MenuContext | null>('fy-menu', null)
 
 const itemKey = computed(() => props.index ?? props.name ?? props.value ?? '')
 
@@ -52,7 +52,7 @@ function handleClick() {
     :is="to ? 'RouterLink' : 'div'"
     :to="to"
     :class="[
-      'ui-menu-item',
+      'fy-menu-item',
       {
         'is-active': isActive,
         'is-disabled': disabled,
@@ -64,18 +64,18 @@ function handleClick() {
     @click="handleClick"
   >
     <slot name="icon">
-    <span v-if="icon" class="material-symbols-outlined ui-menu-item__icon">
+    <span v-if="icon" class="material-symbols-outlined fy-menu-item__icon">
       {{ icon }}
     </span>
     </slot>
 
-    <span v-if="!isCollapsed" class="ui-menu-item__label">
+    <span v-if="!isCollapsed" class="fy-menu-item__label">
       <slot />
     </span>
 
     <span
       v-if="!isCollapsed && (badge !== undefined || $slots.badge)"
-      class="ui-menu-item__badge"
+      class="fy-menu-item__badge"
     >
       <slot name="badge">
         {{ badge }}
@@ -85,32 +85,32 @@ function handleClick() {
 </template>
 
 <style scoped lang="scss">
-.ui-menu-item {
+.fy-menu-item {
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 11px 14px;
-  border-radius: var(--r-md);
-  color: var(--on-surface-variant);
+  border-radius: var(--fy-r-md);
+  color: var(--fy-on-surface-variant);
   font-weight: 600;
-  font-size: var(--font-size-base);
+  font-size: var(--fy-font-size-base);
   text-decoration: none;
   cursor: pointer;
   transition:
-    background 0.2s var(--ease-soft),
-    color 0.2s var(--ease-soft),
-    transform 0.15s var(--ease-soft);
+    background 0.2s var(--fy-ease-soft),
+    color 0.2s var(--fy-ease-soft),
+    transform 0.15s var(--fy-ease-soft);
 
   &:hover:not(.is-disabled) {
-    background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
-    color: var(--on-surface);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
+    color: var(--fy-on-surface);
   }
 
   &.is-active {
-    color: var(--primary);
-    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    color: var(--fy-primary);
+    background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
 
-    .ui-menu-item__icon {
+    .fy-menu-item__icon {
       font-variation-settings: "opsz" 24, "FILL" 1;
     }
   }
@@ -143,9 +143,9 @@ function handleClick() {
     font-size: 11px;
     font-weight: 800;
     padding: 2px 7px;
-    border-radius: var(--r-full);
-    background: color-mix(in srgb, var(--primary) 15%, transparent);
-    color: var(--primary);
+    border-radius: var(--fy-r-full);
+    background: color-mix(in srgb, var(--fy-primary) 15%, transparent);
+    color: var(--fy-primary);
   }
 }
 </style>

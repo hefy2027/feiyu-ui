@@ -51,7 +51,7 @@ const emit = defineEmits<{
 
 const fileInputRef = ref<HTMLInputElement | null>(null)
 const isDragOver = ref(false)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const effectiveFiles = computed<UploadFile[]>(() => {
   return props.fileList !== undefined ? props.fileList : (props.modelValue || [])
@@ -147,14 +147,14 @@ function removeFile(file: UploadFile) {
 </script>
 
 <template>
-  <div :class="['ui-upload', { 'is-disabled': disabled }]">
+  <div :class="['fy-upload', { 'is-disabled': disabled }]">
     <input
       ref="fileInputRef"
       type="file"
       :accept="accept"
       :multiple="multiple"
       :disabled="disabled"
-      class="ui-upload__native-input"
+      class="fy-upload__native-input"
       @change="handleFileChange"
     />
 
@@ -162,7 +162,7 @@ function removeFile(file: UploadFile) {
     <div
       v-if="drag"
       :class="[
-        'ui-upload__drag-area',
+        'fy-upload__drag-area',
         {
           'is-dragover': isDragOver,
           'is-disabled': disabled
@@ -174,11 +174,11 @@ function removeFile(file: UploadFile) {
       @drop.prevent="handleDrop"
     >
       <slot name="drag">
-        <div class="ui-upload__drag-content">
-          <span class="material-symbols-outlined ui-upload__drag-icon">cloud_upload</span>
-          <div class="ui-upload__drag-text">
+        <div class="fy-upload__drag-content">
+          <span class="material-symbols-outlined fy-upload__drag-icon">cloud_upload</span>
+          <div class="fy-upload__drag-text">
             <span>点击或将文件拖拽到这里上传</span>
-            <p v-if="accept || maxSize" class="ui-upload__drag-tip">
+            <p v-if="accept || maxSize" class="fy-upload__drag-tip">
               <template v-if="accept">支持 {{ accept }} 格式</template>
               <template v-if="maxSize">，大小不超过 {{ maxSize }}MB</template>
             </p>
@@ -188,9 +188,9 @@ function removeFile(file: UploadFile) {
     </div>
 
     <!-- Default Trigger Slot -->
-    <div v-else class="ui-upload__trigger" @click="triggerUpload">
+    <div v-else class="fy-upload__trigger" @click="triggerUpload">
       <slot>
-        <button type="button" class="ui-upload__default-btn">
+        <button type="button" class="fy-upload__default-btn">
           <span class="material-symbols-outlined">attach_file</span>
           <span>选择文件</span>
         </button>
@@ -198,33 +198,33 @@ function removeFile(file: UploadFile) {
     </div>
 
     <!-- Uploaded File List -->
-    <div v-if="showFileList && effectiveFiles.length > 0" class="ui-upload__file-list" :class="`ui-upload__file-list--${listType}`">
+    <div v-if="showFileList && effectiveFiles.length > 0" class="fy-upload__file-list" :class="`fy-upload__file-list--${listType}`">
       <div
         v-for="file in effectiveFiles"
         :key="file.id"
-        class="ui-upload__file-item"
+        class="fy-upload__file-item"
       >
-        <div class="ui-upload__file-info">
+        <div class="fy-upload__file-info">
           <img
             v-if="file.url && file.type?.startsWith('image/')"
             :src="file.url"
             :alt="file.name"
-            class="ui-upload__file-thumb"
+            class="fy-upload__file-thumb"
           />
-          <span v-else class="material-symbols-outlined ui-upload__file-icon">
+          <span v-else class="material-symbols-outlined fy-upload__file-icon">
             description
           </span>
 
-          <div class="ui-upload__file-meta">
-            <span class="ui-upload__file-name" :title="file.name">{{ file.name }}</span>
-            <span v-if="file.size" class="ui-upload__file-size">{{ formatFileSize(file.size) }}</span>
+          <div class="fy-upload__file-meta">
+            <span class="fy-upload__file-name" :title="file.name">{{ file.name }}</span>
+            <span v-if="file.size" class="fy-upload__file-size">{{ formatFileSize(file.size) }}</span>
           </div>
         </div>
 
         <button
           v-if="!disabled"
           type="button"
-          class="ui-upload__file-remove"
+          class="fy-upload__file-remove"
           aria-label="删除文件"
           @click.stop="removeFile(file)"
         >
@@ -236,7 +236,7 @@ function removeFile(file: UploadFile) {
 </template>
 
 <style scoped lang="scss">
-.ui-upload {
+.fy-upload {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -256,20 +256,20 @@ function removeFile(file: UploadFile) {
     align-items: center;
     gap: 6px;
     padding: 8px 16px;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-high) 45%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 45%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
-    color: var(--on-surface);
-    font-size: var(--font-size-sm);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
+    color: var(--fy-on-surface);
+    font-size: var(--fy-font-size-sm);
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s var(--ease-soft);
+    transition: all 0.2s var(--fy-ease-soft);
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-high) 75%, transparent);
-      border-color: color-mix(in srgb, var(--primary) 50%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 75%, transparent);
+      border-color: color-mix(in srgb, var(--fy-primary) 50%, transparent);
     }
 
     .material-symbols-outlined {
@@ -279,25 +279,25 @@ function removeFile(file: UploadFile) {
 
   /* Drag & Drop Area */
   &__drag-area {
-    border: 2px dashed color-mix(in srgb, var(--outline-variant) 60%, transparent);
-    border-radius: var(--r-lg);
+    border: 2px dashed color-mix(in srgb, var(--fy-outline-variant) 60%, transparent);
+    border-radius: var(--fy-r-lg);
     padding: 28px 20px;
-    background: color-mix(in srgb, var(--surface-container-low) 50%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-low) 50%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     display: grid;
     place-items: center;
     cursor: pointer;
-    transition: all 0.22s var(--ease-soft);
+    transition: all 0.22s var(--fy-ease-soft);
 
     &:hover:not(.is-disabled) {
-      border-color: var(--primary);
-      background: color-mix(in srgb, var(--primary) 6%, transparent);
+      border-color: var(--fy-primary);
+      background: color-mix(in srgb, var(--fy-primary) 6%, transparent);
     }
 
     &.is-dragover {
-      border-color: var(--primary);
-      background: color-mix(in srgb, var(--primary) 12%, transparent);
+      border-color: var(--fy-primary);
+      background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
       transform: scale(0.99);
     }
 
@@ -317,19 +317,19 @@ function removeFile(file: UploadFile) {
 
   &__drag-icon {
     font-size: 38px;
-    color: var(--primary);
+    color: var(--fy-primary);
   }
 
   &__drag-text {
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
     font-weight: 700;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
   }
 
   &__drag-tip {
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     font-weight: 500;
-    color: var(--outline);
+    color: var(--fy-outline);
     margin-top: 4px;
   }
 
@@ -345,15 +345,15 @@ function removeFile(file: UploadFile) {
     align-items: center;
     justify-content: space-between;
     padding: 8px 12px;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-high) 35%, transparent);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 35%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     transition: background 0.15s ease;
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
     }
   }
 
@@ -368,14 +368,14 @@ function removeFile(file: UploadFile) {
   &__file-thumb {
     width: 32px;
     height: 32px;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
     object-fit: cover;
     flex-shrink: 0;
   }
 
   &__file-icon {
     font-size: 22px;
-    color: var(--outline);
+    color: var(--fy-outline);
     flex-shrink: 0;
   }
 
@@ -386,9 +386,9 @@ function removeFile(file: UploadFile) {
   }
 
   &__file-name {
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
     font-weight: 600;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -396,7 +396,7 @@ function removeFile(file: UploadFile) {
 
   &__file-size {
     font-size: 11px;
-    color: var(--outline);
+    color: var(--fy-outline);
     font-weight: 500;
   }
 
@@ -408,13 +408,13 @@ function removeFile(file: UploadFile) {
     place-items: center;
     border: none;
     background: transparent;
-    color: var(--outline);
+    color: var(--fy-outline);
     cursor: pointer;
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover {
-      background: color-mix(in srgb, var(--error) 15%, transparent);
-      color: var(--error);
+      background: color-mix(in srgb, var(--fy-error) 15%, transparent);
+      color: var(--fy-error);
     }
 
     .material-symbols-outlined {

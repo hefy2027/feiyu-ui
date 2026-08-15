@@ -155,11 +155,11 @@ onMounted(() => {
 
 <template>
   <Teleport to="body">
-    <div v-if="visible" class="ui-tour-overlay">
+    <div v-if="visible" class="fy-tour-overlay">
       <!-- Spotlight cutout / focus border -->
       <div
         v-if="targetRect"
-        class="ui-tour-spotlight"
+        class="fy-tour-spotlight"
         :style="{
           top: `${targetRect.top - 4}px`,
           left: `${targetRect.left - 4}px`,
@@ -170,27 +170,27 @@ onMounted(() => {
 
       <!-- Tour popover card -->
       <div
-        class="ui-tour-card"
+        class="fy-tour-card"
         :style="popoverStyle"
       >
-        <div class="ui-tour-card__head">
-          <div class="ui-tour-card__step-tag">
+        <div class="fy-tour-card__head">
+          <div class="fy-tour-card__step-tag">
             步骤 {{ activeIndex + 1 }} / {{ steps.length }}
           </div>
-          <button type="button" class="ui-tour-card__close" @click="close">
+          <button type="button" class="fy-tour-card__close" @click="close">
             <span class="material-symbols-outlined">close</span>
           </button>
         </div>
 
-        <div class="ui-tour-card__title">{{ currentStep?.title }}</div>
-        <div class="ui-tour-card__desc">{{ currentStep?.description }}</div>
+        <div class="fy-tour-card__title">{{ currentStep?.title }}</div>
+        <div class="fy-tour-card__desc">{{ currentStep?.description }}</div>
 
-        <div class="ui-tour-card__foot">
-          <div class="ui-tour-card__dots">
+        <div class="fy-tour-card__foot">
+          <div class="fy-tour-card__dots">
             <span
               v-for="(_, i) in steps"
               :key="i"
-              :class="['ui-tour-card__dot', { 'is-active': i === activeIndex }]"
+              :class="['fy-tour-card__dot', { 'is-active': i === activeIndex }]"
             />
           </div>
           <Space :size="8">
@@ -208,7 +208,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-tour-overlay {
+.fy-tour-overlay {
   position: fixed;
   inset: 0;
   z-index: 9998;
@@ -218,27 +218,27 @@ onMounted(() => {
   pointer-events: auto;
 }
 
-.ui-tour-spotlight {
+.fy-tour-spotlight {
   position: absolute;
-  border-radius: var(--r-md);
+  border-radius: var(--fy-r-md);
   box-shadow:
     0 0 0 9999px rgba(10, 12, 20, 0.55),
-    0 0 20px color-mix(in srgb, var(--primary) 60%, transparent);
-  border: 2px solid var(--primary);
+    0 0 20px color-mix(in srgb, var(--fy-primary) 60%, transparent);
+  border: 2px solid var(--fy-primary);
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.ui-tour-card {
+.fy-tour-card {
   position: absolute;
   width: 340px;
-  background: color-mix(in srgb, var(--surface-container-highest) 90%, transparent);
+  background: color-mix(in srgb, var(--fy-surface-container-highest) 90%, transparent);
   backdrop-filter: blur(24px) saturate(1.5);
   -webkit-backdrop-filter: blur(24px) saturate(1.5);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-xl);
+  border: 1px solid var(--fy-glass-border);
+  border-radius: var(--fy-r-xl);
   padding: 18px;
-  box-shadow: var(--shadow-pop), 0 12px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 var(--glass-hi);
+  box-shadow: var(--fy-shadow-pop), 0 12px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 var(--fy-glass-hi);
   user-select: none;
   z-index: 10000;
   transition: all 0.3s ease;
@@ -253,8 +253,8 @@ onMounted(() => {
   &__step-tag {
     font-size: 11px;
     font-weight: 700;
-    color: var(--primary);
-    background: color-mix(in srgb, var(--primary) 14%, transparent);
+    color: var(--fy-primary);
+    background: color-mix(in srgb, var(--fy-primary) 14%, transparent);
     padding: 2px 8px;
     border-radius: 999px;
   }
@@ -262,14 +262,14 @@ onMounted(() => {
   &__close {
     border: none;
     background: transparent;
-    color: var(--outline);
+    color: var(--fy-outline);
     cursor: pointer;
     padding: 0;
     display: flex;
     align-items: center;
 
     &:hover {
-      color: var(--on-surface);
+      color: var(--fy-on-surface);
     }
 
     .material-symbols-outlined {
@@ -278,15 +278,15 @@ onMounted(() => {
   }
 
   &__title {
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
     font-weight: 700;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     margin-bottom: 6px;
   }
 
   &__desc {
-    font-size: var(--font-size-xs);
-    color: var(--on-surface-variant);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-on-surface-variant);
     line-height: 1.5;
     margin-bottom: 16px;
   }
@@ -307,13 +307,13 @@ onMounted(() => {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: color-mix(in srgb, var(--outline) 40%, transparent);
+    background: color-mix(in srgb, var(--fy-outline) 40%, transparent);
     transition: all 0.2s ease;
 
     &.is-active {
       width: 14px;
       border-radius: 4px;
-      background: var(--primary);
+      background: var(--fy-primary);
     }
   }
 }

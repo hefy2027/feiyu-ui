@@ -81,21 +81,21 @@ onBeforeUnmount(() => {
   <Transition name="notice-fade">
     <div
       v-if="isShow"
-      :class="['ui-notice', `ui-notice--${type}`]"
+      :class="['fy-notice', `fy-notice--${type}`]"
       role="alert"
       @mouseenter="clearTimer"
       @mouseleave="startTimer"
     >
-      <span v-if="showIcon" class="material-symbols-outlined ui-notice__icon">
+      <span v-if="showIcon" class="material-symbols-outlined fy-notice__icon">
         <slot name="icon">{{ iconMap[type] }}</slot>
       </span>
 
-      <div class="ui-notice__content">
-        <div class="ui-notice__title">{{ title }}</div>
-        <div v-if="description || $slots.default" class="ui-notice__desc">
+      <div class="fy-notice__content">
+        <div class="fy-notice__title">{{ title }}</div>
+        <div v-if="description || $slots.default" class="fy-notice__desc">
           <slot>{{ description }}</slot>
         </div>
-        <div v-if="$slots.action" class="ui-notice__action">
+        <div v-if="$slots.action" class="fy-notice__action">
           <slot name="action" />
         </div>
       </div>
@@ -103,7 +103,7 @@ onBeforeUnmount(() => {
       <button
         v-if="closable"
         type="button"
-        class="ui-notice__close-btn"
+        class="fy-notice__close-btn"
         aria-label="关闭通知"
         @click="close"
       >
@@ -114,7 +114,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-notice {
+.fy-notice {
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -122,12 +122,12 @@ onBeforeUnmount(() => {
   width: 360px;
   max-width: calc(100vw - 32px);
   padding: 16px;
-  border-radius: var(--r-lg);
-  background: color-mix(in srgb, var(--surface-container-high) 85%, transparent);
+  border-radius: var(--fy-r-lg);
+  background: color-mix(in srgb, var(--fy-surface-container-high) 85%, transparent);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-lg), 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 var(--glass-hi);
+  border: 1px solid var(--fy-glass-border);
+  box-shadow: var(--fy-shadow-lg), 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 var(--fy-glass-hi);
   margin-bottom: 12px;
   user-select: none;
 
@@ -137,21 +137,21 @@ onBeforeUnmount(() => {
     margin-top: 1px;
   }
 
-  &--info {
-    .ui-notice__icon { color: var(--primary); }
-    border-left: 3px solid var(--primary);
+  &--fy-info {
+    .fy-notice__icon { color: var(--fy-primary); }
+    border-left: 3px solid var(--fy-primary);
   }
-  &--success {
-    .ui-notice__icon { color: var(--theme-green, #10b981); }
-    border-left: 3px solid var(--theme-green, #10b981);
+  &--fy-success {
+    .fy-notice__icon { color: var(--fy-theme-green, #10b981); }
+    border-left: 3px solid var(--fy-theme-green, #10b981);
   }
-  &--warning {
-    .ui-notice__icon { color: var(--theme-yellow, #f59e0b); }
-    border-left: 3px solid var(--theme-yellow, #f59e0b);
+  &--fy-warning {
+    .fy-notice__icon { color: var(--fy-theme-yellow, #f59e0b); }
+    border-left: 3px solid var(--fy-theme-yellow, #f59e0b);
   }
-  &--error {
-    .ui-notice__icon { color: var(--error, #ba1a1a); }
-    border-left: 3px solid var(--error, #ba1a1a);
+  &--fy-error {
+    .fy-notice__icon { color: var(--fy-error, #ba1a1a); }
+    border-left: 3px solid var(--fy-error, #ba1a1a);
   }
 
   &__content {
@@ -160,16 +160,16 @@ onBeforeUnmount(() => {
   }
 
   &__title {
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
     font-weight: 700;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     line-height: 1.4;
   }
 
   &__desc {
     margin-top: 4px;
-    font-size: var(--font-size-xs);
-    color: var(--on-surface-variant);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-on-surface-variant);
     line-height: 1.5;
     word-break: break-word;
   }
@@ -184,7 +184,7 @@ onBeforeUnmount(() => {
     right: 12px;
     border: none;
     background: transparent;
-    color: var(--outline);
+    color: var(--fy-outline);
     cursor: pointer;
     padding: 0;
     display: flex;
@@ -193,7 +193,7 @@ onBeforeUnmount(() => {
     transition: color 0.15s ease;
 
     &:hover {
-      color: var(--on-surface);
+      color: var(--fy-on-surface);
     }
 
     .material-symbols-outlined {

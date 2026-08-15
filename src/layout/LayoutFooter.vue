@@ -23,8 +23,8 @@ const footerStyle = computed<CSSProperties>(() => {
 <template>
   <footer
     :class="[
-      'ui-layout-footer',
-      { 'ui-layout-footer--bordered': bordered }
+      'fy-layout-footer',
+      { 'fy-layout-footer--bordered': bordered }
     ]"
     :style="footerStyle"
   >
@@ -33,19 +33,19 @@ const footerStyle = computed<CSSProperties>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-layout-footer {
+.fy-layout-footer {
   box-sizing: border-box;
   width: 100%;
   flex-shrink: 0;
   padding: 16px 24px;
-  font-size: var(--font-size-xs);
-  color: var(--outline);
+  font-size: var(--fy-font-size-xs);
+  color: var(--fy-outline);
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   &--bordered {
-    border-top: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
   }
 }
 </style>

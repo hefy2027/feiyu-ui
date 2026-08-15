@@ -35,18 +35,18 @@ const props = withDefaults(defineProps<Props>(), {
   <component
     :is="tag"
     :class="[
-      'ui-text',
-      `ui-text--${type}`,
-      typeof size === 'string' ? `ui-text--size-${size}` : '',
-      depth ? `ui-text--depth-${depth}` : '',
+      'fy-text',
+      `fy-text--${type}`,
+      typeof size === 'string' ? `fy-text--size-${size}` : '',
+      depth ? `fy-text--depth-${depth}` : '',
       {
-        'ui-text--strong': strong,
-        'ui-text--italic': italic,
-        'ui-text--underline': underline,
-        'ui-text--delete': props.delete,
-        'ui-text--code': code,
-        'ui-text--mark': mark,
-        'ui-text--truncate': truncate
+        'fy-text--strong': strong,
+        'fy-text--italic': italic,
+        'fy-text--underline': underline,
+        'fy-text--delete': props.delete,
+        'fy-text--code': code,
+        'fy-text--mark': mark,
+        'fy-text--truncate': truncate
       }
     ]"
     :style="typeof size === 'number' ? { fontSize: `${size}px` } : undefined"
@@ -56,30 +56,30 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped lang="scss">
-.ui-text {
+.fy-text {
   display: inline;
   font-family: inherit;
-  color: var(--on-surface);
+  color: var(--fy-on-surface);
   transition: color 0.15s ease;
 
   /* Types */
-  &--primary { color: var(--primary); }
-  &--info { color: var(--theme-blue); }
-  &--success { color: var(--status-done); }
-  &--warning { color: var(--status-review); }
-  &--error { color: var(--error); }
+  &--fy-primary { color: var(--fy-primary); }
+  &--fy-info { color: var(--fy-theme-blue); }
+  &--fy-success { color: var(--fy-status-done); }
+  &--fy-warning { color: var(--fy-status-review); }
+  &--fy-error { color: var(--fy-error); }
 
   /* Depths */
-  &--depth-1 { color: var(--on-surface); }
-  &--depth-2 { color: var(--on-surface-variant); }
-  &--depth-3 { color: var(--outline); }
+  &--depth-1 { color: var(--fy-on-surface); }
+  &--depth-2 { color: var(--fy-on-surface-variant); }
+  &--depth-3 { color: var(--fy-outline); }
 
   /* Sizes */
-  &--size-xs { font-size: var(--font-size-xs); }
-  &--size-sm { font-size: var(--font-size-sm); }
-  &--size-base { font-size: var(--font-size-base); }
-  &--size-lg { font-size: var(--font-size-lg); }
-  &--size-xl { font-size: var(--font-size-xl); }
+  &--size-xs { font-size: var(--fy-font-size-xs); }
+  &--size-sm { font-size: var(--fy-font-size-sm); }
+  &--size-base { font-size: var(--fy-font-size-base); }
+  &--size-lg { font-size: var(--fy-font-size-lg); }
+  &--size-xl { font-size: var(--fy-font-size-xl); }
 
   /* Modifiers */
   &--strong { font-weight: 700; }
@@ -90,15 +90,15 @@ const props = withDefaults(defineProps<Props>(), {
   &--code {
     font-family: 'JetBrains Mono', Consolas, monospace;
     font-size: 0.88em;
-    background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
     padding: 2px 5px;
     border-radius: 4px;
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
   }
 
   &--mark {
-    background: color-mix(in srgb, var(--primary) 18%, transparent);
-    color: var(--primary);
+    background: color-mix(in srgb, var(--fy-primary) 18%, transparent);
+    color: var(--fy-primary);
     padding: 1px 4px;
     border-radius: 3px;
   }

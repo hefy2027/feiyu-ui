@@ -4,116 +4,116 @@
    1:1 移植自 DESIGN.md / index.html
    ============================================================ */
 :root {
-  --surface: #f8f9fb;
-  --surface-dim: #d9dadc;
-  --surface-bright: #f8f9fb;
-  --surface-container-lowest: #ffffff;
-  --surface-container-low: #f2f4f6;
-  --surface-container: #edeef0;
-  --surface-container-high: #e7e8ea;
-  --surface-container-highest: #e1e2e4;
-  --on-surface: #191c1e;
-  --on-surface-variant: #474556;
-  --inverse-surface: #2e3132;
-  --inverse-on-surface: #f0f1f3;
-  --outline: #787588;
-  --outline-variant: #c8c4d9;
-  --surface-tint: #5537f6;
-  --primary: #441ce7;
-  --on-primary: #ffffff;
-  --primary-container: #5e43ff;
-  --on-primary-container: #e9e3ff;
-  --inverse-primary: #c6bfff;
-  --secondary: #a53b22;
-  --background: #f8f9fb;
-  --on-background: #191c1e;
-  --surface-variant: #e1e2e4;
-  --error: #ba1a1a;
-  --on-error: #ffffff;
+  --fy-surface: #f8f9fb;
+  --fy-surface-dim: #d9dadc;
+  --fy-surface-bright: #f8f9fb;
+  --fy-surface-container-lowest: #ffffff;
+  --fy-surface-container-low: #f2f4f6;
+  --fy-surface-container: #edeef0;
+  --fy-surface-container-high: #e7e8ea;
+  --fy-surface-container-highest: #e1e2e4;
+  --fy-on-surface: #191c1e;
+  --fy-on-surface-variant: #474556;
+  --fy-inverse-surface: #2e3132;
+  --fy-inverse-on-surface: #f0f1f3;
+  --fy-outline: #787588;
+  --fy-outline-variant: #c8c4d9;
+  --fy-surface-tint: #5537f6;
+  --fy-primary: #441ce7;
+  --fy-on-primary: #ffffff;
+  --fy-primary-container: #5e43ff;
+  --fy-on-primary-container: #e9e3ff;
+  --fy-inverse-primary: #c6bfff;
+  --fy-secondary: #a53b22;
+  --fy-background: #f8f9fb;
+  --fy-on-background: #191c1e;
+  --fy-surface-variant: #e1e2e4;
+  --fy-error: #ba1a1a;
+  --fy-on-error: #ffffff;
 
-  --shadow-sm: 0 1px 2px rgba(25, 28, 30, .04), 0 1px 3px rgba(25, 28, 30, .05);
-  --shadow-card: 0 4px 20px rgba(25, 28, 30, .04);
-  --shadow-lift: 0 28px 52px -18px rgba(25, 28, 30, .32), 0 12px 24px -12px rgba(68, 28, 231, .30);
-  --shadow-pop: 0 24px 60px -16px rgba(25, 28, 30, .30);
+  --fy-shadow-sm: 0 1px 2px rgba(25, 28, 30, .04), 0 1px 3px rgba(25, 28, 30, .05);
+  --fy-shadow-card: 0 4px 20px rgba(25, 28, 30, .04);
+  --fy-shadow-lift: 0 28px 52px -18px rgba(25, 28, 30, .32), 0 12px 24px -12px rgba(68, 28, 231, .30);
+  --fy-shadow-pop: 0 24px 60px -16px rgba(25, 28, 30, .30);
 
-  --sidebar-w: 260px;
-  --rail-w: 76px;
-  --topbar-h: 66px;
-  --container-pad: 32px;
-  --card-gap: 24px;
-  --gutter: 16px;
+  --fy-sidebar-w: 260px;
+  --fy-rail-w: 76px;
+  --fy-topbar-h: 66px;
+  --fy-container-pad: 32px;
+  --fy-card-gap: 24px;
+  --fy-gutter: 16px;
 
-  --r-sm: 8px;
-  --r-md: 12px;
-  --r-lg: 16px;
-  --r-xl: 24px;
-  --r-full: 9999px;
+  --fy-r-sm: 8px;
+  --fy-r-md: 12px;
+  --fy-r-lg: 16px;
+  --fy-r-xl: 24px;
+  --fy-r-full: 9999px;
 
-  --ease-out: cubic-bezier(.16, 1, .3, 1);
-  --ease-soft: cubic-bezier(.4, 0, .2, 1);
-  --font-display: "Smiley Sans", "Noto Sans SC", system-ui, sans-serif;
+  --fy-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --fy-ease-soft: cubic-bezier(.4, 0, .2, 1);
+  --fy-font-display: "Smiley Sans", "Noto Sans SC", system-ui, sans-serif;
 
   /* Typography scale */
-  --font-size-xs: 11px;
-  --font-size-sm: 12.5px;
-  --font-size-base: 14px;
-  --font-size-md: 16px;
-  --font-size-lg: 19px;
-  --font-size-xl: 26px;
+  --fy-font-size-xs: 11px;
+  --fy-font-size-sm: 12.5px;
+  --fy-font-size-base: 14px;
+  --fy-font-size-md: 16px;
+  --fy-font-size-lg: 19px;
+  --fy-font-size-xl: 26px;
 
   /* Task themes */
-  --theme-blue: #3b82f6;
-  --theme-purple: #8b5cf6;
-  --theme-red: #ef4444;
-  --theme-yellow: #f59e0b;
-  --theme-green: #10b981;
-  --theme-pink: #ec4899;
-  --theme-cyan: #06b6d4;
-  --status-todo: #64748b;
-  --status-prog: #0ea5e9;
-  --status-review: #f59e0b;
-  --status-done: #10b981;
+  --fy-theme-blue: #3b82f6;
+  --fy-theme-purple: #8b5cf6;
+  --fy-theme-red: #ef4444;
+  --fy-theme-yellow: #f59e0b;
+  --fy-theme-green: #10b981;
+  --fy-theme-pink: #ec4899;
+  --fy-theme-cyan: #06b6d4;
+  --fy-status-todo: #64748b;
+  --fy-status-prog: #0ea5e9;
+  --fy-status-review: #f59e0b;
+  --fy-status-done: #10b981;
 
   /* Frosted-glass support tokens */
-  --bg-base: #eef0fb;
-  --glass-border: rgba(255, 255, 255, .55);
-  --glass-hi: rgba(255, 255, 255, .65);
-  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --fy-bg-base: #eef0fb;
+  --fy-glass-border: rgba(255, 255, 255, .55);
+  --fy-glass-hi: rgba(255, 255, 255, .65);
+  --fy-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 html.dark {
-  --surface: #16181b;
-  --surface-dim: #2a2d31;
-  --surface-bright: #1b1e21;
-  --surface-container-lowest: #101113;
-  --surface-container-low: #1d2023;
-  --surface-container: #232629;
-  --surface-container-high: #2c2f33;
-  --surface-container-highest: #34383d;
-  --on-surface: #f0f1f3;
-  --on-surface-variant: #b6b9c0;
-  --inverse-surface: #e6e7ea;
-  --inverse-on-surface: #191c1e;
-  --outline: #8d8f9b;
-  --outline-variant: #3a3d42;
-  --primary: #c6bfff;
-  --on-primary: #160066;
-  --primary-container: #3b1fb8;
-  --on-primary-container: #e9e3ff;
-  --inverse-primary: #5537f6;
-  --secondary: #ffb4a3;
-  --background: #101113;
-  --on-background: #f0f1f3;
-  --surface-variant: #2a2d31;
-  --error: #ffb4ab;
+  --fy-surface: #16181b;
+  --fy-surface-dim: #2a2d31;
+  --fy-surface-bright: #1b1e21;
+  --fy-surface-container-lowest: #101113;
+  --fy-surface-container-low: #1d2023;
+  --fy-surface-container: #232629;
+  --fy-surface-container-high: #2c2f33;
+  --fy-surface-container-highest: #34383d;
+  --fy-on-surface: #f0f1f3;
+  --fy-on-surface-variant: #b6b9c0;
+  --fy-inverse-surface: #e6e7ea;
+  --fy-inverse-on-surface: #191c1e;
+  --fy-outline: #8d8f9b;
+  --fy-outline-variant: #3a3d42;
+  --fy-primary: #c6bfff;
+  --fy-on-primary: #160066;
+  --fy-primary-container: #3b1fb8;
+  --fy-on-primary-container: #e9e3ff;
+  --fy-inverse-primary: #5537f6;
+  --fy-secondary: #ffb4a3;
+  --fy-background: #101113;
+  --fy-on-background: #f0f1f3;
+  --fy-surface-variant: #2a2d31;
+  --fy-error: #ffb4ab;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, .35);
-  --shadow-lift: 0 30px 56px -18px rgba(0, 0, 0, .62), 0 12px 26px -12px rgba(124, 92, 255, .42);
-  --shadow-pop: 0 26px 64px -16px rgba(0, 0, 0, .6);
+  --fy-shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
+  --fy-shadow-card: 0 4px 24px rgba(0, 0, 0, .35);
+  --fy-shadow-lift: 0 30px 56px -18px rgba(0, 0, 0, .62), 0 12px 26px -12px rgba(124, 92, 255, .42);
+  --fy-shadow-pop: 0 26px 64px -16px rgba(0, 0, 0, .6);
 
   /* Frosted-glass support tokens (dark) */
-  --bg-base: #0c0e13;
-  --glass-border: rgba(255, 255, 255, .12);
-  --glass-hi: rgba(255, 255, 255, .16);
+  --fy-bg-base: #0c0e13;
+  --fy-glass-border: rgba(255, 255, 255, .12);
+  --fy-glass-hi: rgba(255, 255, 255, .16);
 }

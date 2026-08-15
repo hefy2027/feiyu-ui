@@ -53,7 +53,7 @@ const selectWrapRef = ref<HTMLElement | null>(null)
 const dropdownListRef = ref<HTMLElement | null>(null)
 const searchInputRef = ref<HTMLInputElement | null>(null)
 const searchQuery = ref('')
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
 const slotOptionsMap = ref<Map<string | number | boolean, string>>(new Map())
 
@@ -209,7 +209,7 @@ function handleKeydown(event: KeyboardEvent) {
   }
 }
 
-provide<SelectContext>('ui-select-context', {
+provide<SelectContext>('fy-select-context', {
   get modelValue() {
     return props.modelValue
   },
@@ -247,29 +247,29 @@ defineExpose({
   <div
     ref="selectWrapRef"
     :class="[
-      'ui-select',
-      `ui-select--${size}`,
+      'fy-select',
+      `fy-select--${size}`,
       {
-        'ui-select--open': isOpen,
-        'ui-select--disabled': disabled,
-        'ui-select--block': block,
+        'fy-select--open': isOpen,
+        'fy-select--disabled': disabled,
+        'fy-select--block': block,
         'has-prefix': prefixIcon || $slots.prefix
       }
     ]"
     tabindex="0"
     @keydown="handleKeydown"
   >
-    <div class="ui-select__trigger" @click="toggleDropdown">
+    <div class="fy-select__trigger" @click="toggleDropdown">
       <!-- Prefix -->
-      <span v-if="prefixIcon" class="material-symbols-outlined ui-select__prefix">
+      <span v-if="prefixIcon" class="material-symbols-outlined fy-select__prefix">
         {{ prefixIcon }}
       </span>
-      <span v-else-if="$slots.prefix" class="ui-select__prefix-slot">
+      <span v-else-if="$slots.prefix" class="fy-select__prefix-slot">
         <slot name="prefix" />
       </span>
 
       <!-- Multiple Tags Display -->
-      <div v-if="multiple && selectedMultipleItems.length > 0" class="ui-select__tags">
+      <div v-if="multiple && selectedMultipleItems.length > 0" class="fy-select__tags">
         <Tag
           v-for="item in visibleMultipleTags"
           :key="String(item.value)"
@@ -290,60 +290,60 @@ defineExpose({
       </div>
 
       <!-- Single Display Label -->
-      <span v-else-if="!multiple && displayLabel" class="ui-select__display-text">
+      <span v-else-if="!multiple && displayLabel" class="fy-select__display-text">
         {{ displayLabel }}
       </span>
 
       <!-- Placeholder -->
-      <span v-else class="ui-select__placeholder">
+      <span v-else class="fy-select__placeholder">
         {{ placeholder }}
       </span>
 
       <!-- Actions (Clear / Arrow) -->
-      <div class="ui-select__actions">
+      <div class="fy-select__actions">
         <button
           v-if="clearable && ((!multiple && (modelValue !== '' && modelValue !== null && modelValue !== undefined)) || (multiple && Array.isArray(modelValue) && modelValue.length > 0)) && !disabled"
           type="button"
-          class="ui-select__clear"
+          class="fy-select__clear"
           aria-label="清空"
           @click.stop="handleClear"
         >
           <span class="material-symbols-outlined">cancel</span>
         </button>
-        <span class="material-symbols-outlined ui-select__arrow">
+        <span class="material-symbols-outlined fy-select__arrow">
           expand_more
         </span>
       </div>
     </div>
 
     <!-- Dropdown Popover Menu -->
-    <transition name="ui-select-fade">
-      <div v-if="isOpen" ref="dropdownListRef" class="ui-select__dropdown" @click.stop>
-        <div v-if="$slots.header" class="ui-select__dropdown-header">
+    <transition name="fy-select-fade">
+      <div v-if="isOpen" ref="dropdownListRef" class="fy-select__dropdown" @click.stop>
+        <div v-if="$slots.header" class="fy-select__dropdown-header">
           <slot name="header" />
         </div>
 
         <!-- Search Query Box for Filterable -->
-        <div v-if="filterable" class="ui-select__search">
-          <span class="material-symbols-outlined ui-select__search-icon">search</span>
+        <div v-if="filterable" class="fy-select__search">
+          <span class="material-symbols-outlined fy-select__search-icon">search</span>
           <input
             ref="searchInputRef"
             v-model="searchQuery"
             placeholder="输入搜索..."
-            class="ui-select__search-input"
+            class="fy-select__search-input"
             @keydown.stop
           />
         </div>
 
         <!-- Options List -->
-        <div class="ui-select__list">
+        <div class="fy-select__list">
           <!-- Prop Options Mode -->
           <template v-if="normalizedOptions.length > 0">
             <div
               v-for="opt in filteredOptions"
               :key="String(opt.value)"
               :class="[
-                'ui-select__item',
+                'fy-select__item',
                 {
                   'is-selected': isSelected(opt.value),
                   'is-disabled': opt.disabled
@@ -352,17 +352,17 @@ defineExpose({
               @click="!opt.disabled && handleSelect(opt.value, opt.label)"
             >
               <slot name="option" :option="opt" :selected="isSelected(opt.value)">
-                <span v-if="opt.icon" class="material-symbols-outlined ui-select__item-icon">
+                <span v-if="opt.icon" class="material-symbols-outlined fy-select__item-icon">
                   {{ opt.icon }}
                 </span>
-                <span class="ui-select__item-label">{{ opt.label }}</span>
-                <span v-if="isSelected(opt.value)" class="material-symbols-outlined ui-select__item-check">
+                <span class="fy-select__item-label">{{ opt.label }}</span>
+                <span v-if="isSelected(opt.value)" class="material-symbols-outlined fy-select__item-check">
                   check
                 </span>
               </slot>
             </div>
 
-            <div v-if="filteredOptions.length === 0" class="ui-select__empty">
+            <div v-if="filteredOptions.length === 0" class="fy-select__empty">
               <slot name="empty">
                 无匹配选项
               </slot>
@@ -373,7 +373,7 @@ defineExpose({
           <slot />
         </div>
 
-        <div v-if="$slots.footer" class="ui-select__dropdown-footer">
+        <div v-if="$slots.footer" class="fy-select__dropdown-footer">
           <slot name="footer" />
         </div>
       </div>
@@ -382,7 +382,7 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.ui-select {
+.fy-select {
   position: relative;
   display: inline-flex;
   font-family: inherit;
@@ -405,45 +405,45 @@ defineExpose({
     align-items: center;
     width: 100%;
     cursor: pointer;
-    border-radius: var(--r-md);
-    background: color-mix(in srgb, var(--surface-container-high) 42%, transparent);
+    border-radius: var(--fy-r-md);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 42%, transparent);
     backdrop-filter: blur(14px) saturate(1.4);
     -webkit-backdrop-filter: blur(14px) saturate(1.4);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 45%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 45%, transparent);
     box-sizing: border-box;
     gap: 8px;
     transition:
-      border-color 0.2s var(--ease-soft),
-      box-shadow 0.2s var(--ease-soft),
-      background 0.2s var(--ease-soft);
+      border-color 0.2s var(--fy-ease-soft),
+      box-shadow 0.2s var(--fy-ease-soft),
+      background 0.2s var(--fy-ease-soft);
 
     &:hover {
-      border-color: color-mix(in srgb, var(--primary) 50%, transparent);
+      border-color: color-mix(in srgb, var(--fy-primary) 50%, transparent);
     }
   }
 
   &:focus-visible &__trigger,
   &--open &__trigger {
-    border-color: color-mix(in srgb, var(--primary) 65%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 15%, transparent);
-    background: color-mix(in srgb, var(--surface-container-high) 55%, transparent);
+    border-color: color-mix(in srgb, var(--fy-primary) 65%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--fy-primary) 15%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 55%, transparent);
   }
 
   &--disabled {
     opacity: 0.55;
     cursor: not-allowed;
 
-    .ui-select__trigger {
+    .fy-select__trigger {
       cursor: not-allowed;
-      background: color-mix(in srgb, var(--surface-container-low) 50%, transparent);
-      border-color: color-mix(in srgb, var(--outline-variant) 30%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-low) 50%, transparent);
+      border-color: color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
       box-shadow: none;
     }
   }
 
   &__prefix,
   &__prefix-slot {
-    color: var(--outline);
+    color: var(--fy-outline);
     font-size: 18px;
     display: flex;
     align-items: center;
@@ -452,7 +452,7 @@ defineExpose({
 
   &__display-text {
     flex: 1;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
@@ -461,7 +461,7 @@ defineExpose({
 
   &__placeholder {
     flex: 1;
-    color: var(--outline);
+    color: var(--fy-outline);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -488,13 +488,13 @@ defineExpose({
     justify-content: center;
     border: none;
     background: transparent;
-    color: var(--outline);
+    color: var(--fy-outline);
     cursor: pointer;
     padding: 0;
     transition: color 0.15s ease;
 
     &:hover {
-      color: var(--error);
+      color: var(--fy-error);
     }
 
     .material-symbols-outlined {
@@ -504,38 +504,38 @@ defineExpose({
 
   &__arrow {
     font-size: 20px;
-    color: var(--outline);
-    transition: transform 0.2s var(--ease-soft);
+    color: var(--fy-outline);
+    transition: transform 0.2s var(--fy-ease-soft);
     user-select: none;
   }
 
   &--open &__arrow {
     transform: rotate(180deg);
-    color: var(--primary);
+    color: var(--fy-primary);
   }
 
   /* Sizes */
   &--sm &__trigger {
     height: 32px;
     min-height: 32px;
-    font-size: var(--font-size-xs);
-    border-radius: var(--r-sm);
+    font-size: var(--fy-font-size-xs);
+    border-radius: var(--fy-r-sm);
     padding: 0 8px;
   }
 
   &--md &__trigger {
     height: 40px;
     min-height: 40px;
-    font-size: var(--font-size-base);
-    border-radius: var(--r-md);
+    font-size: var(--fy-font-size-base);
+    border-radius: var(--fy-r-md);
     padding: 0 12px;
   }
 
   &--lg &__trigger {
     height: 46px;
     min-height: 46px;
-    font-size: var(--font-size-md);
-    border-radius: var(--r-lg);
+    font-size: var(--fy-font-size-md);
+    border-radius: var(--fy-r-lg);
     padding: 0 14px;
   }
 
@@ -547,12 +547,12 @@ defineExpose({
     right: 0;
     z-index: 150;
     padding: 6px;
-    border-radius: var(--r-lg);
-    background: color-mix(in srgb, var(--surface-container-lowest) 92%, transparent);
+    border-radius: var(--fy-r-lg);
+    background: color-mix(in srgb, var(--fy-surface-container-lowest) 92%, transparent);
     backdrop-filter: blur(28px) saturate(1.7);
     -webkit-backdrop-filter: blur(28px) saturate(1.7);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-pop), inset 0 1px 0 var(--glass-hi);
+    border: 1px solid var(--fy-glass-border);
+    box-shadow: var(--fy-shadow-pop), inset 0 1px 0 var(--fy-glass-hi);
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -565,24 +565,24 @@ defineExpose({
     align-items: center;
     gap: 6px;
     padding: 4px 8px;
-    border-radius: var(--r-sm);
-    background: color-mix(in srgb, var(--surface-container-high) 50%, transparent);
-    border: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+    border-radius: var(--fy-r-sm);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 50%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
     margin-bottom: 2px;
   }
 
   &__search-icon {
     font-size: 16px;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 
   &__search-input {
     flex: 1;
     border: none;
     background: transparent;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     font: inherit;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     outline: none;
     padding: 2px 0;
   }
@@ -598,7 +598,7 @@ defineExpose({
       width: 5px;
     }
     &::-webkit-scrollbar-thumb {
-      background: color-mix(in srgb, var(--outline-variant) 40%, transparent);
+      background: color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
       border-radius: 4px;
     }
   }
@@ -608,22 +608,22 @@ defineExpose({
     align-items: center;
     gap: 8px;
     padding: 8px 12px;
-    border-radius: var(--r-sm);
-    font-size: var(--font-size-sm);
-    color: var(--on-surface);
+    border-radius: var(--fy-r-sm);
+    font-size: var(--fy-font-size-sm);
+    color: var(--fy-on-surface);
     font-weight: 500;
     cursor: pointer;
     user-select: none;
-    transition: background 0.15s var(--ease-soft), color 0.15s var(--ease-soft);
+    transition: background 0.15s var(--fy-ease-soft), color 0.15s var(--fy-ease-soft);
 
     &:hover:not(.is-disabled) {
-      background: color-mix(in srgb, var(--primary) 10%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-primary) 10%, transparent);
+      color: var(--fy-primary);
     }
 
     &.is-selected {
-      background: color-mix(in srgb, var(--primary) 14%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-primary) 14%, transparent);
+      color: var(--fy-primary);
       font-weight: 600;
     }
 
@@ -648,7 +648,7 @@ defineExpose({
 
   &__item-check {
     font-size: 18px;
-    color: var(--primary);
+    color: var(--fy-primary);
     flex-shrink: 0;
     margin-left: 4px;
   }
@@ -656,29 +656,29 @@ defineExpose({
   &__empty {
     padding: 16px 12px;
     text-align: center;
-    font-size: var(--font-size-xs);
-    color: var(--outline);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-outline);
   }
 
   &__dropdown-header {
     padding: 4px 8px;
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
   }
 
   &__dropdown-footer {
     padding: 4px 8px;
-    border-top: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
   }
 }
 
 /* Animation */
-.ui-select-fade-enter-active,
-.ui-select-fade-leave-active {
-  transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-out);
+.fy-select-fade-enter-active,
+.fy-select-fade-leave-active {
+  transition: opacity 0.18s var(--fy-ease-soft), transform 0.18s var(--fy-ease-out);
 }
 
-.ui-select-fade-enter-from,
-.ui-select-fade-leave-to {
+.fy-select-fade-enter-from,
+.fy-select-fade-leave-to {
   opacity: 0;
   transform: translateY(-6px) scale(0.97);
 }

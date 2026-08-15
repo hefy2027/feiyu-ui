@@ -21,39 +21,39 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div :class="['ui-empty', `ui-empty--${size}`]">
-    <div v-if="image || $slots.image" class="ui-empty__image-wrap">
+  <div :class="['fy-empty', `fy-empty--${size}`]">
+    <div v-if="image || $slots.image" class="fy-empty__image-wrap">
       <slot name="image">
         <img
           :src="image"
           alt="empty"
-          class="ui-empty__image"
+          class="fy-empty__image"
           :style="{ width: typeof imageSize === 'number' ? `${imageSize}px` : imageSize }"
         />
       </slot>
     </div>
-    <div v-else-if="showIcon" class="ui-empty__icon-wrap">
+    <div v-else-if="showIcon" class="fy-empty__icon-wrap">
       <slot name="icon">
-        <div class="ui-empty__icon-halo">
-          <span class="material-symbols-outlined ui-empty__icon">{{ icon }}</span>
+        <div class="fy-empty__icon-halo">
+          <span class="material-symbols-outlined fy-empty__icon">{{ icon }}</span>
         </div>
       </slot>
     </div>
 
-    <div class="ui-empty__description">
+    <div class="fy-empty__description">
       <slot name="description">
         <p>{{ description }}</p>
       </slot>
     </div>
 
-    <div v-if="$slots.extra || $slots.default" class="ui-empty__extra">
+    <div v-if="$slots.extra || $slots.default" class="fy-empty__extra">
       <slot name="extra"><slot /></slot>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-empty {
+.fy-empty {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,9 +83,9 @@ withDefaults(defineProps<Props>(), {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
     backdrop-filter: blur(12px);
-    border: 1px dashed color-mix(in srgb, var(--outline-variant) 60%, transparent);
+    border: 1px dashed color-mix(in srgb, var(--fy-outline-variant) 60%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,14 +95,14 @@ withDefaults(defineProps<Props>(), {
 
   &__icon {
     font-size: 32px;
-    color: var(--outline);
+    color: var(--fy-outline);
     opacity: 0.8;
   }
 
   &__description {
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
     font-weight: 600;
-    color: var(--outline);
+    color: var(--fy-outline);
     margin: 0;
     max-width: 280px;
     line-height: 1.5;
@@ -124,17 +124,17 @@ withDefaults(defineProps<Props>(), {
   &--sm {
     padding: 16px 8px;
 
-    .ui-empty__icon-halo {
+    .fy-empty__icon-halo {
       width: 44px;
       height: 44px;
     }
-    .ui-empty__icon {
+    .fy-empty__icon {
       font-size: 22px;
     }
-    .ui-empty__description {
-      font-size: var(--font-size-xs);
+    .fy-empty__description {
+      font-size: var(--fy-font-size-xs);
     }
-    .ui-empty__extra {
+    .fy-empty__extra {
       margin-top: 10px;
     }
   }
@@ -142,15 +142,15 @@ withDefaults(defineProps<Props>(), {
   &--lg {
     padding: 48px 24px;
 
-    .ui-empty__icon-halo {
+    .fy-empty__icon-halo {
       width: 80px;
       height: 80px;
     }
-    .ui-empty__icon {
+    .fy-empty__icon {
       font-size: 40px;
     }
-    .ui-empty__description {
-      font-size: var(--font-size-base);
+    .fy-empty__description {
+      font-size: var(--fy-font-size-base);
     }
   }
 }

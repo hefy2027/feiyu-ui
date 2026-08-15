@@ -33,11 +33,11 @@ const emit = defineEmits<{
   change: [value: string | number | boolean]
 }>()
 
-const randomName = 'ui-radio-group-' + Math.random().toString(36).substring(2, 9)
+const randomName = 'fy-radio-group-' + Math.random().toString(36).substring(2, 9)
 const groupName = computed(() => props.name || randomName)
-const formItem = inject<FormItemContext | null>('ui-form-item', null)
+const formItem = inject<FormItemContext | null>('fy-form-item', null)
 
-provide('ui-radio-group', {
+provide('fy-radio-group', {
   modelValue: toRef(props, 'modelValue'),
   disabled: toRef(props, 'disabled'),
   name: groupName,
@@ -64,10 +64,10 @@ const normalizedOptions = computed<RadioOption[] | undefined>(() => {
 <template>
   <div
     :class="[
-      'ui-radio-group',
-      `ui-radio-group--${size}`,
-      `ui-radio-group--${direction}`,
-      `ui-radio-group--${variant}`
+      'fy-radio-group',
+      `fy-radio-group--${size}`,
+      `fy-radio-group--${direction}`,
+      `fy-radio-group--${variant}`
     ]"
     role="radiogroup"
   >
@@ -85,7 +85,7 @@ const normalizedOptions = computed<RadioOption[] | undefined>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-radio-group {
+.fy-radio-group {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;

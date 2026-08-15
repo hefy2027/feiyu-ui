@@ -124,7 +124,7 @@ function unregisterColumn(col: TableColumn) {
   if (idx > -1) registeredColumns.value.splice(idx, 1)
 }
 
-provide('ui-data-table', {
+provide('fy-data-table', {
   registerColumn,
   unregisterColumn
 })
@@ -457,12 +457,12 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
 <template>
   <div
     :class="[
-      'ui-data-table',
-      `ui-data-table--${size}`,
+      'fy-data-table',
+      `fy-data-table--${size}`,
       {
-        'ui-data-table--bordered': bordered,
-        'ui-data-table--striped': striped,
-        'ui-data-table--adaptive': flexHeight || height !== undefined || maxHeight !== undefined
+        'fy-data-table--bordered': bordered,
+        'fy-data-table--striped': striped,
+        'fy-data-table--adaptive': flexHeight || height !== undefined || maxHeight !== undefined
       }
     ]"
     :style="tableStyle"
@@ -472,10 +472,10 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
       <slot />
     </div>
 
-    <Spin :show="loading" description="加载中..." class="ui-data-table__spin">
-      <div class="ui-data-table__scroll">
-        <table class="ui-data-table__table">
-          <thead class="ui-data-table__thead">
+    <Spin :show="loading" description="加载中..." class="fy-data-table__spin">
+      <div class="fy-data-table__scroll">
+        <table class="fy-data-table__table">
+          <thead class="fy-data-table__thead">
             <tr v-for="(rowCells, rIdx) in headerRows" :key="rIdx">
               <th
                 v-for="(cell, cIdx) in rowCells"
@@ -483,7 +483,7 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
                 :colspan="cell.colSpan > 1 ? cell.colSpan : undefined"
                 :rowspan="cell.rowSpan > 1 ? cell.rowSpan : undefined"
                 :class="[
-                  'ui-data-table__th',
+                  'fy-data-table__th',
                   `is-align-${cell.column.headerAlign || cell.column.align || 'left'}`,
                   {
                     'is-sortable': !!cell.column.sorter,
@@ -510,9 +510,9 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
                 </template>
 
                 <template v-else>
-                  <div class="ui-data-table__th-content">
+                  <div class="fy-data-table__th-content">
                     <span>{{ cell.column.title || cell.column.label }}</span>
-                    <span v-if="cell.column.sorter" class="material-symbols-outlined ui-data-table__sorter-icon">
+                    <span v-if="cell.column.sorter" class="material-symbols-outlined fy-data-table__sorter-icon">
                       {{
                         activeSortKey === (cell.column.key || cell.column.prop)
                           ? (activeSortOrder === 'ascend' ? 'arrow_upward' : 'arrow_downward')
@@ -525,7 +525,7 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
             </tr>
           </thead>
 
-          <tbody class="ui-data-table__tbody">
+          <tbody class="fy-data-table__tbody">
             <template v-if="displayData.length > 0">
               <template
                 v-for="(row, rowIdx) in displayData"
@@ -533,7 +533,7 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
               >
                 <tr
                   :class="[
-                    'ui-data-table__tr',
+                    'fy-data-table__tr',
                     {
                       'is-checked': checkedRowKeys.includes(getRowId(row, rowIdx)),
                       'is-expanded': isRowExpanded(row, rowIdx)
@@ -551,7 +551,7 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
                       :rowspan="getCellSpan(row, col, rowIdx, colIdx).rowspan > 1 ? getCellSpan(row, col, rowIdx, colIdx).rowspan : undefined"
                       :colspan="getCellSpan(row, col, rowIdx, colIdx).colspan > 1 ? getCellSpan(row, col, rowIdx, colIdx).colspan : undefined"
                       :class="[
-                        'ui-data-table__td',
+                        'fy-data-table__td',
                         `is-align-${col.align || 'left'}`,
                         { 'is-ellipsis': col.ellipsis }
                       ]"
@@ -567,7 +567,7 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
                       <template v-else-if="col.type === 'expand'">
                         <button
                           type="button"
-                          :class="['ui-data-table__expand-btn', { 'is-expanded': isRowExpanded(row, rowIdx) }]"
+                          :class="['fy-data-table__expand-btn', { 'is-expanded': isRowExpanded(row, rowIdx) }]"
                           aria-label="展开行"
                           @click="toggleRowExpand(row, rowIdx, $event)"
                         >
@@ -597,12 +597,12 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
                 <!-- Expanded Child Row -->
                 <tr
                   v-if="isRowExpanded(row, rowIdx)"
-                  class="ui-data-table__expanded-tr"
+                  class="fy-data-table__expanded-tr"
                 >
-                  <td :colspan="effectiveColumns.length || 1" class="ui-data-table__expanded-cell">
+                  <td :colspan="effectiveColumns.length || 1" class="fy-data-table__expanded-cell">
                     <slot name="expand" :row="row" :index="rowIdx">
                       <slot name="expanded-row" :row="row" :index="rowIdx">
-                        <pre style="margin: 0; font-size: 12px; color: var(--on-surface-variant);">{{ JSON.stringify(row, null, 2) }}</pre>
+                        <pre style="margin: 0; font-size: 12px; color: var(--fy-on-surface-variant);">{{ JSON.stringify(row, null, 2) }}</pre>
                       </slot>
                     </slot>
                   </td>
@@ -611,7 +611,7 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
             </template>
 
             <tr v-else>
-              <td :colspan="effectiveColumns.length || 1" class="ui-data-table__empty-cell">
+              <td :colspan="effectiveColumns.length || 1" class="fy-data-table__empty-cell">
                 <slot name="empty">
                   <Empty size="md" :description="emptyText" />
                 </slot>
@@ -620,15 +620,15 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
           </tbody>
 
           <!-- Summary / Footer Row -->
-          <tfoot v-if="showSummary || $slots.summary" class="ui-data-table__tfoot">
+          <tfoot v-if="showSummary || $slots.summary" class="fy-data-table__tfoot">
             <slot name="summary" :columns="effectiveColumns" :data="data" :sums="summaryData">
-              <tr class="ui-data-table__summary-tr">
+              <tr class="fy-data-table__summary-tr">
                 <td
                   v-for="(col, colIdx) in effectiveColumns"
                   :key="col.key || col.prop || col.type || colIdx"
                   :class="[
-                    'ui-data-table__td',
-                    'ui-data-table__summary-td',
+                    'fy-data-table__td',
+                    'fy-data-table__summary-td',
                     `is-align-${col.align || 'left'}`
                   ]"
                 >
@@ -649,7 +649,7 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
     </Spin>
 
     <!-- Pagination footer -->
-    <div v-if="pagination || $slots.pagination || $slots.footer" class="ui-data-table__footer">
+    <div v-if="pagination || $slots.pagination || $slots.footer" class="fy-data-table__footer">
       <slot name="pagination">
         <slot name="footer">
           <Pagination
@@ -673,14 +673,14 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
 </template>
 
 <style scoped lang="scss">
-.ui-data-table {
+.fy-data-table {
   position: relative;
   width: 100%;
-  border-radius: var(--r-xl);
-  background: color-mix(in srgb, var(--surface-container-lowest) 82%, transparent);
+  border-radius: var(--fy-r-xl);
+  background: color-mix(in srgb, var(--fy-surface-container-lowest) 82%, transparent);
   backdrop-filter: blur(24px) saturate(1.5);
   -webkit-backdrop-filter: blur(24px) saturate(1.5);
-  box-shadow: var(--shadow-card), inset 0 1px 0 var(--glass-hi);
+  box-shadow: var(--fy-shadow-card), inset 0 1px 0 var(--fy-glass-hi);
   overflow: hidden;
   box-sizing: border-box;
 
@@ -688,14 +688,14 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
     display: flex;
     flex-direction: column;
 
-    :deep(.ui-spin-container) {
+    :deep(.fy-spin-container) {
       flex: 1;
       min-height: 0;
       display: flex;
       flex-direction: column;
     }
 
-    .ui-data-table__scroll {
+    .fy-data-table__scroll {
       flex: 1;
       min-height: 0;
       height: 100%;
@@ -703,24 +703,24 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
       overflow-x: auto;
     }
 
-    .ui-data-table__footer {
+    .fy-data-table__footer {
       flex-shrink: 0;
     }
   }
 
   &--bordered {
-    border: 1px solid var(--glass-border);
+    border: 1px solid var(--fy-glass-border);
   }
 
   &--bordered &__th {
-    border-right: 1px solid color-mix(in srgb, var(--outline-variant) 20%, transparent);
+    border-right: 1px solid color-mix(in srgb, var(--fy-outline-variant) 20%, transparent);
     &:last-child {
       border-right: none;
     }
   }
 
   &--bordered &__td {
-    border-right: 1px solid color-mix(in srgb, var(--outline-variant) 15%, transparent);
+    border-right: 1px solid color-mix(in srgb, var(--fy-outline-variant) 15%, transparent);
     &:last-child {
       border-right: none;
     }
@@ -746,19 +746,19 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
     padding: 0;
     border: none;
     background: transparent;
-    color: var(--outline);
+    color: var(--fy-outline);
     cursor: pointer;
-    border-radius: var(--r-xs);
-    transition: transform 0.2s var(--ease-soft), color 0.15s ease, background 0.15s ease;
+    border-radius: var(--fy-r-xs);
+    transition: transform 0.2s var(--fy-ease-soft), color 0.15s ease, background 0.15s ease;
 
     &:hover {
-      color: var(--primary);
-      background: color-mix(in srgb, var(--primary) 12%, transparent);
+      color: var(--fy-primary);
+      background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
     }
 
     &.is-expanded {
       transform: rotate(90deg);
-      color: var(--primary);
+      color: var(--fy-primary);
     }
 
     .material-symbols-outlined {
@@ -767,12 +767,12 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
   }
 
   &__expanded-tr {
-    background: color-mix(in srgb, var(--surface-container-high) 25%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 25%, transparent);
   }
 
   &__expanded-cell {
     padding: 16px 20px;
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
   }
 
   /* Summary Footer */
@@ -780,13 +780,13 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
     position: sticky;
     bottom: 0;
     z-index: 9;
-    border-top: 2px solid color-mix(in srgb, var(--outline-variant) 35%, transparent);
+    border-top: 2px solid color-mix(in srgb, var(--fy-outline-variant) 35%, transparent);
   }
 
   &__summary-td {
     font-weight: 700;
-    color: var(--on-surface);
-    background: color-mix(in srgb, var(--surface-container-high) 88%, transparent);
+    color: var(--fy-on-surface);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 88%, transparent);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
   }
@@ -795,20 +795,20 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
-    font-size: var(--font-size-sm);
+    font-size: var(--fy-font-size-sm);
   }
 
   &__th {
     padding: 14px 16px;
     font-weight: 800;
-    font-size: var(--font-size-xs);
+    font-size: var(--fy-font-size-xs);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--outline);
-    background: color-mix(in srgb, var(--surface-container-high) 88%, transparent);
+    color: var(--fy-outline);
+    background: color-mix(in srgb, var(--fy-surface-container-high) 88%, transparent);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
     user-select: none;
     white-space: nowrap;
 
@@ -817,8 +817,8 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
       transition: color 0.15s ease, background 0.15s ease;
 
       &:hover {
-        color: var(--on-surface);
-        background: color-mix(in srgb, var(--surface-container-high) 65%, transparent);
+        color: var(--fy-on-surface);
+        background: color-mix(in srgb, var(--fy-surface-container-high) 65%, transparent);
       }
     }
   }
@@ -831,14 +831,14 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
 
   &__sorter-icon {
     font-size: 16px;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 
   &__td {
     padding: 14px 16px;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     font-weight: 500;
-    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
     transition: background 0.15s ease;
 
     &.is-ellipsis {
@@ -849,19 +849,19 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
   }
 
   &__tr {
-    transition: background 0.15s var(--ease-soft);
+    transition: background 0.15s var(--fy-ease-soft);
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-high) 45%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 45%, transparent);
     }
 
     &.is-checked {
-      background: color-mix(in srgb, var(--primary) 8%, transparent);
+      background: color-mix(in srgb, var(--fy-primary) 8%, transparent);
     }
   }
 
   &--striped &__tr:nth-child(even) {
-    background: color-mix(in srgb, var(--surface-container-low) 40%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-low) 40%, transparent);
   }
 
   &__empty-cell {
@@ -875,8 +875,8 @@ function handleRowDblclick(row: any, index: number, event: MouseEvent) {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    border-top: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
-    background: color-mix(in srgb, var(--surface-container-low) 75%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
+    background: color-mix(in srgb, var(--fy-surface-container-low) 75%, transparent);
     flex-shrink: 0;
   }
 

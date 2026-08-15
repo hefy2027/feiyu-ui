@@ -16,22 +16,22 @@ const props = withDefaults(defineProps<Props>(), {
   separatorIcon: undefined
 })
 
-provide<BreadcrumbContext>('ui-breadcrumb', {
+provide<BreadcrumbContext>('fy-breadcrumb', {
   separator: computed(() => props.separator),
   separatorIcon: computed(() => props.separatorIcon)
 })
 </script>
 
 <template>
-  <nav class="ui-breadcrumb" aria-label="Breadcrumb">
-    <ol class="ui-breadcrumb__list">
+  <nav class="fy-breadcrumb" aria-label="Breadcrumb">
+    <ol class="fy-breadcrumb__list">
       <slot />
     </ol>
   </nav>
 </template>
 
 <style scoped lang="scss">
-.ui-breadcrumb {
+.fy-breadcrumb {
   display: flex;
   align-items: center;
   user-select: none;

@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   contentStyle: undefined
 })
 
-const descriptionsContext = inject<DescriptionsContext | null>('ui-descriptions', null)
+const descriptionsContext = inject<DescriptionsContext | null>('fy-descriptions', null)
 
 const itemStyle = computed<CSSProperties>(() => {
   if (props.span > 1) {
@@ -31,27 +31,27 @@ const itemStyle = computed<CSSProperties>(() => {
 <template>
   <div
     :class="[
-      'ui-descriptions-item',
-      `ui-descriptions-item--${descriptionsContext?.labelPlacement.value || 'left'}`
+      'fy-descriptions-item',
+      `fy-descriptions-item--${descriptionsContext?.labelPlacement.value || 'left'}`
     ]"
     :style="itemStyle"
   >
-    <span class="ui-descriptions-item__label" :style="labelStyle || descriptionsContext?.labelStyle?.value">
+    <span class="fy-descriptions-item__label" :style="labelStyle || descriptionsContext?.labelStyle?.value">
       <slot name="label">{{ label }}</slot>
     </span>
-    <div class="ui-descriptions-item__content" :style="contentStyle || descriptionsContext?.contentStyle?.value">
+    <div class="fy-descriptions-item__content" :style="contentStyle || descriptionsContext?.contentStyle?.value">
       <slot />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-descriptions-item {
+.fy-descriptions-item {
   display: flex;
   padding: 12px 14px;
-  border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
-  border-right: 1px solid color-mix(in srgb, var(--outline-variant) 25%, transparent);
-  font-size: var(--font-size-sm);
+  border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--fy-outline-variant) 25%, transparent);
+  font-size: var(--fy-font-size-sm);
   box-sizing: border-box;
 
   &--left {
@@ -68,14 +68,14 @@ const itemStyle = computed<CSSProperties>(() => {
 
   &__label {
     font-weight: 700;
-    color: var(--outline);
+    color: var(--fy-outline);
     white-space: nowrap;
     flex-shrink: 0;
   }
 
   &__content {
     font-weight: 500;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     flex: 1;
     word-break: break-all;
   }

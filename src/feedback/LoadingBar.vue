@@ -61,15 +61,15 @@ defineExpose({
 <template>
   <div
     v-show="isVisible"
-    :class="['ui-loading-bar', `ui-loading-bar--${status}`]"
+    :class="['fy-loading-bar', `fy-loading-bar--${status}`]"
     :style="{ height: `${height}px` }"
   >
-    <div class="ui-loading-bar__progress" :style="{ width: `${percent}%` }" />
+    <div class="fy-loading-bar__progress" :style="{ width: `${percent}%` }" />
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-loading-bar {
+.fy-loading-bar {
   position: fixed;
   top: 0;
   left: 0;
@@ -85,18 +85,18 @@ defineExpose({
   }
 
   &--loading &__progress {
-    background: linear-gradient(90deg, var(--primary), var(--primary-container));
-    box-shadow: 0 0 10px var(--primary);
+    background: linear-gradient(90deg, var(--fy-primary), var(--fy-primary-container));
+    box-shadow: 0 0 10px var(--fy-primary);
   }
 
-  &--success &__progress {
-    background: var(--theme-green, #10b981);
-    box-shadow: 0 0 10px var(--theme-green, #10b981);
+  &--fy-success &__progress {
+    background: var(--fy-theme-green, #10b981);
+    box-shadow: 0 0 10px var(--fy-theme-green, #10b981);
   }
 
-  &--error &__progress {
-    background: var(--error, #ba1a1a);
-    box-shadow: 0 0 10px var(--error, #ba1a1a);
+  &--fy-error &__progress {
+    background: var(--fy-error, #ba1a1a);
+    box-shadow: 0 0 10px var(--fy-error, #ba1a1a);
   }
 }
 </style>

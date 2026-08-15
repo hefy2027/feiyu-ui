@@ -46,9 +46,9 @@ const trackStyle = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <div :class="['ui-progress-bar', `ui-progress-bar--${status}`]">
+  <div :class="['fy-progress-bar', `fy-progress-bar--${status}`]">
     <div
-      class="ui-progress-bar__track"
+      class="fy-progress-bar__track"
       :style="trackStyle"
       role="progressbar"
       :aria-valuenow="clampedProgress"
@@ -57,7 +57,7 @@ const trackStyle = computed<CSSProperties>(() => {
     >
       <div
         :class="[
-          'ui-progress-bar__fill',
+          'fy-progress-bar__fill',
           {
             'is-striped': striped,
             'is-animated': animated || striped,
@@ -70,14 +70,14 @@ const trackStyle = computed<CSSProperties>(() => {
         }"
       />
     </div>
-    <span v-if="showText && !indeterminate" class="ui-progress-bar__text">
+    <span v-if="showText && !indeterminate" class="fy-progress-bar__text">
       <slot :percentage="clampedProgress">{{ clampedProgress }}%</slot>
     </span>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-progress-bar {
+.fy-progress-bar {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -85,17 +85,17 @@ const trackStyle = computed<CSSProperties>(() => {
 
   &__track {
     flex: 1;
-    background: color-mix(in srgb, var(--outline-variant) 40%, transparent);
-    border-radius: var(--r-full);
+    background: color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
+    border-radius: var(--fy-r-full);
     overflow: hidden;
     position: relative;
   }
 
   &__fill {
     height: 100%;
-    border-radius: var(--r-full);
-    background: var(--primary);
-    transition: width 0.3s var(--ease-out);
+    border-radius: var(--fy-r-full);
+    background: var(--fy-primary);
+    transition: width 0.3s var(--fy-ease-out);
 
     &.is-striped {
       background-image: linear-gradient(
@@ -112,31 +112,31 @@ const trackStyle = computed<CSSProperties>(() => {
     }
 
     &.is-animated {
-      animation: ui-progress-stripes 1s linear infinite;
+      animation: fy-progress-stripes 1s linear infinite;
     }
 
     &.is-indeterminate {
       width: 40% !important;
       position: absolute;
-      animation: ui-progress-indeterminate 1.5s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+      animation: fy-progress-indeterminate 1.5s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
     }
   }
 
   &__text {
     font-size: 11.5px;
     font-weight: 700;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     min-width: 32px;
     text-align: right;
   }
 
   /* Status */
-  &--success .ui-progress-bar__fill { background-color: var(--theme-green, #10b981); }
-  &--warning .ui-progress-bar__fill { background-color: var(--theme-yellow, #f59e0b); }
-  &--error .ui-progress-bar__fill { background-color: var(--error, #ba1a1a); }
+  &--fy-success .fy-progress-bar__fill { background-color: var(--fy-theme-green, #10b981); }
+  &--fy-warning .fy-progress-bar__fill { background-color: var(--fy-theme-yellow, #f59e0b); }
+  &--fy-error .fy-progress-bar__fill { background-color: var(--fy-error, #ba1a1a); }
 }
 
-@keyframes ui-progress-stripes {
+@keyframes fy-progress-stripes {
   from {
     background-position: 16px 0;
   }
@@ -145,7 +145,7 @@ const trackStyle = computed<CSSProperties>(() => {
   }
 }
 
-@keyframes ui-progress-indeterminate {
+@keyframes fy-progress-indeterminate {
   0% {
     left: -40%;
   }

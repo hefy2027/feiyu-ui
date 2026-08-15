@@ -82,13 +82,13 @@ const gapStyle = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <div class="ui-space" :style="gapStyle">
+  <div class="fy-space" :style="gapStyle">
     <slot />
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-space {
+.fy-space {
   box-sizing: border-box;
   width: 100%;
 

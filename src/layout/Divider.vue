@@ -23,11 +23,11 @@ const hasTitleSlot = computed(() => {
 <template>
   <div
     :class="[
-      'ui-divider',
-      vertical ? 'ui-divider--vertical' : 'ui-divider--horizontal',
+      'fy-divider',
+      vertical ? 'fy-divider--vertical' : 'fy-divider--horizontal',
       {
-        'ui-divider--dashed': dashed,
-        [`ui-divider--title-${titlePlacement}`]: !vertical && ($slots.default || $slots.title)
+        'fy-divider--dashed': dashed,
+        [`fy-divider--title-${titlePlacement}`]: !vertical && ($slots.default || $slots.title)
       }
     ]"
     role="separator"
@@ -35,7 +35,7 @@ const hasTitleSlot = computed(() => {
   >
     <span
       v-if="!vertical && ($slots.default || $slots.title)"
-      class="ui-divider__title"
+      class="fy-divider__title"
     >
       <slot name="title"><slot /></slot>
     </span>
@@ -43,10 +43,10 @@ const hasTitleSlot = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-divider {
+.fy-divider {
   box-sizing: border-box;
-  color: var(--outline);
-  font-size: var(--font-size-sm);
+  color: var(--fy-outline);
+  font-size: var(--fy-font-size-sm);
   font-weight: 600;
 
   &--horizontal {
@@ -60,12 +60,12 @@ const hasTitleSlot = computed(() => {
     &::after {
       content: '';
       flex: 1;
-      border-top: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
-      transition: border-color 0.2s var(--ease-soft);
+      border-top: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
+      transition: border-color 0.2s var(--fy-ease-soft);
     }
 
-    &:not([class*="ui-divider--title-"]) {
-      border-top: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
+    &:not([class*="fy-divider--title-"]) {
+      border-top: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
 
       &::before,
       &::after {
@@ -73,7 +73,7 @@ const hasTitleSlot = computed(() => {
       }
     }
 
-    &.ui-divider--dashed {
+    &.fy-divider--dashed {
       border-top-style: dashed;
 
       &::before,
@@ -124,12 +124,12 @@ const hasTitleSlot = computed(() => {
     vertical-align: middle;
     position: relative;
     top: -0.06em;
-    background: color-mix(in srgb, var(--outline-variant) 40%, transparent);
-    transition: background 0.2s var(--ease-soft);
+    background: color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
+    transition: background 0.2s var(--fy-ease-soft);
 
-    &.ui-divider--dashed {
+    &.fy-divider--dashed {
       background: none;
-      border-left: 1px dashed color-mix(in srgb, var(--outline-variant) 40%, transparent);
+      border-left: 1px dashed color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
     }
   }
 }

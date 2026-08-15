@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
   showArrow: true
 })
 
-const collapseContext = inject<CollapseContext | null>('ui-collapse', null)
+const collapseContext = inject<CollapseContext | null>('fy-collapse', null)
 
 const isExpanded = computed(() => {
   return collapseContext?.expandedNames.value.includes(props.name) ?? false
@@ -34,7 +34,7 @@ function handleHeaderClick() {
 <template>
   <div
     :class="[
-      'ui-collapse-item',
+      'fy-collapse-item',
       {
         'is-expanded': isExpanded,
         'is-disabled': disabled
@@ -42,40 +42,40 @@ function handleHeaderClick() {
     ]"
   >
     <div
-      class="ui-collapse-item__header"
-      :class="[`ui-collapse-item__header--arrow-${arrowPlacement}`]"
+      class="fy-collapse-item__header"
+      :class="[`fy-collapse-item__header--arrow-${arrowPlacement}`]"
       role="button"
       :aria-expanded="isExpanded"
       @click="handleHeaderClick"
     >
       <slot v-if="showArrow && arrowPlacement === 'left'" name="arrow">
         <span
-          class="material-symbols-outlined ui-collapse-item__arrow"
+          class="material-symbols-outlined fy-collapse-item__arrow"
         >
           expand_more
         </span>
       </slot>
 
-      <div class="ui-collapse-item__title">
+      <div class="fy-collapse-item__title">
         <slot name="title">{{ title }}</slot>
       </div>
 
-      <div v-if="$slots.extra" class="ui-collapse-item__extra" @click.stop>
+      <div v-if="$slots.extra" class="fy-collapse-item__extra" @click.stop>
         <slot name="extra" />
       </div>
 
       <slot v-if="showArrow && arrowPlacement === 'right'" name="arrow">
         <span
-          class="material-symbols-outlined ui-collapse-item__arrow"
+          class="material-symbols-outlined fy-collapse-item__arrow"
         >
           expand_more
         </span>
       </slot>
     </div>
 
-    <div class="ui-collapse-item__content-wrapper" :class="{ 'is-open': isExpanded }">
-      <div class="ui-collapse-item__content">
-        <div class="ui-collapse-item__content-inner">
+    <div class="fy-collapse-item__content-wrapper" :class="{ 'is-open': isExpanded }">
+      <div class="fy-collapse-item__content">
+        <div class="fy-collapse-item__content-inner">
           <slot />
         </div>
       </div>
@@ -84,8 +84,8 @@ function handleHeaderClick() {
 </template>
 
 <style scoped lang="scss">
-.ui-collapse-item {
-  border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+.fy-collapse-item {
+  border-bottom: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
 
   &:last-child {
     border-bottom: none;
@@ -96,15 +96,15 @@ function handleHeaderClick() {
     align-items: center;
     gap: 10px;
     padding: 14px 18px;
-    font-size: var(--font-size-base);
+    font-size: var(--fy-font-size-base);
     font-weight: 700;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     cursor: pointer;
     user-select: none;
-    transition: background 0.2s var(--ease-soft), color 0.2s var(--ease-soft);
+    transition: background 0.2s var(--fy-ease-soft), color 0.2s var(--fy-ease-soft);
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-high) 45%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 45%, transparent);
     }
   }
 
@@ -122,15 +122,15 @@ function handleHeaderClick() {
   }
 
   &__extra {
-    font-size: var(--font-size-xs);
-    color: var(--outline);
+    font-size: var(--fy-font-size-xs);
+    color: var(--fy-outline);
     font-weight: 500;
   }
 
   &__arrow {
     font-size: 20px;
-    color: var(--outline);
-    transition: transform 0.24s var(--ease-soft);
+    color: var(--fy-outline);
+    transition: transform 0.24s var(--fy-ease-soft);
     flex-shrink: 0;
   }
 
@@ -141,7 +141,7 @@ function handleHeaderClick() {
   &__content-wrapper {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 0.25s var(--ease-soft);
+    transition: grid-template-rows 0.25s var(--fy-ease-soft);
 
     &.is-open {
       grid-template-rows: 1fr;
@@ -151,8 +151,8 @@ function handleHeaderClick() {
   &__content {
     overflow: hidden;
     padding: 0 18px 16px;
-    color: var(--on-surface-variant);
-    font-size: var(--font-size-sm);
+    color: var(--fy-on-surface-variant);
+    font-size: var(--fy-font-size-sm);
     line-height: 1.6;
   }
 

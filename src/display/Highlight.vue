@@ -51,11 +51,11 @@ const chunks = computed<Chunk[]>(() => {
 </script>
 
 <template>
-  <span class="ui-highlight">
+  <span class="fy-highlight">
     <template v-for="(chunk, index) in chunks" :key="index">
       <slot v-if="chunk.isHighlight" name="highlight" :text="chunk.text" :index="index">
         <mark
-          :class="['ui-highlight__mark', highlightClass]"
+          :class="['fy-highlight__mark', highlightClass]"
           :style="highlightStyle"
         >{{ chunk.text }}</mark>
       </slot>
@@ -65,18 +65,18 @@ const chunks = computed<Chunk[]>(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-highlight {
+.fy-highlight {
   display: inline;
   font-family: inherit;
 
   &__mark {
-    background: color-mix(in srgb, var(--primary) 22%, transparent);
-    color: var(--primary);
+    background: color-mix(in srgb, var(--fy-primary) 22%, transparent);
+    color: var(--fy-primary);
     border-radius: 4px;
     padding: 1px 4px;
     margin: 0 1px;
     font-weight: 600;
-    border-bottom: 1.5px solid var(--primary);
+    border-bottom: 1.5px solid var(--fy-primary);
   }
 }
 </style>

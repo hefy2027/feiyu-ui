@@ -142,11 +142,11 @@ onUnmounted(() => {
 
 <template>
   <Teleport to="body">
-    <Transition name="ui-dialog-fade">
+    <Transition name="fy-dialog-fade">
       <div
         v-if="isShow"
         :class="[
-          'ui-dialog-overlay',
+          'fy-dialog-overlay',
           { 'is-centered': center && !fullscreen }
         ]"
         :style="{ zIndex }"
@@ -154,7 +154,7 @@ onUnmounted(() => {
       >
         <div
           :class="[
-            'ui-dialog',
+            'fy-dialog',
             customClass,
             {
               'is-fullscreen': fullscreen,
@@ -171,12 +171,12 @@ onUnmounted(() => {
           aria-modal="true"
         >
           <div
-            class="ui-dialog__header"
+            class="fy-dialog__header"
             :class="{ 'is-draggable-handle': draggable && !fullscreen }"
             @mousedown="handleMouseDown"
           >
             <slot name="header">
-              <div class="ui-dialog__title">
+              <div class="fy-dialog__title">
                 <slot name="title">{{ title }}</slot>
               </div>
             </slot>
@@ -184,7 +184,7 @@ onUnmounted(() => {
             <button
               v-if="isShowClose"
               type="button"
-              class="ui-dialog__close-btn"
+              class="fy-dialog__close-btn"
               aria-label="关闭对话框"
               @click.stop="handleClose"
             >
@@ -192,11 +192,11 @@ onUnmounted(() => {
             </button>
           </div>
 
-          <div class="ui-dialog__body">
+          <div class="fy-dialog__body">
             <slot />
           </div>
 
-          <div v-if="$slots.footer" class="ui-dialog__footer" :class="{ 'is-center': center }">
+          <div v-if="$slots.footer" class="fy-dialog__footer" :class="{ 'is-center': center }">
             <slot name="footer" />
           </div>
         </div>
@@ -206,7 +206,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.ui-dialog-overlay {
+.fy-dialog-overlay {
   position: fixed;
   inset: 0;
   z-index: 80;
@@ -225,20 +225,20 @@ onUnmounted(() => {
   }
 }
 
-.ui-dialog {
+.fy-dialog {
   position: relative;
-  border-radius: var(--r-xl);
+  border-radius: var(--fy-r-xl);
   padding: 24px;
-  background: color-mix(in srgb, var(--surface-container-lowest) 90%, transparent);
+  background: color-mix(in srgb, var(--fy-surface-container-lowest) 90%, transparent);
   backdrop-filter: blur(32px) saturate(1.6);
   -webkit-backdrop-filter: blur(32px) saturate(1.6);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-pop), 0 20px 48px rgba(0, 0, 0, 0.16), inset 0 1px 0 var(--glass-hi);
+  border: 1px solid var(--fy-glass-border);
+  box-shadow: var(--fy-shadow-pop), 0 20px 48px rgba(0, 0, 0, 0.16), inset 0 1px 0 var(--fy-glass-hi);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   max-width: 100%;
-  animation: ui-dialog-pop 0.28s var(--ease-out);
+  animation: fy-dialog-pop 0.28s var(--fy-ease-out);
 
   &.is-fullscreen {
     width: 100vw !important;
@@ -262,10 +262,10 @@ onUnmounted(() => {
   }
 
   &__title {
-    font-family: var(--font-display);
+    font-family: var(--fy-font-display);
     font-size: 20px;
     font-weight: 800;
-    color: var(--on-surface);
+    color: var(--fy-on-surface);
     letter-spacing: -0.02em;
   }
 
@@ -275,15 +275,15 @@ onUnmounted(() => {
     border-radius: 50%;
     display: grid;
     place-items: center;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     border: none;
     background: transparent;
     cursor: pointer;
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover {
-      background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
-      color: var(--on-surface);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
+      color: var(--fy-on-surface);
     }
 
     .material-symbols-outlined {
@@ -294,8 +294,8 @@ onUnmounted(() => {
   &__body {
     flex: 1;
     min-height: 0;
-    font-size: var(--font-size-base);
-    color: var(--on-surface-variant);
+    font-size: var(--fy-font-size-base);
+    color: var(--fy-on-surface-variant);
     line-height: 1.6;
   }
 
@@ -312,17 +312,17 @@ onUnmounted(() => {
   }
 }
 
-.ui-dialog-fade-enter-active,
-.ui-dialog-fade-leave-active {
-  transition: opacity 0.24s var(--ease-soft);
+.fy-dialog-fade-enter-active,
+.fy-dialog-fade-leave-active {
+  transition: opacity 0.24s var(--fy-ease-soft);
 }
 
-.ui-dialog-fade-enter-from,
-.ui-dialog-fade-leave-to {
+.fy-dialog-fade-enter-from,
+.fy-dialog-fade-leave-to {
   opacity: 0;
 }
 
-@keyframes ui-dialog-pop {
+@keyframes fy-dialog-pop {
   0% {
     transform: scale(0.93) translateY(12px);
     opacity: 0;

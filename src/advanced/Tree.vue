@@ -178,14 +178,14 @@ function filterNode(node: TreeOption): boolean {
 </script>
 
 <template>
-  <div :class="['ui-tree', { 'is-block-node': blockNode, 'has-line': showLine }]">
-    <ul class="ui-tree__root">
+  <div :class="['fy-tree', { 'is-block-node': blockNode, 'has-line': showLine }]">
+    <ul class="fy-tree__root">
       <template v-for="node in data" :key="String(node.key)">
-        <li v-if="filterNode(node)" class="ui-tree__node">
+        <li v-if="filterNode(node)" class="fy-tree__node">
           <!-- Node Row -->
           <div
             :class="[
-              'ui-tree__node-content',
+              'fy-tree__node-content',
               {
                 'is-selected': isNodeSelected(node),
                 'is-disabled': node.disabled
@@ -196,13 +196,13 @@ function filterNode(node: TreeOption): boolean {
             <!-- Expand Arrow / Spacer -->
             <span
               v-if="node.children && node.children.length > 0"
-              class="material-symbols-outlined ui-tree__arrow"
+              class="material-symbols-outlined fy-tree__arrow"
               :class="{ 'is-expanded': isNodeExpanded(node) }"
               @click.stop="toggleExpand(node)"
             >
               arrow_right
             </span>
-            <span v-else class="ui-tree__arrow-spacer" />
+            <span v-else class="fy-tree__arrow-spacer" />
 
             <!-- Checkbox -->
             <Checkbox
@@ -214,27 +214,27 @@ function filterNode(node: TreeOption): boolean {
 
             <!-- Custom Prefix Icon / Slot -->
             <slot name="prefix" :node="node">
-              <span v-if="node.prefixIcon || node.icon" class="material-symbols-outlined ui-tree__node-icon">
+              <span v-if="node.prefixIcon || node.icon" class="material-symbols-outlined fy-tree__node-icon">
                 {{ node.prefixIcon || node.icon }}
               </span>
             </slot>
 
             <!-- Label -->
-            <span class="ui-tree__node-label">
+            <span class="fy-tree__node-label">
               <slot name="label" :node="node">{{ node.label }}</slot>
             </span>
 
             <!-- Custom Suffix Icon / Slot -->
             <slot name="suffix" :node="node">
-              <span v-if="node.suffixIcon" class="material-symbols-outlined ui-tree__suffix-icon">
+              <span v-if="node.suffixIcon" class="material-symbols-outlined fy-tree__suffix-icon">
                 {{ node.suffixIcon }}
               </span>
             </slot>
           </div>
 
           <!-- Nested Children -->
-          <transition name="ui-tree-expand">
-            <div v-if="node.children && node.children.length > 0 && isNodeExpanded(node)" class="ui-tree__children">
+          <transition name="fy-tree-expand">
+            <div v-if="node.children && node.children.length > 0 && isNodeExpanded(node)" class="fy-tree__children">
               <Tree
                 :data="node.children"
                 :checked-keys="checkedKeys"
@@ -274,13 +274,13 @@ function filterNode(node: TreeOption): boolean {
 </template>
 
 <style scoped lang="scss">
-.ui-tree {
+.fy-tree {
   display: flex;
   flex-direction: column;
   width: 100%;
   user-select: none;
-  font-size: var(--font-size-sm);
-  color: var(--on-surface);
+  font-size: var(--fy-font-size-sm);
+  color: var(--fy-on-surface);
 
   &__root {
     list-style: none;
@@ -301,17 +301,17 @@ function filterNode(node: TreeOption): boolean {
     align-items: center;
     gap: 6px;
     padding: 6px 8px;
-    border-radius: var(--r-sm);
+    border-radius: var(--fy-r-sm);
     cursor: pointer;
     transition: background 0.15s ease, color 0.15s ease;
 
     &:hover:not(.is-disabled) {
-      background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 60%, transparent);
     }
 
     &.is-selected {
-      background: color-mix(in srgb, var(--primary) 12%, transparent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--fy-primary) 12%, transparent);
+      color: var(--fy-primary);
       font-weight: 700;
     }
 
@@ -323,8 +323,8 @@ function filterNode(node: TreeOption): boolean {
 
   &__arrow {
     font-size: 20px;
-    color: var(--outline);
-    transition: transform 0.2s var(--ease-soft);
+    color: var(--fy-outline);
+    transition: transform 0.2s var(--fy-ease-soft);
     cursor: pointer;
     flex-shrink: 0;
 
@@ -355,7 +355,7 @@ function filterNode(node: TreeOption): boolean {
 
   &__suffix-icon {
     font-size: 16px;
-    color: var(--outline);
+    color: var(--fy-outline);
   }
 
   &__children {
@@ -365,16 +365,16 @@ function filterNode(node: TreeOption): boolean {
   }
 
   &.has-line &__children {
-    border-left: 1px dashed color-mix(in srgb, var(--outline-variant) 35%, transparent);
+    border-left: 1px dashed color-mix(in srgb, var(--fy-outline-variant) 35%, transparent);
   }
 }
 
-.ui-tree-expand-enter-active,
-.ui-tree-expand-leave-active {
-  transition: opacity 0.18s var(--ease-soft), transform 0.18s var(--ease-out);
+.fy-tree-expand-enter-active,
+.fy-tree-expand-leave-active {
+  transition: opacity 0.18s var(--fy-ease-soft), transform 0.18s var(--fy-ease-out);
 }
-.ui-tree-expand-enter-from,
-.ui-tree-expand-leave-to {
+.fy-tree-expand-enter-from,
+.fy-tree-expand-leave-to {
   opacity: 0;
   transform: translateY(-4px);
 }

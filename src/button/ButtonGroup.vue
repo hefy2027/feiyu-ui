@@ -18,8 +18,8 @@ provide('buttonGroupSize', computed(() => props.size))
 <template>
   <div
     :class="[
-      'ui-button-group',
-      { 'ui-button-group--vertical': vertical }
+      'fy-button-group',
+      { 'fy-button-group--vertical': vertical }
     ]"
     role="group"
   >
@@ -28,7 +28,7 @@ provide('buttonGroupSize', computed(() => props.size))
 </template>
 
 <style scoped lang="scss">
-.ui-button-group {
+.fy-button-group {
   display: inline-flex;
   vertical-align: middle;
   position: relative;
@@ -36,7 +36,7 @@ provide('buttonGroupSize', computed(() => props.size))
   &:not(&--vertical) {
     flex-direction: row;
 
-    :deep(.ui-button) {
+    :deep(.fy-button) {
       &:focus-visible {
         z-index: 2;
       }
@@ -62,7 +62,7 @@ provide('buttonGroupSize', computed(() => props.size))
   &--vertical {
     flex-direction: column;
 
-    :deep(.ui-button) {
+    :deep(.fy-button) {
       width: 100%;
 
       &:focus-visible {

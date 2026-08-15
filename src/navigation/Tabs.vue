@@ -52,7 +52,7 @@ function unregisterPane(name: string | number) {
   registeredPanes.value = registeredPanes.value.filter((p) => p.name !== name)
 }
 
-provide('ui-tabs', {
+provide('fy-tabs', {
   activeName: toRef(props, 'modelValue'),
   registerPane,
   unregisterPane
@@ -73,19 +73,19 @@ function handleRemove(event: MouseEvent, name: string | number) {
 </script>
 
 <template>
-  <div :class="['ui-tabs', `ui-tabs--${effectiveType}`]">
-    <div class="ui-tabs__header">
-      <div v-if="$slots.prefix" class="ui-tabs__prefix">
+  <div :class="['fy-tabs', `fy-tabs--${effectiveType}`]">
+    <div class="fy-tabs__header">
+      <div v-if="$slots.prefix" class="fy-tabs__prefix">
         <slot name="prefix" />
       </div>
-      <div class="ui-tabs__nav-wrap" role="tablist">
+      <div class="fy-tabs__nav-wrap" role="tablist">
       <template v-if="tabs && tabs.length">
         <button
           v-for="t in tabs"
           :key="String(t.name)"
           type="button"
           :class="[
-            'ui-tabs__nav-item',
+            'fy-tabs__nav-item',
             {
               'is-active': modelValue === t.name,
               'is-disabled': t.disabled
@@ -95,13 +95,13 @@ function handleRemove(event: MouseEvent, name: string | number) {
           :aria-selected="modelValue === t.name"
           @click="selectTab(t)"
         >
-          <span v-if="t.icon" class="material-symbols-outlined ui-tabs__icon">
+          <span v-if="t.icon" class="material-symbols-outlined fy-tabs__icon">
             {{ t.icon }}
           </span>
           <span>{{ t.label }}</span>
           <span
             v-if="closable || t.closable"
-            class="material-symbols-outlined ui-tabs__close"
+            class="material-symbols-outlined fy-tabs__close"
             role="button"
             aria-label="关闭标签"
             @click="handleRemove($event, t.name)"
@@ -117,7 +117,7 @@ function handleRemove(event: MouseEvent, name: string | number) {
           :key="String(pane.name)"
           type="button"
           :class="[
-            'ui-tabs__nav-item',
+            'fy-tabs__nav-item',
             {
               'is-active': modelValue === pane.name,
               'is-disabled': pane.disabled
@@ -127,13 +127,13 @@ function handleRemove(event: MouseEvent, name: string | number) {
           :aria-selected="modelValue === pane.name"
           @click="selectTab(pane)"
         >
-          <span v-if="pane.icon" class="material-symbols-outlined ui-tabs__icon">
+          <span v-if="pane.icon" class="material-symbols-outlined fy-tabs__icon">
             {{ pane.icon }}
           </span>
           <span>{{ pane.label }}</span>
           <span
             v-if="closable || pane.closable"
-            class="material-symbols-outlined ui-tabs__close"
+            class="material-symbols-outlined fy-tabs__close"
             role="button"
             aria-label="关闭标签"
             @click="handleRemove($event, pane.name)"
@@ -143,19 +143,19 @@ function handleRemove(event: MouseEvent, name: string | number) {
         </button>
       </template>
     </div>
-      <div v-if="$slots.extra" class="ui-tabs__extra">
+      <div v-if="$slots.extra" class="fy-tabs__extra">
         <slot name="extra" />
       </div>
     </div>
 
-    <div class="ui-tabs__content">
+    <div class="fy-tabs__content">
       <slot />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.ui-tabs {
+.fy-tabs {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -189,9 +189,9 @@ function handleRemove(event: MouseEvent, name: string | number) {
     font-family: inherit;
     border: none;
     background: transparent;
-    color: var(--on-surface-variant);
+    color: var(--fy-on-surface-variant);
     font-weight: 700;
-    transition: all 0.2s var(--ease-soft);
+    transition: all 0.2s var(--fy-ease-soft);
     white-space: nowrap;
 
     &.is-disabled {
@@ -213,8 +213,8 @@ function handleRemove(event: MouseEvent, name: string | number) {
 
     &:hover {
       opacity: 1;
-      background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
-      color: var(--error);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 80%, transparent);
+      color: var(--fy-error);
     }
   }
 
@@ -224,53 +224,53 @@ function handleRemove(event: MouseEvent, name: string | number) {
 
   /* Variant: Pill */
   &--pill {
-    .ui-tabs__nav-wrap {
+    .fy-tabs__nav-wrap {
       padding: 4px;
-      border-radius: var(--r-md);
-      background: color-mix(in srgb, var(--surface-container-high) 45%, transparent);
+      border-radius: var(--fy-r-md);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 45%, transparent);
       backdrop-filter: blur(12px) saturate(1.5);
       -webkit-backdrop-filter: blur(12px) saturate(1.5);
-      border: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+      border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
       width: fit-content;
     }
 
-    .ui-tabs__nav-item {
+    .fy-tabs__nav-item {
       padding: 6px 14px;
-      border-radius: var(--r-sm);
-      font-size: var(--font-size-sm);
+      border-radius: var(--fy-r-sm);
+      font-size: var(--fy-font-size-sm);
 
       &:hover:not(.is-disabled) {
-        color: var(--on-surface);
+        color: var(--fy-on-surface);
       }
 
       &.is-active {
-        background: color-mix(in srgb, var(--surface-container-lowest) 82%, transparent);
+        background: color-mix(in srgb, var(--fy-surface-container-lowest) 82%, transparent);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        color: var(--primary);
-        box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-hi);
+        color: var(--fy-primary);
+        box-shadow: var(--fy-shadow-sm), inset 0 1px 0 var(--fy-glass-hi);
       }
     }
   }
 
   /* Variant: Line */
   &--line {
-    .ui-tabs__nav-wrap {
-      border-bottom: 1.5px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    .fy-tabs__nav-wrap {
+      border-bottom: 1.5px solid color-mix(in srgb, var(--fy-outline-variant) 30%, transparent);
       gap: 18px;
     }
 
-    .ui-tabs__nav-item {
+    .fy-tabs__nav-item {
       padding: 10px 4px;
-      font-size: var(--font-size-base);
+      font-size: var(--fy-font-size-base);
       position: relative;
 
       &:hover:not(.is-disabled) {
-        color: var(--on-surface);
+        color: var(--fy-on-surface);
       }
 
       &.is-active {
-        color: var(--primary);
+        color: var(--fy-primary);
 
         &::after {
           content: '';
@@ -279,7 +279,7 @@ function handleRemove(event: MouseEvent, name: string | number) {
           right: 0;
           bottom: -1.5px;
           height: 2.5px;
-          background: var(--primary);
+          background: var(--fy-primary);
           border-radius: 2px;
         }
       }
@@ -288,28 +288,28 @@ function handleRemove(event: MouseEvent, name: string | number) {
 
   /* Variant: Card */
   &--card {
-    .ui-tabs__nav-wrap {
+    .fy-tabs__nav-wrap {
       gap: 8px;
     }
 
-    .ui-tabs__nav-item {
+    .fy-tabs__nav-item {
       padding: 8px 16px;
-      border-radius: var(--r-md);
-      background: color-mix(in srgb, var(--surface-container-high) 35%, transparent);
-      border: 1px solid color-mix(in srgb, var(--outline-variant) 40%, transparent);
-      font-size: var(--font-size-sm);
+      border-radius: var(--fy-r-md);
+      background: color-mix(in srgb, var(--fy-surface-container-high) 35%, transparent);
+      border: 1px solid color-mix(in srgb, var(--fy-outline-variant) 40%, transparent);
+      font-size: var(--fy-font-size-sm);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
 
       &:hover:not(.is-disabled) {
-        background: color-mix(in srgb, var(--surface-container-high) 65%, transparent);
+        background: color-mix(in srgb, var(--fy-surface-container-high) 65%, transparent);
       }
 
       &.is-active {
-        background: var(--primary);
-        color: var(--on-primary);
+        background: var(--fy-primary);
+        color: var(--fy-on-primary);
         border-color: transparent;
-        box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--primary) 60%, transparent);
+        box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--fy-primary) 60%, transparent);
       }
     }
   }
